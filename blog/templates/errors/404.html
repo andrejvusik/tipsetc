@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ title['title'] }}{% endblock %}
+
+{% block content%}
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="box content">
+          <h2>{% block content_title %}TipsEtc... {{ title['title'] }}{% endblock %}</h2>
+          <div class="media">
+            <div class="media-content">
+              <div class="content">
+                <form class="box" action="" method="post">
+                  <div class="field">
+                    <label class="label">{{ _('Deciphering the error: "The page could not be found".') }}</label>
+                  </div>
+                  <div class="field">
+                    <a class="button is-dark is-rounded is-fullwidth" href="{{ url_for('main.index') }}">{{ _('Go to Main page') }}</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

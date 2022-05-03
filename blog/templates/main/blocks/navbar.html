@@ -1,0 +1,85 @@
+<nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ url_for('main.index') }}">
+      <img src="{{ url_for('static', filename='img/tipsetc-logo-color-white.png') }}" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu is-dark">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="{{ url_for('post.indexblog') }}">
+          {{ _('Posts') }}
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="{{ url_for('post.indexblog') }}">
+            {{ _('All posts') }}
+          </a>
+          {% if current_user.is_authenticated %}
+          <a class="navbar-item" href="{{ url_for('post.followedposts') }}">
+            {{ _('Subscriptions') }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      <a class="navbar-item" href="#">
+        {{ _('Category') }}
+      </a>
+      {% if current_user.admin %}
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="{{ url_for('admin.adminblog', data = 'allusers') }}">
+          {{ _('Admin panel') }}
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="{{ url_for('admin.adminblog', data = 'allusers') }}">
+            {{ _('Users') }}
+          </a>
+          <a class="navbar-item" href="{{ url_for('admin.adminblog', data = 'allposts') }}">
+            {{ _('Posts') }}
+          </a>
+        </div>
+      </div>
+      {% endif %}
+      {% if current_user.admin or current_user.author %}
+      <a class="navbar-item" href="{{ url_for('post.createpost') }}">
+        {{ _('New post') }}
+      </a>
+      {% endif %}
+    </div>
+    <div class="navbar-end">
+      <div class="control">
+        <input class="input is-rounded is-small my-3" type="text" placeholder="{{ _('Search') }}">
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-dark is-rounded is-small is-inverted" target="_blank" href="https://t.me/tipsetc">
+            <img src="{{ url_for('static', filename='img/t_logo.png') }}" width="17" height="17">&nbsp;&nbsp;tipsetc
+          </a>
+          {% if current_user.is_anonymous %}
+          <a class="button is-dark is-rounded is-small is-inverted" href="{{ url_for('user.reguser') }}">
+            {{ _('Sign Up') }}
+          </a>
+          <a class="button is-dark is-rounded is-small is-inverted" href="{{ url_for('user.login') }}">
+            {{ _('Sign In') }}
+          </a>
+        </div>
+      </div>
+      {% else %}
+      <a class="button is-dark is-rounded is-small is-inverted" href="{{ url_for('user.user', username=current_user.username) }}">
+        {{ _('Login as') }}:&nbsp;<strong>{{ current_user.username }}</strong>
+      </a>
+      <a class="button is-dark is-rounded is-small is-inverted" href="{{ url_for('user.logout') }}">
+        {{ _('Logout') }}
+      </a>
+    </div>
+  </div>
+  {% endif %}
+  </div>
+  </div>
+</nav>

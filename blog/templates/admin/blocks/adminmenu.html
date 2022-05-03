@@ -1,0 +1,68 @@
+<h2>{{ _('Menu') }}</h2>
+<div class="box">
+  <div class="media">
+    <div class="media-content">
+      <div class="content">
+        <aside class="menu">
+          <p class="menu-label">
+            {{ _('USERS') }}
+          </p>
+          {% if data == 'allusers' %}
+          <p><a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'allusers') }}">{{ _('All users ') }} ({{ nums.allusers }})</a></p>
+          {% else %}
+          <p><a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'allusers') }}">{{ _('All users ') }} ({{ nums.allusers }})</a></p>
+          {% endif %}
+          <p class="menu-label">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ _('STATUS') }}
+          </p>
+          {% if data == 'admins' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'admins') }}">{{ _('Admins') }} ({{ nums.admins }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'admins') }}">{{ _('Admins') }} ({{ nums.admins }})</a></p>
+          {% endif %}
+          {% if data == 'authors' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'authors') }}">{{ _('Authors') }} ({{ nums.authors }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'authors') }}">{{ _('Authors') }} ({{ nums.authors }})</a></p>
+          {% endif %}
+          {% if data == 'readers' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'readers') }}">{{ _('Readers') }} ({{ nums.readers }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'readers') }}">{{ _('Readers') }} ({{ nums.readers }})</a></p>
+          {% endif %}
+          <p class="menu-label">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ _('EMAIL') }}
+          </p>
+          {% if data == 'confirmed' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'confirmed') }}">{{ _('Verified') }} ({{ nums.confirmed }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'confirmed') }}">{{ _('Verified') }} ({{ nums.confirmed }})</a></p>
+          {% endif %}
+          {% if data == 'noconfirmed' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'noconfirmed') }}">{{ _('Unverified') }} ({{ nums.noconfirmed }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'noconfirmed') }}">{{ _('Unverified') }} ({{ nums.noconfirmed }})</a></p>
+          {% endif %}
+          <p class="menu-label">
+            {{ _('POSTS') }}
+          </p>
+          {% if data == 'allposts' %}
+          <p><a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'allposts') }}">{{ _('All posts') }} ({{ nums.allposts }})</a></p>
+          {% else %}
+          <p><a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'allposts') }}">{{ _('All posts') }} ({{ nums.allposts }})</a></p>
+          {% endif %}
+          {% if data == 'publishedposts' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'publishedposts') }}">{{ _('Published posts') }} ({{ nums.publishedposts }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'publishedposts') }}">{{ _('Published posts') }} ({{ nums.publishedposts }})</a></p>
+          {% endif %}
+          {% if data == 'inworkposts' %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'inworkposts') }}">{{ _('Posts in progress') }} ({{ nums.inworkposts }})</a></p>
+          {% else %}
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'inworkposts') }}">{{ _('Posts in progress') }} ({{ nums.inworkposts }})</a></p>
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>

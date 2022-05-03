@@ -1,0 +1,6 @@
+New user registered.
+username: {{ user.username }}.
+Full name: {{ user.full_name }}.
+Email: {{ user.email }}.
+Telegram: {{ user.telegram }}.
+Best regards, team TipsEtc...

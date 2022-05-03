@@ -1,0 +1,814 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-05-04 01:18+0300\n"
+"PO-Revision-Date: 2022-05-04 01:19+0300\n"
+"Last-Translator: \n"
+"Language-Team: ru <LL@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 "
+"&& (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Generated-By: Babel 2.9.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: blog/__init__.py:17
+msgid "Please log in to access this page."
+msgstr "Пожалуйста, войдите, чтобы получить доступ к этой странице."
+
+#: blog/admin/utils.py:26
+msgid "Admin panel. All users."
+msgstr "Панель администратора. Все пользователи."
+
+#: blog/admin/utils.py:29
+msgid "Admin panel. Admins."
+msgstr "Панель администратора. Администраторы."
+
+#: blog/admin/utils.py:33
+msgid "Admin panel. Authors."
+msgstr "Панель администратора. Авторы."
+
+#: blog/admin/utils.py:37
+msgid "Admin panel. Readers."
+msgstr "Панель администратора. Читатели."
+
+#: blog/admin/utils.py:40
+msgid "Admin panel. Verified users."
+msgstr "Панель администратора. Верифицированные пользователи."
+
+#: blog/admin/utils.py:43
+msgid "Admin panel. Unverified users."
+msgstr "Панель администратора. Неверифицированные пользователи."
+
+#: blog/admin/utils.py:45
+msgid "Admin panel. All posts."
+msgstr "Панель администратора. Все записи."
+
+#: blog/admin/utils.py:48
+msgid "Admin panel. Published posts."
+msgstr "Панель администратора. Опубликованные записи."
+
+#: blog/admin/utils.py:51
+msgid "Admin panel. Posts in progress."
+msgstr "Панель администратора. Записи в работе."
+
+#: blog/errors/handlers.py:9
+msgid "Error: \"404\""
+msgstr "Ошибка: \"404\""
+
+#: blog/errors/handlers.py:15
+msgid "Error: \"500\""
+msgstr "Ошибка: \"500\""
+
+#: blog/main/view.py:21 blog/post/view.py:10
+msgid "Resent posts."
+msgstr "Последние записи."
+
+#: blog/post/forms.py:9 blog/post/forms.py:23
+msgid "Posts title:"
+msgstr "Заголовок записи:"
+
+#: blog/post/forms.py:11 blog/post/forms.py:25
+msgid "Post URL (optional):"
+msgstr "URL записи (необязательно):"
+
+#: blog/post/forms.py:13 blog/post/forms.py:27
+msgid "Content post:"
+msgstr "Содержание записи:"
+
+#: blog/post/forms.py:15 blog/post/forms.py:29
+msgid "Category:"
+msgstr "Категория:"
+
+#: blog/post/forms.py:17 blog/post/forms.py:32
+msgid "Save post"
+msgstr "Сохранить запись"
+
+#: blog/post/forms.py:21 blog/templates/post/createpost.html:21
+#: blog/templates/post/editpost.html:21 blog/templates/user/edituser.html:34
+msgid "User ID"
+msgstr "ID пользователя"
+
+#: blog/post/forms.py:31
+msgid "Publish after saving"
+msgstr "Опубликовать после сохранения"
+
+#: blog/post/utils.py:56
+msgid "You are not subscribed to anyone."
+msgstr "Вы ни на кого не подписаны."
+
+#: blog/post/utils.py:61
+msgid "Sign in to your account to view subscriptions."
+msgstr "Войдите в свою учетную запись, чтобы просмотреть подписки."
+
+#: blog/post/utils.py:81
+msgid "You do not have sufficient rights to create a post."
+msgstr "У вас недостаточно прав для создания записей в блоге."
+
+#: blog/post/utils.py:96
+#, python-format
+msgid "The user with this ID was not found. Authorship assigned %(username)s."
+msgstr "Пользователь с таким ID не найден. Авторство присвоено %(username)s."
+
+#: blog/post/utils.py:102
+msgid "Please fill in all required fields."
+msgstr "Пожалуйста, заполните все обязательные поля."
+
+#: blog/post/utils.py:109
+#, python-format
+msgid "Congratulations, your post \"%(title)s\" has been saved."
+msgstr "Поздравляем, ваша запись \"%(title)s\" сохранено."
+
+#: blog/post/utils.py:113
+msgid "To create an post, please log in to your account."
+msgstr "Чтобы создать публикацию, пожалуйста, войдите в свою учетную запись."
+
+#: blog/post/utils.py:118
+msgid "Log in to your account to edit posts."
+msgstr "Войдите в свою учетную запись, чтобы редактировать сообщения."
+
+#: blog/post/utils.py:125
+msgid "You do not have sufficient rights to edit posts."
+msgstr "У вас недостаточно прав для редактирования записи."
+
+#: blog/post/utils.py:138
+msgid "Please check the user ID. User with this ID was not found."
+msgstr ""
+"Пожалуйста, проверьте идентификатор пользователя. Пользователь с таким ID не "
+"найден."
+
+#: blog/post/utils.py:151
+#, python-format
+msgid "Changes to \"%(title)s\" successfully made."
+msgstr "Изменения в \"%(title)s\" успешно внесены."
+
+#: blog/post/utils.py:173
+#, python-format
+msgid "You do not have sufficient rights to delete: %(title)s"
+msgstr "У вас недостаточно прав для удаления: %(title)s"
+
+#: blog/post/view.py:17
+msgid "Subscriptions."
+msgstr "Подписки."
+
+#: blog/post/view.py:34
+msgid "Create new post."
+msgstr "Создать новую запись."
+
+#: blog/post/view.py:41
+msgid "Edit post: "
+msgstr "Редактировать запись: "
+
+#: blog/templates/admin/blocks/adminmenu.html:1
+msgid "Menu"
+msgstr "Меню"
+
+#: blog/templates/admin/blocks/adminmenu.html:8
+msgid "USERS"
+msgstr "ПОЛЬЗОВАТЕЛИ"
+
+#: blog/templates/admin/blocks/adminmenu.html:11
+#: blog/templates/admin/blocks/adminmenu.html:13
+msgid "All users "
+msgstr "Все пользователи "
+
+#: blog/templates/admin/blocks/adminmenu.html:16
+msgid "STATUS"
+msgstr "СТАТУС"
+
+#: blog/templates/admin/blocks/adminmenu.html:19
+#: blog/templates/admin/blocks/adminmenu.html:21
+msgid "Admins"
+msgstr "Администраторы"
+
+#: blog/templates/admin/blocks/adminmenu.html:24
+#: blog/templates/admin/blocks/adminmenu.html:26
+msgid "Authors"
+msgstr "Авторы"
+
+#: blog/templates/admin/blocks/adminmenu.html:29
+#: blog/templates/admin/blocks/adminmenu.html:31
+msgid "Readers"
+msgstr "Читатели"
+
+#: blog/templates/admin/blocks/adminmenu.html:34
+msgid "EMAIL"
+msgstr "EMAIL"
+
+#: blog/templates/admin/blocks/adminmenu.html:37
+#: blog/templates/admin/blocks/adminmenu.html:39
+msgid "Verified"
+msgstr "Верифицированы"
+
+#: blog/templates/admin/blocks/adminmenu.html:42
+#: blog/templates/admin/blocks/adminmenu.html:44
+msgid "Unverified"
+msgstr "Неверифицированы"
+
+#: blog/templates/admin/blocks/adminmenu.html:47
+msgid "POSTS"
+msgstr "ЗАПИСИ В БЛОГЕ"
+
+#: blog/templates/admin/blocks/adminmenu.html:50
+#: blog/templates/admin/blocks/adminmenu.html:52
+#: blog/templates/main/blocks/navbar.html:22
+msgid "All posts"
+msgstr "Все записи"
+
+#: blog/templates/admin/blocks/adminmenu.html:55
+#: blog/templates/admin/blocks/adminmenu.html:57
+msgid "Published posts"
+msgstr "Опубликованные записи"
+
+#: blog/templates/admin/blocks/adminmenu.html:60
+#: blog/templates/admin/blocks/adminmenu.html:62
+msgid "Posts in progress"
+msgstr "Записи в работе"
+
+#: blog/templates/admin/blocks/postinfo.html:20
+#: blog/templates/admin/blocks/userinfo.html:23 blog/templates/user/user.html:26
+msgid "Status:"
+msgstr "Статус:"
+
+#: blog/templates/admin/blocks/postinfo.html:22
+msgid "Published"
+msgstr "Опубликована"
+
+#: blog/templates/admin/blocks/postinfo.html:24
+msgid "In progress"
+msgstr "В работе"
+
+#: blog/templates/admin/blocks/postinfo.html:27
+msgid "Author:"
+msgstr "Автор:"
+
+#: blog/templates/admin/blocks/postinfo.html:28
+#: blog/templates/admin/blocks/userinfo.html:57
+#: blog/templates/post/blocks/postinfo.html:7 blog/templates/user/user.html:86
+msgid "Edit"
+msgstr "Редактировать"
+
+#: blog/templates/admin/blocks/postinfo.html:29
+#: blog/templates/admin/blocks/userinfo.html:60
+#: blog/templates/post/blocks/postinfo.html:8 blog/templates/user/user.html:87
+msgid "Delete"
+msgstr "Удалить"
+
+#: blog/templates/admin/blocks/userinfo.html:25 blog/templates/user/user.html:28
+msgid "ADMIN"
+msgstr "Администратор"
+
+#: blog/templates/admin/blocks/userinfo.html:27
+#: blog/templates/post/blocks/postinfo.html:4 blog/templates/user/user.html:30
+#: blog/user/forms.py:74
+msgid "Author"
+msgstr "Автор"
+
+#: blog/templates/admin/blocks/userinfo.html:29 blog/templates/user/user.html:32
+msgid "Reader"
+msgstr "Читатель"
+
+#: blog/templates/admin/blocks/userinfo.html:33
+#: blog/templates/main/blocks/navbar.html:18
+#: blog/templates/main/blocks/navbar.html:44
+msgid "Posts"
+msgstr "Записи"
+
+#: blog/templates/admin/blocks/userinfo.html:39
+msgid "Last seen on:"
+msgstr "Был на сайте:"
+
+#: blog/templates/admin/blocks/userinfo.html:44
+msgid "Registered:"
+msgstr "Зарегистрирован:"
+
+#: blog/templates/admin/blocks/userinfo.html:47
+msgid "Email:"
+msgstr "Email:"
+
+#: blog/templates/admin/blocks/userinfo.html:49
+msgid "Verified."
+msgstr "Подтвержден."
+
+#: blog/templates/admin/blocks/userinfo.html:51
+msgid "Unverified!!!"
+msgstr "Неподтверждён!!!"
+
+#: blog/templates/emails/confirm_email.html:1
+#: blog/templates/emails/reset_password.html:1
+#, python-format
+msgid "Dear <b>%(username)s</b>."
+msgstr "Уважаемый <b>%(username)s</b>."
+
+#: blog/templates/emails/confirm_email.html:5
+#: blog/templates/emails/reset_password.html:5
+msgid "click on the link"
+msgstr "нажмите на ссылку"
+
+#: blog/templates/emails/confirm_email.html:8
+#: blog/templates/emails/reset_password.html:8
+msgid ""
+"Alternatively, you can paste the following link into your browser&#39;s address "
+"bar:"
+msgstr ""
+"Кроме того, вы можете вставить следующую ссылку в адресную строку браузера:"
+
+#: blog/templates/emails/confirm_email.html:10
+#: blog/templates/emails/reset_password.html:10
+msgid "If you received this message in error, please ignore this message."
+msgstr "Если вы получили это сообщение по ошибке, проигнорируйте его, пожалуйста."
+
+#: blog/templates/emails/confirm_email.html:11
+#: blog/templates/emails/reg_new_user.html:6
+#: blog/templates/emails/reset_password.html:11
+msgid "Best regards, team TipsEtc..."
+msgstr "С уважением, команда TipsEtc..."
+
+#: blog/templates/emails/reg_new_user.html:1
+msgid "New user registered."
+msgstr "Зарегистрирован новый пользователь."
+
+#: blog/templates/emails/reg_new_user.html:2
+#, python-format
+msgid "Username: %(username)s."
+msgstr "Имя пользователя: %(username)s."
+
+#: blog/templates/emails/reg_new_user.html:3
+#, python-format
+msgid "Full name: %(full_name)s."
+msgstr "Полное имя: %(full_name)s."
+
+#: blog/templates/emails/reg_new_user.html:4
+#, python-format
+msgid "Email: %(email)s."
+msgstr "Email: %(email)s."
+
+#: blog/templates/emails/reg_new_user.html:5
+#, python-format
+msgid "Telegram: %(telegram)s."
+msgstr "Telegram: %(telegram)s."
+
+#: blog/templates/errors/404.html:17
+msgid "Deciphering the error: \"The page could not be found\"."
+msgstr "Расшифровка ошибки: «Страница не найдена»."
+
+#: blog/templates/errors/404.html:20 blog/templates/errors/500.html:23
+msgid "Go to Main page"
+msgstr "Перейти на главную страницу"
+
+#: blog/templates/errors/500.html:17
+msgid "Error Description: \"An unexpected error has occurred\"."
+msgstr "Описание ошибки: «Произошла непредвиденная ошибка»."
+
+#: blog/templates/errors/500.html:20
+msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgstr "Администратор уведомлен. Приносим извинения за доставленные неудобства!"
+
+#: blog/templates/main/base.html:8
+msgid "Help yourself"
+msgstr "Помоги себе сам"
+
+#: blog/templates/main/blocks/footer.html:4
+msgid "Have a nice day"
+msgstr "Хорошошего дня"
+
+#: blog/templates/main/blocks/jquery.html:43
+msgid "Error: Could not contact server."
+msgstr "Ошибка: Не удалось связаться с сервером."
+
+#: blog/templates/main/blocks/navbar.html:26
+msgid "Subscriptions"
+msgstr "Подписки"
+
+#: blog/templates/main/blocks/navbar.html:32
+#: blog/templates/post/blocks/postinfo.html:5
+#: blog/templates/post/createpost.html:76 blog/templates/post/editpost.html:76
+msgid "Category"
+msgstr "Категории"
+
+#: blog/templates/main/blocks/navbar.html:37
+msgid "Admin panel"
+msgstr "Админка"
+
+#: blog/templates/main/blocks/navbar.html:41
+msgid "Users"
+msgstr "Пользователи"
+
+#: blog/templates/main/blocks/navbar.html:51
+msgid "New post"
+msgstr "Новая запись"
+
+#: blog/templates/main/blocks/navbar.html:57
+msgid "Search"
+msgstr "Поиск"
+
+#: blog/templates/main/blocks/navbar.html:66
+msgid "Sign Up"
+msgstr "Регистрация"
+
+#: blog/templates/main/blocks/navbar.html:69
+msgid "Sign In"
+msgstr "Войти"
+
+#: blog/templates/main/blocks/navbar.html:75
+msgid "Login as"
+msgstr "Вошли как"
+
+#: blog/templates/main/blocks/navbar.html:78
+msgid "Logout"
+msgstr "Выйти"
+
+#: blog/templates/main/blocks/pagination.html:6
+msgid "Back"
+msgstr "Назад"
+
+#: blog/templates/main/blocks/pagination.html:24
+msgid "Forward"
+msgstr "Вперёд"
+
+#: blog/templates/post/createpost.html:19 blog/templates/post/editpost.html:19
+#, python-format
+msgid "Author: \"%(username)s\". User ID:"
+msgstr "Автор: \"%(username)s\". ID пользователя:"
+
+#: blog/templates/post/createpost.html:24 blog/templates/post/editpost.html:24
+#, python-format
+msgid "Author: \"%(username)s\"."
+msgstr "Автор: \"%(username)s\"."
+
+#: blog/templates/post/createpost.html:30 blog/templates/post/editpost.html:30
+msgid "Post title"
+msgstr "Заголовок записи"
+
+#: blog/templates/post/createpost.html:43 blog/templates/post/editpost.html:43
+msgid "Post URL"
+msgstr "URL записи"
+
+#: blog/templates/post/createpost.html:56 blog/templates/post/editpost.html:56
+msgid "Post content"
+msgstr "Содержание записи"
+
+#: blog/templates/post/blocks/postbody.html:10
+#, python-format
+msgid "Posts language is: %(postlang)s.  Translate on: %(localelang)s."
+msgstr "Язык сообщений: %(postlang)s. Перевести на: %(localelang)s."
+
+#: blog/templates/user/edituser.html:20 blog/templates/user/reguser.html:20
+#: blog/user/forms.py:30 blog/user/forms.py:62
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: blog/templates/user/edituser.html:48 blog/templates/user/reguser.html:33
+msgid "Full name"
+msgstr "Полное имя"
+
+#: blog/templates/user/edituser.html:61 blog/templates/user/login.html:20
+#: blog/templates/user/reguser.html:46
+#: blog/templates/user/resetpasswordrequest.html:20
+msgid "e.g. alex@example.com"
+msgstr "например: \"alex@example.com\""
+
+#: blog/templates/user/edituser.html:74 blog/templates/user/reguser.html:59
+msgid "Telegram"
+msgstr "Telegram"
+
+#: blog/templates/user/edituser.html:92 blog/templates/user/reguser.html:103
+msgid "Max 256 characters"
+msgstr "Максимум 256 символов"
+
+#: blog/templates/user/login.html:33 blog/templates/user/reguser.html:77
+#: blog/templates/user/reguser.html:90 blog/templates/user/resetpassword.html:20
+#: blog/templates/user/resetpassword.html:33
+msgid "********"
+msgstr "********"
+
+#: blog/templates/user/login.html:43
+msgid "Forgot your password? "
+msgstr "Забыли Ваш пароль? "
+
+#: blog/templates/user/login.html:43
+msgid "Click here for recovery."
+msgstr "Нажмите здесь для восстановления."
+
+#: blog/templates/user/login.html:53
+#: blog/templates/user/resetpasswordrequest.html:34
+msgid "Not registered? "
+msgstr "Не зарегистрированы? "
+
+#: blog/templates/user/login.html:53
+#: blog/templates/user/resetpasswordrequest.html:34
+msgid "Click here to register."
+msgstr "Нажмите здесь для регистрации."
+
+#: blog/templates/user/reguser.html:117
+msgid "Terms of use."
+msgstr "Соглашение пользователей."
+
+#: blog/templates/user/reguser.html:122
+#: blog/templates/user/resetpasswordrequest.html:33
+msgid "Registered? "
+msgstr "Зарегистрированы? "
+
+#: blog/templates/user/reguser.html:122
+#: blog/templates/user/resetpasswordrequest.html:33
+msgid "Click here to login."
+msgstr "Нажмите здесь чтобы войти."
+
+#: blog/templates/user/user.html:23
+#, python-format
+msgid "Full name: %(full_name)s"
+msgstr "Полное имя: %(full_name)s"
+
+#: blog/templates/user/user.html:36
+msgid "Registered: "
+msgstr "Зарегистрирован: "
+
+#: blog/templates/user/user.html:39
+msgid "Last seen: "
+msgstr "Был на сайте: "
+
+#: blog/templates/user/user.html:43
+#, python-format
+msgid "Email:&nbsp<b>%(email)s</b>"
+msgstr "Email:&nbsp<b>%(email)s</b>"
+
+#: blog/templates/user/user.html:45
+msgid "(confirmed)"
+msgstr "(подтвержден)"
+
+#: blog/templates/user/user.html:48
+msgid "(unconfirmed, confirm now)"
+msgstr "(не подтвержден, подтвердить сейчас)"
+
+#: blog/templates/user/user.html:50
+msgid "(unconfirmed)"
+msgstr "(не подтвержден)"
+
+#: blog/templates/user/user.html:56
+#, python-format
+msgid "Telegram:&nbsp<b>@%(telegram)s"
+msgstr "Telegram:&nbsp<b>@%(telegram)s"
+
+#: blog/templates/user/user.html:62
+msgid "About me:"
+msgstr "Обо мне:"
+
+#: blog/templates/user/user.html:67
+#, python-format
+msgid "Followers:&nbsp;<b>%(followers)s</b>"
+msgstr "Подписчики:&nbsp;<b>%(followers)s</b>"
+
+#: blog/templates/user/user.html:68
+#, python-format
+msgid "Followed:&nbsp;<b>%(followed)s</b>"
+msgstr "Подписки:&nbsp;<b>%(followed)s</b>"
+
+#: blog/templates/user/user.html:81
+msgid "Follow"
+msgstr "Подписаться"
+
+#: blog/templates/user/user.html:83
+msgid "Unfollow"
+msgstr "Отписаться"
+
+#: blog/templates/user/user.html:96
+#, python-format
+msgid "Posts&nbsp;(%(nums)s):"
+msgstr "Записи&nbsp;(%(nums)s):"
+
+#: blog/translate/translate.py:14
+msgid "Error: the translation service failed."
+msgstr "Ошибка: служба перевода не доступна."
+
+#: blog/user/emails.py:23
+msgid "[TipsEtc...] Reset your password."
+msgstr "[TipsEtc...] Сбросить пароль."
+
+#: blog/user/emails.py:32
+msgid "[TipsEtc...] New user registered."
+msgstr "[TipsEtc...] Зарегистрирован новый пользователь."
+
+#: blog/user/emails.py:41
+msgid "[TipsEtc...] Confirmation of registration."
+msgstr "[TipsEtc...] Подтверждение регистрации."
+
+#: blog/user/forms.py:10 blog/user/forms.py:17 blog/user/forms.py:34
+#: blog/user/forms.py:66
+msgid "Email"
+msgstr "Email"
+
+#: blog/user/forms.py:11 blog/user/forms.py:22 blog/user/forms.py:39
+msgid "Password"
+msgstr "Пароль"
+
+#: blog/user/forms.py:12
+msgid "Remain in the system"
+msgstr "Оставаться в системе"
+
+#: blog/user/forms.py:13
+msgid "Sign in"
+msgstr "Войти"
+
+#: blog/user/forms.py:18
+msgid "Restore password"
+msgstr "Восстановить пароль"
+
+#: blog/user/forms.py:24 blog/user/forms.py:41
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
+#: blog/user/forms.py:26
+msgid "Save new password"
+msgstr "Сохранить новый пароль"
+
+#: blog/user/forms.py:32 blog/user/forms.py:64
+msgid "Full name (optional)"
+msgstr "Полное имя (необязательно)"
+
+#: blog/user/forms.py:36 blog/user/forms.py:68
+msgid "Username Telegram (optional)"
+msgstr "Аккаунт в Telegram (необязательно)"
+
+#: blog/user/forms.py:38 blog/user/forms.py:70
+msgid "Show personal details (Email, Telegram)"
+msgstr "Показать личные данные (Email, Telegram)"
+
+#: blog/user/forms.py:43 blog/user/forms.py:71
+msgid "About me (optional)"
+msgstr "Обо мне (необязательно)"
+
+#: blog/user/forms.py:45
+msgid "I accept the terms of the user agreement"
+msgstr "Я принимаю условия пользовательского соглашения"
+
+#: blog/user/forms.py:46
+msgid "Registration"
+msgstr "Зарегистрироваться"
+
+#: blog/user/forms.py:51 blog/user/forms.py:82
+msgid "Please use a different username."
+msgstr "Пожалуйста, используйте другое имя пользователя."
+
+#: blog/user/forms.py:56 blog/user/forms.py:89
+msgid "Please use a different email address."
+msgstr "Пожалуйста, используйте другой email."
+
+#: blog/user/forms.py:60
+msgid "ID user"
+msgstr "ID пользователя"
+
+#: blog/user/forms.py:73
+msgid "Admin"
+msgstr "Администратор"
+
+#: blog/user/forms.py:75
+msgid "Account verified"
+msgstr "Аккаунт подтвержден"
+
+#: blog/user/forms.py:76
+msgid "Update Profile"
+msgstr "Обновить профиль"
+
+#: blog/user/utils.py:21 blog/user/utils.py:74 blog/user/utils.py:90
+#: blog/user/utils.py:110
+#, python-format
+msgid "You are already logged in as: \"%(username)s\""
+msgstr "Вы уже вошли в систему как: \"%(username)s\""
+
+#: blog/user/utils.py:28
+msgid "Please check your email address or password."
+msgstr "Пожалуйста, проверьте свой адрес электронной почты или пароль."
+
+#: blog/user/utils.py:35
+#, python-format
+msgid "You are logged in as: \"%(username)s\""
+msgstr "Вы вошли как: \"%(username)s\""
+
+#: blog/user/utils.py:45
+msgid "Check your email to verify your account."
+msgstr "Проверьте свою электронную почту, чтобы подтвердить свою учетную запись."
+
+#: blog/user/utils.py:48
+msgid "Something went wrong."
+msgstr "Что-то пошло не так."
+
+#: blog/user/utils.py:51 blog/user/utils.py:69
+msgid "To confirm your email, you must login."
+msgstr "Для подтверждения электронной почты вам необходимо авторизоваться."
+
+#: blog/user/utils.py:58
+msgid "The verification link is invalid or has expired."
+msgstr "Ссылка для подтверждения недействительна или срок ее действия истек."
+
+#: blog/user/utils.py:61
+msgid "Your account has already been verified."
+msgstr "Ваш аккаунт уже подтвержден."
+
+#: blog/user/utils.py:66
+msgid "Congratulations! Your account has been verified."
+msgstr "Поздравляем! Ваша учетная запись была подтверждена."
+
+#: blog/user/utils.py:82
+msgid "Check your email for password reset instructions."
+msgstr ""
+"Проверьте свою электронную почту, чтобы получить инструкции по сбросу пароля."
+
+#: blog/user/utils.py:85
+msgid "Check the email you entered."
+msgstr "Проверьте введенный адрес электронной почты."
+
+#: blog/user/utils.py:100
+msgid "Your password has been reset."
+msgstr "Ваш пароль был сброшен."
+
+#: blog/user/utils.py:124
+#, python-format
+msgid "Congratulations, you \"%(username)s\" have become a registered user."
+msgstr "Поздравляем, вы \"%(username)s\" стали зарегистрированным пользователем."
+
+#: blog/user/utils.py:127
+msgid "Please accept the terms of the user agreement. Thanks."
+msgstr "Пожалуйста, примите условия пользовательского соглашения. Спасибо."
+
+#: blog/user/utils.py:150
+msgid "The profile changes have been made."
+msgstr "В профиль внесены изменения."
+
+#: blog/user/utils.py:153
+msgid "The user with this ID is already registered."
+msgstr "Пользователь с этим ID уже зарегистрирован."
+
+#: blog/user/utils.py:167
+msgid "You do not have enough rights to change the user profile: $(username)s"
+msgstr "У вас недостаточно прав для изменения профиля пользователя: $(username)s"
+
+#: blog/user/utils.py:221
+#, python-format
+msgid "User \"%(username)s\" has been deleted."
+msgstr "Пользователь \"%(username)s\" удален."
+
+#: blog/user/utils.py:223
+#, python-format
+msgid "You do not have sufficient rights to delete a user: %(username)s."
+msgstr "У вас недостаточно прав для удаления пользователя: %(username)s."
+
+#: blog/user/utils.py:230 blog/user/utils.py:243
+#, python-format
+msgid "User \"%(username)s\" is not found."
+msgstr "Пользователь \"%(username)s\" не найден."
+
+#: blog/user/utils.py:233
+msgid "You cannot subscribe to yourself."
+msgstr "Вы не можете подписаться на себя."
+
+#: blog/user/utils.py:237
+#, python-format
+msgid "You followed: \"%(username)s\"!"
+msgstr "Вы подписались на: \"%(username)s\"!"
+
+#: blog/user/utils.py:246
+msgid "You cannot unsubscribe to yourself."
+msgstr "Вы не можете отписаться от себя."
+
+#: blog/user/utils.py:250
+#, python-format
+msgid "You unfollowed: \"%(username)s\"."
+msgstr "Вы отписались от: \"%(username)s\"."
+
+#: blog/user/view.py:10
+msgid "Account login."
+msgstr "Вход в учетную запись."
+
+#: blog/user/view.py:17
+msgid "Email сonfirmation."
+msgstr "Подтверждение электронной почты."
+
+#: blog/user/view.py:28 blog/user/view.py:34
+msgid "Password reset."
+msgstr "Сброс пароля."
+
+#: blog/user/view.py:45
+msgid "New user registration."
+msgstr "Регистрация нового пользователя."
+
+#: blog/user/view.py:51 blog/user/view.py:57
+msgid "User profile."
+msgstr "Профиль пользователя."
+
+#: blog/user/view.py:64
+msgid "Profile editor."
+msgstr "Редактор профиля."
+
+#~ msgid "You are already logged in as: \"%(username)S"
+#~ msgstr "Вы уже вошли в систему как: \"%(username)s\""
+
+#~ msgid "Меню"
+#~ msgstr "Меню"

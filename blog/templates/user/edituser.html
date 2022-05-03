@@ -1,0 +1,135 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ title['title'] }}{% endblock %}
+
+{% block content%}
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="box content">
+          <h2>{% block content_title %}TipsEtc... {{ title['title'] }}{% endblock %}</h2>
+          <div class="media">
+            <div class="media-content">
+              <div class="content">
+                <form action="" class="box" method="post" novalidate>
+                  {{ form.hidden_tag() }}
+                  <div class="field">
+                    <label class="label">{{ form.username.label }}</label>
+                    <div class="control">
+                      {{ form.username(class="input is-rounded", type="text", placeholder=_("Username")) }}
+                      {% for error in form.username.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  {% if current_user.admin %}
+                  <div class="field">
+                    <label class="label">{{ form.userid.label }}</label>
+                    <div class="control">
+                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID")) }}
+                      {% for error in form.userid.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  {% endif %}
+                  <div class="field">
+                    <label class="label">{{ form.full_name.label }}</label>
+                    <div class="control">
+                      {{ form.full_name(class="input is-rounded", type="text", placeholder=_("Full name")) }}
+                      {% for error in form.full_name.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">{{ form.email.label }}</label>
+                    <div class="control">
+                      {{ form.email(class="input is-rounded", type="email", placeholder=_("e.g. alex@example.com")) }}
+                      {% for error in form.email.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">{{ form.telegram.label }}</label>
+                    <div class="control">
+                      {{ form.telegram(class="input is-rounded", type="text", placeholder=_("Telegram")) }}
+                      {% for error in form.telegram.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="checkbox">
+                      {{ form.show_personal(type="checkbox") }} {{ form.show_personal.label }}.
+                    </label>
+                  </div>
+                  <div class="field">
+                    <label class="label">{{ form.about_me.label }}</label>
+                    <div class="control">
+                      {{ form.about_me (class="textarea is-rounded", type="text", placeholder=_("Max 256 characters")) }}
+                      {% for error in form.about_me.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  {% if current_user.admin %}
+                  <div class="field">
+                    <label class="label">Статус</label>
+                    <p>
+                      <label class="checkbox">
+                        {{ form.admin(type="checkbox") }} {{ form.admin.label }}
+                      </label>
+                    </p>
+                    <p>
+                      <label class="checkbox">
+                        {{ form.author(type="checkbox") }} {{ form.author.label }}
+                      </label>
+                    </p>
+                    <p>
+                      <label class="checkbox">
+                        {{ form.confirmed(type="checkbox") }} {{ form.confirmed.label }}
+                      </label>
+                    </p>
+                  </div>
+                  {% endif %}
+                  <p></p>
+                  <div class="field">
+                    {{ form.submit(class="button is-rounded is-dark is-fullwidth") }}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ title.title }}{% endblock %}
+
+{% block content%}
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="box content">
+          <h2>{% block content_title %}TipsEtc... {{ title.title }}{{ post.title }}{% endblock %}</h2>
+          <div class="media">
+            <div class="media-content">
+              <div class="content">
+                <form action="" class="box" method="post" novalidate>
+                  {{ form.hidden_tag() }}
+                  <div class="field">
+                    {% if current_user.admin %}
+                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = user.username)}}</label>
+                    <div class="control">
+                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID")) }}
+                    </div>
+                    {% else %}
+                    <label class="label">{{ _('Author: "%(username)s".', username = user.username)}}</label>
+                    {% endif %}
+                  </div>
+                  <div class="field">
+                    <label class="label">{{ form.title.label }}</label>
+                    <div class="control">
+                      {{ form.title(class="input is-rounded", type="text", placeholder=_("Post title")) }}
+                      {% for error in form.title.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">{{ form.slug.label }}</label>
+                    <div class="control">
+                      {{ form.slug(class="input is-rounded", type="text", placeholder=_("Post URL")) }}
+                      {% for error in form.slug.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">{{ form.content.label }}</label>
+                    <div class="control">
+                      {{ form.content(class="textarea is-rounded", type="text", placeholder=_("Post content")) }}
+                      {% for error in form.content.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  {% if current_user.admin %}
+                  <div class="field">
+                    <label class="checkbox">
+                      {{ form.published(type="checkbox") }} {{ form.published.label }}.
+                    </label>
+                  </div>
+                  {% endif %}
+                  <div class="field">
+                    <label class="label">{{ form.category.label }}</label>
+                    <div class="control">
+                      {{ form.category(class="input is-rounded", type="text", placeholder=_("Category")) }}
+                      {% for error in form.category.errors %}
+                      <p></p>
+                      <div class="notification is-danger is-light">
+                        <button class="delete"></button>
+                        {{ error }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="field">
+                    {{ form.submit(class="button is-rounded is-dark is-fullwidth") }}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

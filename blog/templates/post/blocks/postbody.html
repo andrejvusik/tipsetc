@@ -1,0 +1,21 @@
+<a href = "{{ url_for('post.post', slug=post.slug) }}">
+  <h2 class = "title">{% block content_title %}{{ post.title }}{% endblock %}</h2>
+</a>
+<div class="media">
+  <div class="media-content">
+    <div class="content">
+      <div>
+        {% if post.language and post.language != g.locale %}
+        <span id="translation{{ post.id }}">
+          <p><a class="button is-dark is-rounded is-inverted is-small" href="javascript:translate('#post{{ post.id }}', '#translation{{ post.id }}', '{{ post.language }}', '{{ g.locale }}');">{{ _('Posts language is: %(postlang)s.  Translate on: %(localelang)s.', postlang = post.language, localelang = g.locale) }}</a></p>
+        </span>
+        <p></p>
+        {% endif %}
+        <span id="post{{ post.id }}">
+          <p>{{ post.content }}</p>
+        </span>
+      </div>
+      {% include "post/blocks/postinfo.html" %}
+    </div>
+  </div>
+</div>

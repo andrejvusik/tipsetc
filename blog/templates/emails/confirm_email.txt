@@ -1,0 +1,13 @@
+Dear {{ user.username }}.
+To verify your email click on the link:
+{{ url_for('user.confirmemail', token=token, _external=True) }}
+Alternatively, you can paste this link into your browser's address bar.
+If you received this message in error, please ignore this message.
+Best regards, team TipsEtc...
+
+Уважаемый {{ user.username }}.
+Для подтверждения электронной почты нажмите на ссылку:
+{{ url_for('user.confirmemail', token=token, _external=True) }}
+Кроме того, вы можете вставить эту ссылку в адресную строку браузера.
+Если вы получили это сообщение по ошибке, проигнорируйте его.
+С уважением, команда TipsEtc...

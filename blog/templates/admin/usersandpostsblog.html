@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ title.title }}{% endblock %}
+
+{% block content%}
+<section class="section">
+  <div class="container">
+    <div class="box content">
+      <div class="columns is-centered">
+        <div class="column is-3">
+          {% include "admin/blocks/adminmenu.html" %}
+        </div>
+        <div class="column is-9">
+          {% if data == 'allusers' or data == 'admins' or data == 'authors' or data == 'readers' or data == 'confirmed' or data == 'noconfirmed' %}
+          {% include "admin/blocks/userinfo.html" %}
+          {% elif data == 'allposts' or data == 'publishedposts' or data == 'inworkposts'%}
+          {% include "admin/blocks/postinfo.html" %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

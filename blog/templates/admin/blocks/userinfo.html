@@ -1,0 +1,69 @@
+<h2 class="title">{% block content_title %}TipsEtc... {{ title.title }}{% endblock %}</h2>
+<div class="media">
+  <div class="media-content">
+    <div class="content">
+      {% for user in users %}
+      {% set countposts = Posts.query.filter_by(users_id = user.id).count() %}
+      <div class="box">
+        <div class="columns">
+          <div class="column is-narrow" style="width: 100px;">
+            <figure class="image is-48x48">
+              <img class="is-rounded" src="{{ user.avatar(48) }}">
+            </figure>
+          </div>
+          <div class="column">
+            <p>
+              <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.userid', id = user.id) }}">
+                ID:{{ user.id }}
+              </a>
+              <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.user', username = user.username) }}">
+                <b>{{ user.username }}</b>
+              </a>
+              <a class="button is-dark is-rounded is-inverted">
+                {{ _('Status:') }}&nbsp;
+                {% if user.admin %}
+                {{ _('ADMIN') }}
+                {% elif user.author %}
+                {{ _('Author') }}
+                {% else %}
+                {{ _('Reader') }}
+                {% endif %}
+              </a>
+              {% if countposts > 0 %}
+              <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.user', username = user.username) }}#postsuser">{{ _('Posts') }} ({{countposts}})</a>
+              {% endif %}
+            </p>
+            <p>
+              {% if user.last_seen %}
+              <a class="button is-dark is-rounded is-inverted is-small">
+                {{ _('Last seen on:') }}&nbsp;{{ moment(user.last_seen).format('LLL') }}
+              </a>
+              {% endif %}
+              {% if user.registered %}
+              <a class="button is-dark is-rounded is-inverted is-small">
+                {{ _('Registered:') }}&nbsp;{{ moment(user.registered).format('LLL') }}
+              </a>
+              {% endif %}
+              <a class="button is-dark is-rounded is-inverted is-small">{{ _('Email:') }}
+                {% if user.confirmed == 1 %}
+                {{ _('Verified.') }}
+                {% else %}
+                {{ _('Unverified!!!') }}
+                {% endif %}
+              </a>
+            </p>
+            <p>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('user.edituser', username = user.username) }}">
+                {{ _('Edit') }}
+              </a>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('user.deleteuser', username = user.username) }}">
+                {{ _('Delete') }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

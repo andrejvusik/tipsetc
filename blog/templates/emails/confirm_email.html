@@ -1,0 +1,11 @@
+<p>{{ _('Dear <b>%(username)s</b>.', username = user.username) }}</p>
+<p>
+  {{ ('To verify your email') }}
+  <a href="{{ url_for('user.confirmemail', token=token, _external=True) }}">
+    {{ _('click on the link') }}
+  </a>.
+</p>
+<p>{{ _('Alternatively, you can paste the following link into your browser&#39;s address bar:') }}</p>
+<p>{{ url_for('user.confirmemail', token=token, _external=True) }}</p>
+<p>{{ _('If you received this message in error, please ignore this message.') }}</p>
+<p>{{ _('Best regards, team TipsEtc...') }}</p>

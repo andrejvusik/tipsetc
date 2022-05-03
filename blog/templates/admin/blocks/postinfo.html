@@ -1,0 +1,37 @@
+<h2 class="title">{% block content_title %}TipsEtc... {{ title.title }}{% endblock %}</h2>
+<div class="media">
+  <div class="media-content">
+    <div class="content">
+      {% for post in posts %}
+      {% set postsauthor = Users.query.filter_by(id = post.users_id).first_or_404() %}
+      <div class="box">
+        <div class="columns">
+          <div class="column">
+            <a href="{{ url_for('post.post', slug = post.slug) }}"><h6 class="title">{{ post.title }}</h6></a>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <p>
+              <a class="button is-dark is-rounded is-inverted is-small">
+                {{ moment(post.timestamp).format('LLL') }}
+              </a>
+              <a class="button is-dark is-rounded is-inverted is-small">
+                {{ _('Status:') }}&nbsp;
+                {% if post.published %}
+                {{ _('Published') }}
+                {% else %}
+                {{ _('In progress') }}
+                {% endif %}
+              </a>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('user.user', username = postsauthor.username) }}">{{ _('Author:') }} {{ postsauthor.username }}</a>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('post.editpost', id = post.id) }}">{{ _('Edit') }}</a>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('post.deletepost', id = post.id) }}">{{ _('Delete') }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

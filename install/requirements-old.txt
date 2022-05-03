@@ -1,0 +1,14 @@
+flask
+flask-wtf
+wtforms[email]
+flask-sqlalchemy
+flask-migrate
+flask-login
+python-slugify
+flask-mail
+pyjwt
+flask-moment
+flask-babel
+guess-language_spirit
+requests
+elasticsearch
