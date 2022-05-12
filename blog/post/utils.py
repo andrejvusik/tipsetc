@@ -107,7 +107,7 @@ class BlogPosts():
                     db.session.commit()
                     flash(
                         _('Congratulations, your post "%(title)s" has been saved.', title=post.title))
-                    return redirect(url_for('post', slug=post.slug))
+                    return redirect(url_for('post.post', slug=post.slug))
             return render_template('post/createpost.html', title=title, form=form, user=user)
         else:
             flash(_('To create an post, please log in to your account.'))

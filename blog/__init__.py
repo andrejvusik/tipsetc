@@ -6,7 +6,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
-from elasticsearch import Elasticsearch
+from flask_whooshee import Whooshee
 
 
 #creating an extensions instances without arguments
@@ -18,6 +18,7 @@ login.login_message = _l('Please log in to access this page.')
 mail = Mail()
 moment = Moment()
 babel = Babel()
+whooshee = Whooshee()
 
 
 #create an instance of the Flask application
@@ -34,6 +35,7 @@ def create_app(config_class):
     mail.init_app(app)
     moment.init_app(app)
     babel.init_app(app)
+    whooshee.init_app(app)
 
     from blog.main import bp as main_bp
     app.register_blueprint(main_bp)
@@ -53,13 +55,12 @@ def create_app(config_class):
     from blog.translate import bp as translate_bp
     app.register_blueprint(translate_bp, url_prefix='/translate')
 
+    from blog.search import bp as search_bp
+    app.register_blueprint(search_bp, url_prefix='/search')
+
     return app
 
 
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
-
-
-
-from blog import models

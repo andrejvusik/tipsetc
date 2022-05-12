@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-04 01:18+0300\n"
+"POT-Creation-Date: 2022-05-12 13:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,36 +65,36 @@ msgstr ""
 msgid "Error: \"500\""
 msgstr ""
 
-#: blog/main/view.py:21 blog/post/view.py:10
+#: blog/main/view.py:22 blog/post/view.py:10
 msgid "Resent posts."
 msgstr ""
 
-#: blog/post/forms.py:9 blog/post/forms.py:23
+#: blog/post/forms.py:8 blog/post/forms.py:22
 msgid "Posts title:"
 msgstr ""
 
-#: blog/post/forms.py:11 blog/post/forms.py:25
+#: blog/post/forms.py:10 blog/post/forms.py:24
 msgid "Post URL (optional):"
 msgstr ""
 
-#: blog/post/forms.py:13 blog/post/forms.py:27
+#: blog/post/forms.py:12 blog/post/forms.py:26
 msgid "Content post:"
 msgstr ""
 
-#: blog/post/forms.py:15 blog/post/forms.py:29
+#: blog/post/forms.py:14 blog/post/forms.py:28
 msgid "Category:"
 msgstr ""
 
-#: blog/post/forms.py:17 blog/post/forms.py:32
+#: blog/post/forms.py:16 blog/post/forms.py:31
 msgid "Save post"
 msgstr ""
 
-#: blog/post/forms.py:21 blog/templates/post/createpost.html:21
+#: blog/post/forms.py:20 blog/templates/post/createpost.html:21
 #: blog/templates/post/editpost.html:21 blog/templates/user/edituser.html:34
 msgid "User ID"
 msgstr ""
 
-#: blog/post/forms.py:31
+#: blog/post/forms.py:30
 msgid "Publish after saving"
 msgstr ""
 
@@ -160,6 +160,20 @@ msgstr ""
 
 #: blog/post/view.py:41
 msgid "Edit post: "
+msgstr ""
+
+#: blog/search/forms.py:8
+msgid "Search"
+msgstr ""
+
+#: blog/search/utils.py:31
+#, python-format
+msgid "No results were found for \"%(searchrequest)s\". Try other keywords."
+msgstr ""
+
+#: blog/search/view.py:15
+#, python-format
+msgid "Search results for the request: \"%(searchrequest)s\"."
 msgstr ""
 
 #: blog/templates/admin/blocks/adminmenu.html:1
@@ -401,10 +415,6 @@ msgstr ""
 
 #: blog/templates/main/blocks/navbar.html:51
 msgid "New post"
-msgstr ""
-
-#: blog/templates/main/blocks/navbar.html:57
-msgid "Search"
 msgstr ""
 
 #: blog/templates/main/blocks/navbar.html:66

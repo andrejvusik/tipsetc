@@ -11,4 +11,3 @@ flask-moment
 flask-babel
 guess-language_spirit
 requests
-elasticsearch

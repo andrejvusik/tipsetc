@@ -124,7 +124,6 @@ run:
 		export FLASK_APP=main; \
 		export FLASK_ENV=development; \
 		flask run; \
-		export ELASTICSEARCH_URL=http://localhost:9200; \
 	)
 	@echo ""
 

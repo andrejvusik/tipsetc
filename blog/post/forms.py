@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, InputRequired, Length, Optional
-from blog.models import Users
 from flask_babel import lazy_gettext as _l
 
 

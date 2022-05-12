@@ -53,9 +53,9 @@
       {% endif %}
     </div>
     <div class="navbar-end">
-      <div class="control">
-        <input class="input is-rounded is-small my-3" type="text" placeholder="{{ _('Search') }}">
-      </div>
+      <form class="control" action="{{ url_for('search.search') }}" method="get">
+        {{ g.search_form.q(class='input is-rounded is-small my-3', placeholder=g.search_form.q.label.text) }}
+      </form>
       <div class="navbar-item">
         <div class="buttons">
           <a class="button is-dark is-rounded is-small is-inverted" target="_blank" href="https://t.me/tipsetc">

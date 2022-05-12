@@ -5,13 +5,14 @@ from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
-from blog import db, login
+from blog import db, login, whooshee
 
 
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
 )
+
 
 class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -84,6 +85,7 @@ class Users(UserMixin, db.Model):
             return
         return Users.query.get(id)
 
+    @staticmethod
     def verify_confirmation_token(token):
         try:
             id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])['confirm_email']
@@ -91,11 +93,18 @@ class Users(UserMixin, db.Model):
             return
         return Users.query.get(id)
 
+
+@login.user_loader
+def load_user(id):
+    return Users.query.get(int(id))
+
+
+@whooshee.register_model('title', 'content')
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(128))
     slug = db.Column(db.String(128), unique = True)
-    content = db.Column(db.String())
+    content = db.Column(db.Text())
     category = db.Column(db.String(64))
     timestamp = db.Column(db.DateTime, default = datetime.utcnow())
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -104,7 +113,3 @@ class Posts(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.title)
-
-@login.user_loader
-def load_user(id):
-    return Users.query.get(int(id))
