@@ -40,7 +40,7 @@ class BlogUsers():
     def confirm_email_request(title, username):
         user = Users.query.filter_by(username=username).first()
         if current_user.is_authenticated:
-            if user.username == current_user.username:
+            if user.username == current_user.username or current_user.admin:
                 send_confirm_email(user)
                 flash(_('Check your email to verify your account.'))
                 return redirect(url_for('user.user', username=user.username))
@@ -54,7 +54,7 @@ class BlogUsers():
     def confirm_email(token):
         if current_user.is_authenticated:
             user = Users.verify_confirmation_token(token)
-            if not user:
+            if user.username != current_user.username:
                 flash(_('The verification link is invalid or has expired.'))
                 return redirect(url_for('post.indexblog'))
             elif user.confirmed:

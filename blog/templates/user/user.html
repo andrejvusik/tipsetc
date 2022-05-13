@@ -45,7 +45,7 @@
                           <a class="button is-dark is-rounded is-inverted">{{ _('(confirmed)') }}</a>
                           {% else %}
                           {% if current_user.username == user.username or current_user.admin %}
-                          <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.confirmemailrequest', username = current_user.username) }}">{{ _('(unconfirmed, confirm now)') }}</a>
+                          <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.confirmemailrequest', username = user.username) }}">{{ _('(unconfirmed, confirm now)') }}</a>
                           {% else %}
                           <a class="button is-dark is-rounded is-inverted">{{ _('(unconfirmed)') }}</a>
                           {% endif %}

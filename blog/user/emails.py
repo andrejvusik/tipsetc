@@ -1,6 +1,6 @@
-from blog import current_app, mail
+from flask import current_app, render_template
+from blog import mail
 from blog.models import Users
-from flask import render_template
 from flask_mail import Message
 from flask_babel import _
 from threading import Thread
