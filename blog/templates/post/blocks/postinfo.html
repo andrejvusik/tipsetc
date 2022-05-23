@@ -2,8 +2,8 @@
 <div class="block is-centered is-small">
   <a class="button is-dark is-rounded is-inverted is-small">{{ moment(post.timestamp).format('LLL') }}&nbsp;({{ moment(post.timestamp).fromNow() }})</a>
   <a class="button is-dark is-rounded is-small" href="{{ url_for('user.user', username = post.author.username) }}">{{ _('Author') }}:&nbsp{{ post.author.username }}</a>
-  <a class="button is-dark is-rounded is-inverted is-small" href="#">{{ _('Category') }}:&nbsp{{ post.category }}</a>
-  {% if post.author.username in current_user.username or current_user.admin %}
+  <a class="button is-dark is-rounded is-small" href="{{ url_for('post.categoryposts', slug = post.category.slug) }}" }}>{{ _('Category') }}:&nbsp{{ post.category.name }}</a>
+  {% if post.author and post.author.username in current_user.username or current_user.admin %}
   <a class="button is-dark is-rounded is-small" href="{{ url_for('post.editpost', id = post.id) }}">{{ _('Edit') }}</a>
   <a class="button is-dark is-rounded is-small" href="{{ url_for('post.deletepost', id = post.id) }}">{{ _('Delete') }}</a>
   {% endif %}

@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ title.title }}{% endblock %}
+
+{% block content%}
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="box content">
+          {% include "admin/blocks/createeditcategory.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

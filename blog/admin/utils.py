@@ -1,6 +1,10 @@
-from flask import render_template, current_app
+from flask import render_template, current_app, flash, redirect, url_for, request
+from blog import db
+from blog.models import Users, Posts, Categorys
+from blog.admin.forms import CreateEditCategoryForm
 from flask_babel import _, lazy_gettext as _l
-from blog.models import Users, Posts
+from flask_login import current_user
+from slugify import slugify
 
 
 class BlogAdmin():
@@ -18,10 +22,12 @@ class BlogAdmin():
             'noconfirmed': Users.query.filter_by(confirmed="0").count(),
             'allposts': Posts.query.count(),
             'publishedposts': Posts.query.filter_by(published="1").count(),
-            'inworkposts': Posts.query.filter_by(published="0").count()
+            'inworkposts': Posts.query.filter_by(published="0").count(),
+            'allcategorys': Categorys.query.count()
         }
         users = Users.query.all()
         posts = Posts.query.all()
+        categorys = Categorys.query.all()
         if data == 'allusers':
             title = {'title': _('Admin panel. All users.')}
         if data == 'admins':
@@ -49,4 +55,69 @@ class BlogAdmin():
         if data == 'inworkposts':
             posts = Posts.query.filter_by(published="0").all()
             title = {'title': _('Admin panel. Posts in progress.')}
-        return render_template('admin/usersandpostsblog.html', title=title, users=users, data=data, posts=posts, nums=nums, Posts=Posts, Users=Users)
+        if data == 'allcategorys':
+            title = {'title': _('Admin panel. Categorys of posts.')}
+        return render_template('admin/usersandpostsblog.html', title=title, users=users, data=data, posts=posts, categorys = categorys, nums=nums, Posts=Posts, Users=Users, Categorys=Categorys)
+
+    def create_category(title):
+        if current_user.is_authenticated and current_user.admin:
+            form = CreateEditCategoryForm()
+            if form.validate_on_submit():
+                category = Categorys(name = form.name.data, slug = slugify(form.slug.data))
+                if not category.name:
+                    flash(_('Please fill in all required fields.'))
+                else:
+                    if not category.slug:
+                        category.slug = slugify(form.name.data)
+                    db.session.add(category)
+                    db.session.commit()
+                    flash(_('Congratulations, category "%(category)s" has been saved.', category=category.name))
+                    return redirect(url_for('admin.adminblog', data='allcategorys'))
+            return render_template('admin/createeditcategoryblog.html', title=title, form=form)
+        else:
+            flash(_('To create an category of post, please log as admin.'))
+            if current_user.is_authenticated:
+                return redirect(url_for('user.logout'))
+            return redirect(url_for('user.login'))
+
+    def edit_category(title, id):
+        if current_user.is_authenticated and current_user.admin:
+            form = CreateEditCategoryForm()
+            category = Categorys.query.filter_by(id=id).first_or_404()
+            if form.validate_on_submit():
+                if not form.name.data:
+                    flash(_('Please fill in all required fields.'))
+                else:
+                    category.name = form.name.data
+                    category.slug = slugify(form.slug.data)
+                    if not category.slug:
+                        category.slug = slugify(form.name.data)
+                    db.session.commit()
+                    flash(_('Changes to category "%(category)s" successfully made.', category=category.name))
+                    return redirect(url_for('admin.adminblog', data='allcategorys'))
+            elif request.method == 'GET':
+                form.name.data = category.name
+                form.slug.data = category.slug
+            return render_template('admin/createeditcategoryblog.html', title=title, form=form)
+        else:
+            flash(_('To edit an category of post, please log as admin.'))
+            if current_user.is_authenticated:
+                return redirect(url_for('user.logout'))
+            return redirect(url_for('user.login'))
+
+    def delete_category(slug):
+        category = Categorys.query.filter_by(slug=slug).first_or_404()
+        postsincategory = Posts.query.filter_by(category_id=category.id).all()
+        if current_user.is_authenticated and current_user.admin:
+            db.session.delete(category)
+            db.session.commit()
+            flash(_('Category "%(category)s" successfully delete.', category=category.name))
+            for post in postsincategory:
+                post.category_id = '1'
+                db.session.commit()
+            return redirect(url_for('admin.adminblog', data='allcategorys'))
+        else:
+            flash(_('To delete an category of post, please log as admin.'))
+            if current_user.is_authenticated:
+                return redirect(url_for('user.logout'))
+            return redirect(url_for('user.login'))

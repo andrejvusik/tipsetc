@@ -20,14 +20,14 @@ moment = Moment()
 babel = Babel()
 whooshee = Whooshee()
 
-
 #create an instance of the Flask application
 def create_app(config_class):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+
     db.init_app(app)
-    migrate.init_app(app, db)
+    migrate.init_app(app, db, render_as_batch=True)
     login.init_app(app)
     mail.init_app(app)
     moment.init_app(app)

@@ -1,0 +1,39 @@
+<h2 class="title">{% block content_title %}TipsEtc... {{ title.title }}{% endblock %}</h2>
+<div class="media">
+  <div class="media-content">
+    <div class="content">
+      <form action="" class="box" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="field">
+          <label class="label">{{ form.name.label }}</label>
+          <div class="control">
+            {{ form.name(class="input is-rounded", type="text", placeholder=_("Category name")) }}
+            {% for error in form.name.errors %}
+            <p></p>
+            <div class="notification is-danger is-light">
+              <button class="delete"></button>
+              {{ error }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">{{ form.slug.label }}</label>
+          <div class="control">
+            {{ form.slug(class="input is-rounded", type="text", placeholder=_("Category slug")) }}
+            {% for error in form.slug.errors %}
+            <p></p>
+            <div class="notification is-danger is-light">
+              <button class="delete"></button>
+              {{ error }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="field">
+          {{ form.submit(class="button is-rounded is-dark is-fullwidth") }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

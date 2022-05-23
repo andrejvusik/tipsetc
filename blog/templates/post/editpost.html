@@ -15,13 +15,18 @@
                 <form action="" class="box" method="post" novalidate>
                   {{ form.hidden_tag() }}
                   <div class="field">
-                    {% if current_user.admin %}
-                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = user.username)}}</label>
+                    {% if current_user.admin and post.author %}
+                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = post.author.username)}}</label>
+                    <div class="control">
+                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID"), data=post.author.id) }}
+                    </div>
+                    {% elif current_user.admin %}
+                    <label class="label">{{ _('Authors user ID:') }}</label>
                     <div class="control">
                       {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID")) }}
                     </div>
-                    {% else %}
-                    <label class="label">{{ _('Author: "%(username)s".', username = user.username)}}</label>
+                    {% elif post.author %}
+                    <label class="label">{{ _('Author: "%(username)s".', username = post.author.username)}}</label>
                     {% endif %}
                   </div>
                   <div class="field">
@@ -53,7 +58,8 @@
                   <div class="field">
                     <label class="label">{{ form.content.label }}</label>
                     <div class="control">
-                      {{ form.content(class="textarea is-rounded", type="text", placeholder=_("Post content")) }}
+                      {{ form.content(id="editor", placeholder=_("Post content")) }}
+                      <!-- {{ form.content(class="textarea is-rounded", type="text", placeholder=_("Post content")) }} -->
                       {% for error in form.content.errors %}
                       <p></p>
                       <div class="notification is-danger is-light">
@@ -95,4 +101,7 @@
     </div>
   </div>
 </section>
+
+{% include "post/blocks/ckeditorscript.html" %}
+
 {% endblock %}

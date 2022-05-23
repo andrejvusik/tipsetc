@@ -16,12 +16,12 @@
                   {{ form.hidden_tag() }}
                   <div class="field">
                     {% if current_user.admin %}
-                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = user.username)}}</label>
+                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = current_user.username)}}</label>
                     <div class="control">
-                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID"), value=user.id) }}
+                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID"), value=current_user.id) }}
                     </div>
                     {% else %}
-                    <label class="label">{{ _('Author: "%(username)s".', username = user.username)}}</label>
+                    <label class="label">{{ _('Author: "%(username)s".', username = current_user.username)}}</label>
                     {% endif %}
                   </div>
                   <div class="field">
@@ -53,7 +53,8 @@
                   <div class="field">
                     <label class="label">{{ form.content.label }}</label>
                     <div class="control">
-                      {{ form.content(class="textarea is-rounded", type="text", placeholder=_("Post content")) }}
+                      {{ form.content(id="editor", placeholder=_("Post content")) }}
+                      <!-- {{ form.content(class="textarea is-rounded", type="text", placeholder=_("Post content")) }} -->
                       {% for error in form.content.errors %}
                       <p></p>
                       <div class="notification is-danger is-light">
@@ -95,4 +96,7 @@
     </div>
   </div>
 </section>
+
+{% include "post/blocks/ckeditorscript.html" %}
+
 {% endblock %}

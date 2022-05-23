@@ -12,7 +12,7 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #PAGINATION
-    POSTS_PER_PAGE = 3
+    POSTS_PER_PAGE = 5
 
     # MAIL
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.yandex.ru'

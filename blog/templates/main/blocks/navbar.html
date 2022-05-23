@@ -15,7 +15,7 @@
     <div class="navbar-start">
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" href="{{ url_for('post.indexblog') }}">
-          {{ _('Posts') }}
+          {{ _('Blog') }}
         </a>
         <div class="navbar-dropdown">
           <a class="navbar-item" href="{{ url_for('post.indexblog') }}">
@@ -26,11 +26,28 @@
             {{ _('Subscriptions') }}
           </a>
           {% endif %}
+          {% if current_user.admin or current_user.author %}
+          <a class="navbar-item" href="{{ url_for('post.createpost') }}">
+            {{ _('New post') }}
+          </a>
+          {% endif %}
         </div>
       </div>
-      <a class="navbar-item" href="#">
-        {{ _('Category') }}
-      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          {{ _('Category') }}
+        </a>
+        <div class="navbar-dropdown">
+          {% for category in g.categorys %}
+          {% set countposts = g.posts.query.filter_by(category_id=category.id).count() %}
+          {% if countposts %}
+          <a class="navbar-item" href="{{ url_for('post.categoryposts', slug = category.slug) }}">
+            {{ category.name }} ({{ countposts }})
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
       {% if current_user.admin %}
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" href="{{ url_for('admin.adminblog', data = 'allusers') }}">
@@ -43,13 +60,11 @@
           <a class="navbar-item" href="{{ url_for('admin.adminblog', data = 'allposts') }}">
             {{ _('Posts') }}
           </a>
+          <a class="navbar-item" href="{{ url_for('admin.adminblog', data = 'allcategorys') }}">
+            {{ _('Categorys') }}
+          </a>
         </div>
       </div>
-      {% endif %}
-      {% if current_user.admin or current_user.author %}
-      <a class="navbar-item" href="{{ url_for('post.createpost') }}">
-        {{ _('New post') }}
-      </a>
       {% endif %}
     </div>
     <div class="navbar-end">

@@ -107,8 +107,7 @@ class BlogUsers():
 
     def reguser_blog(title):
         if current_user.is_authenticated:
-            flash(_('You are already logged in as: "%(username)s"',
-                  username=current_user.username))
+            flash(_('You are already logged in as: "%(username)s"', username=current_user.username))
             return redirect(url_for('post.indexblog'))
         form = RegistrationForm()
         if form.validate_on_submit():
@@ -214,14 +213,14 @@ class BlogUsers():
         user = Users.query.filter_by(username=username).first_or_404()
         usersposts = Posts.query.filter_by(users_id=user.id).all()
         if current_user.username == user.username or current_user.admin:
-            for post in usersposts:
-                post.users_id = "1"
             db.session.delete(user)
             db.session.commit()
             flash(_('User "%(username)s" has been deleted.', username=user.username))
-            return redirect(url_for('index'))
-        flash(_('You do not have sufficient rights to delete a user: %(username)s.',
-              username=user.username))
+            for post in usersposts:
+                post.users_id = '1'
+                db.session.commit()
+            return redirect(url_for('main.index'))
+        flash(_('You do not have sufficient rights to delete a user: %(username)s.', username=user.username))
         return redirect(url_for('user.user', username=user.username))
 
     def user_follow_blog(username):

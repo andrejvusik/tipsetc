@@ -38,7 +38,7 @@ class Users(UserMixin, db.Model):
     )
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User: {}>'.format(self.username)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -105,11 +105,21 @@ class Posts(db.Model):
     title = db.Column(db.String(128))
     slug = db.Column(db.String(128), unique = True)
     content = db.Column(db.Text())
-    category = db.Column(db.String(64))
     timestamp = db.Column(db.DateTime, default = datetime.utcnow())
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categorys.id'))
     published = db.Column(db.Integer)
     language = db.Column(db.String(5))
 
     def __repr__(self):
-        return '<Post {}>'.format(self.title)
+        return '<Post: {}>'.format(self.title)
+
+class Categorys(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(64), unique = True)
+    slug = db.Column(db.String(64), unique = True)
+    posts = db.relationship('Posts', backref = 'category', lazy = 'dynamic')
+
+
+    def __repr__(self):
+        return '<Category: {}>'.format(self.name)

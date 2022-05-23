@@ -30,7 +30,7 @@
                 {% endif %}
               </a>
               {% if countposts > 0 %}
-              <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.user', username = user.username) }}#postsuser">{{ _('Posts') }} ({{countposts}})</a>
+              <a class="button is-dark is-rounded is-inverted" href="{{ url_for('user.user', username = user.username) }}#postsuser">{{ _('Posts') }} ({{ countposts }})</a>
               {% endif %}
             </p>
             <p>

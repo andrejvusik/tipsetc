@@ -17,6 +17,10 @@ def followedposts():
     title = {'title': _('Subscriptions.')}
     return BlogPosts.followed_posts_blog(title)
 
+@bp.route("/category/<slug>")
+def categoryposts(slug):
+    return BlogPosts.category_posts_blog(slug)
+
 
 @bp.route("/<slug>")
 def post(slug):

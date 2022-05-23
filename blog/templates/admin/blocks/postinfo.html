@@ -3,7 +3,6 @@
   <div class="media-content">
     <div class="content">
       {% for post in posts %}
-      {% set postsauthor = Users.query.filter_by(id = post.users_id).first_or_404() %}
       <div class="box">
         <div class="columns">
           <div class="column">
@@ -24,7 +23,7 @@
                 {{ _('In progress') }}
                 {% endif %}
               </a>
-              <a class="button is-dark is-rounded is-small" href="{{ url_for('user.user', username = postsauthor.username) }}">{{ _('Author:') }} {{ postsauthor.username }}</a>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('user.user', username = post.author.username) }}">{{ _('Author:') }} {{ post.author.username }}</a>
               <a class="button is-dark is-rounded is-small" href="{{ url_for('post.editpost', id = post.id) }}">{{ _('Edit') }}</a>
               <a class="button is-dark is-rounded is-small" href="{{ url_for('post.deletepost', id = post.id) }}">{{ _('Delete') }}</a>
             </p>
