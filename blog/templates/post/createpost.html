@@ -71,19 +71,11 @@
                     </label>
                   </div>
                   {% endif %}
-                  <div class="field">
-                    <label class="label">{{ form.category.label }}</label>
-                    <div class="control">
-                      {{ form.category(class="input is-rounded", type="text", placeholder=_("Category")) }}
-                      {% for error in form.category.errors %}
-                      <p></p>
-                      <div class="notification is-danger is-light">
-                        <button class="delete"></button>
-                        {{ error }}
-                      </div>
-                      {% endfor %}
-                    </div>
+                  <label class="label">{{ form.category.label }}</label>
+                  <div class="select is-rounded is-fullwidth">
+                    {{ form.category }}
                   </div>
+                  <p></p>
                   <div class="field">
                     {{ form.submit(class="button is-rounded is-dark is-fullwidth") }}
                   </div>

@@ -9,6 +9,7 @@ from blog.models import Users, Posts, Categorys
 from slugify import slugify
 from guess_language import guess_language
 
+
 class BlogCategory():
 
     def __init__(self, *args, **kwargs):
@@ -25,6 +26,7 @@ class BlogPosts():
 
     def __init__(self, *args, **kwargs):
         super(BlogPosts, self).__init__(*args, **kwargs)
+
 
     def index_blog(title):
         page = request.args.get('page', 1, type=int)
@@ -44,6 +46,7 @@ class BlogPosts():
             'last_lable': posts.pages
         }
         return render_template('post/index.html', title=title, posts=posts.items, paginationlist=paginationlist)
+
 
     def followed_posts_blog(title):
         if current_user.is_authenticated:
@@ -70,6 +73,7 @@ class BlogPosts():
         else:
             flash(_('Sign in to your account to view subscriptions.'))
             return redirect(url_for('post.indexblog'))
+
 
     def category_posts_blog(slug):
         page = request.args.get('page', 1, type=int)
@@ -100,16 +104,20 @@ class BlogPosts():
         post = Posts.query.filter_by(slug=slug).first_or_404()
         return render_template('post/post.html', post=post)
 
+
     def post_id_blog(id):
         post = Posts.query.filter_by(id=id).first_or_404()
         return render_template('post/post.html', post=post)
+
 
     def create_post_blog(title):
         if current_user.is_authenticated:
             if current_user.admin:
                 form = CreateEditPostFormAdmin()
+                form.set_choices()
             elif current_user.author:
                 form = CreateEditPostForm()
+                form.set_choices()
             else:
                 flash(_('You do not have sufficient rights to create a post.'))
                 return redirect(url_for('post.indexblog'))
@@ -147,14 +155,17 @@ class BlogPosts():
             flash(_('To create an post, please log in to your account.'))
             return redirect(url_for('user.login'))
 
+
     def edit_post_blog(title, id):
         if current_user.is_anonymous:
             flash(_('Log in to your account to edit posts.'))
             return redirect(url_for('post.postid', id=id))
         if current_user.admin:
             form = CreateEditPostFormAdmin()
+            form.set_choices()
         elif current_user.author:
             form = CreateEditPostForm()
+            form.set_choices()
         else:
             flash(_('You do not have sufficient rights to edit posts.'))
             return redirect(url_for('post.postid', id=id))
@@ -199,6 +210,7 @@ class BlogPosts():
             if post.category:
                 form.category.data = post.category.name
         return render_template('post/editpost.html', title=title, form=form, post=post)
+
 
     def post_delete_blog(id):
         if current_user.is_authenticated:
