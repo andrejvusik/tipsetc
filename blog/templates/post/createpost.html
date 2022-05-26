@@ -16,10 +16,11 @@
                   {{ form.hidden_tag() }}
                   <div class="field">
                     {% if current_user.admin %}
-                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = current_user.username)}}</label>
-                    <div class="control">
-                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID"), value=current_user.id) }}
+                    <label class="label">{{ form.author.label }}</label>
+                    <div class="select is-rounded is-fullwidth">
+                      {{ form.author(value=current_user.username) }}
                     </div>
+                    <p></p>
                     {% else %}
                     <label class="label">{{ _('Author: "%(username)s".', username = current_user.username)}}</label>
                     {% endif %}

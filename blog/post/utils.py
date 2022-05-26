@@ -135,7 +135,7 @@ class BlogPosts():
                     post.category_id = '1'
                 if current_user.admin:
                     post.published = form.published.data
-                    authorpost = Users.query.filter_by(id=form.userid.data).first()
+                    authorpost = Users.query.filter_by(username=form.author.data).first()
                     if not authorpost:
                         flash(_('The user with this ID was not found. Authorship assigned %(username)s.', username=current_user.username))
                         post.users_id = current_user.id
@@ -176,13 +176,12 @@ class BlogPosts():
                 language = ''
             if current_user.admin:
                 post.published = form.published.data
-                postauthors = Users.query.filter_by(id=form.userid.data).all()
+                postauthors = Users.query.filter_by(username=form.author.data).first()
                 if not postauthors:
-                    flash(
-                        _('Please check the user ID. User with this ID was not found.'))
+                    flash(_('Please check the user ID. User with this ID was not found.'))
                     return redirect(url_for('post.editpost', id=post.id))
                 else:
-                    post.users_id = form.userid.data
+                    post.users_id = postauthors.id
             post.title = form.title.data
             if not form.slug:
                 post.slug = slugify(form.title.data)
@@ -202,7 +201,7 @@ class BlogPosts():
             return redirect(url_for('post.post', slug=post.slug))
         elif request.method == 'GET':
             if current_user.admin:
-                form.userid.data = post.users_id
+                form.author.data = post.author.username
                 form.published.data = post.published
             form.title.data = post.title
             form.slug.data = post.slug

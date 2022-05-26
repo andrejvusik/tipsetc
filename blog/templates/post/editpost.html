@@ -16,18 +16,19 @@
                   {{ form.hidden_tag() }}
                   <div class="field">
                     {% if current_user.admin and post.author %}
-                    <label class="label">{{ _('Author: "%(username)s". User ID:', username = post.author.username)}}</label>
-                    <div class="control">
-                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID"), data=post.author.id) }}
+                    <label class="label">{{ _('Author: "%(username)s". User ID: %(userid)s.', username = post.author.username, userid = post.users_id ) }}</label>
+                    <div class="select is-rounded is-fullwidth">
+                      {{ form.author(value=post.author.username) }}
                     </div>
                     {% elif current_user.admin %}
-                    <label class="label">{{ _('Authors user ID:') }}</label>
-                    <div class="control">
-                      {{ form.userid(class="input is-rounded", type="text", placeholder=_("User ID")) }}
+                    <label class="label">{{ form.author.label }}</label>
+                    <div class="select is-rounded is-fullwidth">
+                      {{ form.author(value=current_user.username) }}
                     </div>
                     {% elif post.author %}
                     <label class="label">{{ _('Author: "%(username)s".', username = post.author.username)}}</label>
                     {% endif %}
+                    <p></p>
                   </div>
                   <div class="field">
                     <label class="label">{{ form.title.label }}</label>
