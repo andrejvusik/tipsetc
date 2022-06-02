@@ -13,8 +13,11 @@
       <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
     {% endblock %}
     {% block scripts %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% include "main/blocks/js.html" %}
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{{ url_for('static', filename='js/navbarburger.js')}}"></script>
+      <script src="{{ url_for('static', filename='js/notificationdelete.js')}}"></script>
+      <script src="{{ url_for('static', filename='js/preloader.js')}}"></script>
+      <script src="{{ url_for('static', filename='js/translate.js')}}"></script>
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
     {% endblock %}
@@ -29,4 +32,5 @@
     {% endblock %}
     {% include "main/blocks/footer.html" %}
   </body>
+
 </html>

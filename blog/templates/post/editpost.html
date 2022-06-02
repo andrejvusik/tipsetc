@@ -1,8 +1,30 @@
 {% extends "main/base.html" %}
 
+
 {% block title %}{{ title.title }}{% endblock %}
 
+
+{% block css %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='trumbowyg/dist/ui/trumbowyg.min.css')}}">
+  <!-- Import color plugin specific stylesheet -->
+  <link rel="stylesheet" href="trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css">
+{% endblock %}
+
+
+{% block scripts %}
+  {{ super() }}
+  <!-- Import dependency for Resizimg (tested with version 0.35). For a production setup, follow install instructions here: https://github.com/RickStrahl/jquery-resizable -->
+  <script src="//rawcdn.githack.com/RickStrahl/jquery-resizable/0.35/dist/jquery-resizable.min.js"></script>
+  <script src="{{ url_for('static', filename='trumbowyg/dist/trumbowyg.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='trumbowyg/plugins/base64/trumbowyg.base64.js')}}"></script>
+  <script src="{{ url_for('static', filename='trumbowyg/plugins/resizimg/trumbowyg.resizimg.js')}}"></script>
+  <script src="{{ url_for('static', filename='trumbowyg/plugins/colors/trumbowyg.colors.js')}}"></script>
+{% endblock %}
+
+
 {% block content%}
+
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
@@ -95,6 +117,6 @@
   </div>
 </section>
 
-{% include "post/blocks/ckeditorscript.html" %}
+<script src="{{ url_for('static', filename='js/trumbowygadmin.js')}}"></script>
 
 {% endblock %}

@@ -8,7 +8,7 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secretkeyformytipsetc...flask'
 
     #DATABASE
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, '../../db/blog.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///' + os.path.join(basedir, '../../db/blog.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #PAGINATION
@@ -32,3 +32,6 @@ class Config(object):
 
     #SEARCH
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+
+    #STORAGE
+    STORAGE = os.environ.get('STORAGE') or os.path.join(basedir, '../static/storage/images/')
