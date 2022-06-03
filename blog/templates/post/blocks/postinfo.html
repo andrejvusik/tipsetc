@@ -1,4 +1,3 @@
-<p></p>
 <div class="block is-centered is-small">
   <a class="button is-dark is-rounded is-inverted is-small">{{ moment(post.timestamp).format('LLL') }}&nbsp;({{ moment(post.timestamp).fromNow() }})</a>
   <a class="button is-dark is-rounded is-small" href="{{ url_for('user.user', username = post.author.username) }}">{{ _('Author') }}:&nbsp{{ post.author.username }}</a>

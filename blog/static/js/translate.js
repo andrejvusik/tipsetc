@@ -1,5 +1,5 @@
 function translate(sourceElem, destElem, sourceLang, destLang) {
-    $(destElem).html('<img src="{{ url_for('static', filename='img/spinner2.gif') }}">');
+    $(destElem).html("<img src='../../static/img/spinner2.gif'>");
     $.post('/translate/title', {
         source_language: sourceLang,
         dest_language: destLang,

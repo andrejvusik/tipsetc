@@ -30,8 +30,7 @@ class BlogPosts():
 
     def index_blog(title):
         page = request.args.get('page', 1, type=int)
-        posts = Posts.query.filter_by(published="1").order_by(
-            Posts.timestamp.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+        posts = Posts.query.filter_by(published="1").order_by(Posts.timestamp.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
         defurl = 'post.indexblog'
         paginationlist = {
             'first_url': url_for(defurl, page=1),

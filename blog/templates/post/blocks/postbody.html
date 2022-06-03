@@ -1,4 +1,3 @@
-{% block content_title %}
 <a href = "{{ url_for('post.post', slug=post.slug) }}">
   <span id="post{{ post.id }}">
     <h2 class = "title">{{ post.title }}</h2>
@@ -11,14 +10,13 @@
   </span>
 </h2>
 {% endif %}
-{% endblock %}
+{% include "post/blocks/postinfo.html" %}
 <div class="media">
   <div class="media-content">
     <div class="content">
-      <div>
+      <div class="truncate-text">
         <p>{{ post.content|safe }}</p>
       </div>
-      {% include "post/blocks/postinfo.html" %}
     </div>
   </div>
 </div>
