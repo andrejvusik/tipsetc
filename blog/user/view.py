@@ -77,7 +77,7 @@ def followuser(username):
     return BlogUsers.user_follow_blog(username)
 
 
-@bp.route('/user/unfollow/<username>')
+@bp.route('/unfollow/<username>')
 @login_required
 def unfollowuser(username):
     return BlogUsers.user_unfollow_blog(username)

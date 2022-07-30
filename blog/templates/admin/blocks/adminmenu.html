@@ -69,6 +69,14 @@
           {% else %}
           <p><a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'allcategorys') }}">{{ _('All categorys') }} ({{ nums.allcategorys }})</a></p>
           {% endif %}
+          <p class="menu-label">
+            {{ _('TAGS') }}
+          </p>
+          {% if data == 'alltags' %}
+          <p><a class="button is-dark is-rounded is-small" href="{{ url_for('admin.adminblog', data = 'alltags') }}">{{ _('All tags') }} ({{ nums.alltags }})</a></p>
+          {% else %}
+          <p><a class="button is-dark is-rounded is-inverted is-small" href="{{ url_for('admin.adminblog', data = 'alltags') }}">{{ _('All tags') }} ({{ nums.alltags }})</a></p>
+          {% endif %}
         </aside>
       </div>
     </div>

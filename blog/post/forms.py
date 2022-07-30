@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, TextAreaField, SelectField
+from wtforms import StringField, BooleanField, SubmitField, TextAreaField, SelectField, SelectMultipleField
 from wtforms.validators import DataRequired, InputRequired, Length, Optional
 from flask_babel import lazy_gettext as _l
-from blog.models import Users, Categorys
+from blog.models import Users, Categorys, Tags
 
 
 class CreateEditPostForm(FlaskForm):

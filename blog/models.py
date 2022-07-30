@@ -6,6 +6,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from blog import db, login, whooshee
+from slugify import slugify
 
 
 followers = db.Table('followers',
@@ -37,6 +38,9 @@ class Users(UserMixin, db.Model):
         lazy = 'dynamic'
     )
 
+    def __init__(self, *args, **kwargs):
+        super(Users, self).__init__(*args, **kwargs)
+
     def __repr__(self):
         return '<User: {}>'.format(self.username)
 
@@ -50,21 +54,19 @@ class Users(UserMixin, db.Model):
        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
 
-    def follow(self, users):
-        if not self.is_following(users):
-            self.followed.append(users)
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
 
-    def unfollow(self, users):
-        if self.is_following(users):
-            self.followed.remove(users)
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
 
-    def is_following(self, users):
-        return self.followed.filter(followers.c.followed_id == users.id).count() > 0
+    def is_following(self, user):
+        return self.followed.filter(followers.c.followed_id == user.id).count() > 0
 
     def followed_posts(self):
-        return Posts.query.join(
-            followers, (followers.c.followed_id == Posts.users_id)).filter(
-                followers.c.follower_id == self.id).filter(Posts.published == "1").order_by(Posts.timestamp.desc())
+        return Posts.query.join(followers, (followers.c.followed_id == Posts.users_id)).filter(followers.c.follower_id == self.id).filter(Posts.published == "1").order_by(Posts.timestamp.desc())
 
     def followed_and_their_posts(self):
         followed = Posts.query.join(followers, (followers.c.followed_id == Posts.users_id)).filter(followers.c.follower_id == self.id)
@@ -99,6 +101,12 @@ def load_user(id):
     return Users.query.get(int(id))
 
 
+
+posttag = db.Table('posttag',
+    db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tags.id')),
+    )
+
 @whooshee.register_model('title', 'content')
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -111,8 +119,31 @@ class Posts(db.Model):
     published = db.Column(db.Integer)
     language = db.Column(db.String(5))
 
+    assignedtags = db.relationship('Tags', secondary = posttag, backref = db.backref('posts', lazy = 'dynamic'), lazy='dynamic')
+
+
+    def __init__(self, *args, **kwargs):
+        super(Posts, self).__init__(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+
     def __repr__(self):
         return '<Post: {}>'.format(self.title)
+
+
+    def assign_tag(self, tag):
+        if not self.is_assigned_tag(tag):
+            self.assignedtags.append(tag)
+
+    def unassign_tag(self, tag):
+        if self.is_assigned_tag(tag):
+            self.assignedtags.remove(tag)
+
+    def is_assigned_tag(self, tag):
+        return self.assignedtags.filter(posttag.c.tag_id == tag.id).count() > 0
+
+
 
 class Categorys(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -120,6 +151,24 @@ class Categorys(db.Model):
     slug = db.Column(db.String(64), unique = True)
     posts = db.relationship('Posts', backref = 'category', lazy = 'dynamic')
 
+    def __init__(self, *args, **kwargs):
+        super(Categorys, self).__init__(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.name)
 
     def __repr__(self):
         return '<Category: {}>'.format(self.name)
+
+
+class Tags(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(64), unique = True)
+    slug = db.Column(db.String(64), unique = True)
+
+    def __init__(self, *args, **kwargs):
+        super(Tags, self).__init__(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+    def __repr__(self):
+        return '<Tag: {}>'.format(self.name)

@@ -7,7 +7,7 @@
         <div class="field">
           <label class="label">{{ form.name.label }}</label>
           <div class="control">
-            {{ form.name(class="input is-rounded", type="text", placeholder=_("Category name")) }}
+            {{ form.name(class="input is-rounded", type="text", placeholder=_("Name")) }}
             {% for error in form.name.errors %}
             <p></p>
             <div class="notification is-danger is-light">
@@ -20,7 +20,7 @@
         <div class="field">
           <label class="label">{{ form.slug.label }}</label>
           <div class="control">
-            {{ form.slug(class="input is-rounded", type="text", placeholder=_("Category slug")) }}
+            {{ form.slug(class="input is-rounded", type="text", placeholder=_("Slug")) }}
             {% for error in form.slug.errors %}
             <p></p>
             <div class="notification is-danger is-light">

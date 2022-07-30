@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 13:54+0300\n"
+"POT-Creation-Date: 2022-07-31 01:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,40 +21,159 @@ msgstr ""
 msgid "Please log in to access this page."
 msgstr ""
 
-#: blog/admin/utils.py:26
+#: blog/admin/forms.py:9 blog/admin/forms.py:20
+msgid "Category name:"
+msgstr ""
+
+#: blog/admin/forms.py:10 blog/admin/forms.py:21
+msgid "Category URL (optional):"
+msgstr ""
+
+#: blog/admin/forms.py:11 blog/admin/forms.py:22
+msgid "Save category"
+msgstr ""
+
+#: blog/admin/forms.py:16 blog/admin/utils.py:111
+msgid "A category with the same name has already been created."
+msgstr ""
+
+#: blog/admin/forms.py:26 blog/admin/forms.py:37
+msgid "Tag name:"
+msgstr ""
+
+#: blog/admin/forms.py:27 blog/admin/forms.py:38
+msgid "Tag URL (optional):"
+msgstr ""
+
+#: blog/admin/forms.py:28 blog/admin/forms.py:39
+msgid "Save tag"
+msgstr ""
+
+#: blog/admin/forms.py:33 blog/admin/utils.py:182
+msgid "The same tag has already been created."
+msgstr ""
+
+#: blog/admin/utils.py:36
 msgid "Admin panel. All users."
 msgstr ""
 
-#: blog/admin/utils.py:29
+#: blog/admin/utils.py:39
 msgid "Admin panel. Admins."
 msgstr ""
 
-#: blog/admin/utils.py:33
+#: blog/admin/utils.py:42
 msgid "Admin panel. Authors."
 msgstr ""
 
-#: blog/admin/utils.py:37
+#: blog/admin/utils.py:45
 msgid "Admin panel. Readers."
 msgstr ""
 
-#: blog/admin/utils.py:40
+#: blog/admin/utils.py:48
 msgid "Admin panel. Verified users."
 msgstr ""
 
-#: blog/admin/utils.py:43
+#: blog/admin/utils.py:51
 msgid "Admin panel. Unverified users."
 msgstr ""
 
-#: blog/admin/utils.py:45
+#: blog/admin/utils.py:53
 msgid "Admin panel. All posts."
 msgstr ""
 
-#: blog/admin/utils.py:48
+#: blog/admin/utils.py:56
 msgid "Admin panel. Published posts."
 msgstr ""
 
-#: blog/admin/utils.py:51
+#: blog/admin/utils.py:59
 msgid "Admin panel. Posts in progress."
+msgstr ""
+
+#: blog/admin/utils.py:61
+msgid "Admin panel. Categorys of posts."
+msgstr ""
+
+#: blog/admin/utils.py:63
+msgid "Admin panel. Tags of posts."
+msgstr ""
+
+#: blog/admin/utils.py:66
+msgid "Please log as admin."
+msgstr ""
+
+#: blog/admin/utils.py:77 blog/admin/utils.py:101 blog/admin/utils.py:148
+#: blog/admin/utils.py:172 blog/post/utils.py:179
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: blog/admin/utils.py:83
+#, python-format
+msgid "Congratulations, category \"%(category)s\" has been saved."
+msgstr ""
+
+#: blog/admin/utils.py:87
+msgid "To create a category of post, please log as admin or author."
+msgstr ""
+
+#: blog/admin/utils.py:108
+#, python-format
+msgid "Changes to category \"%(category)s\" successfully made."
+msgstr ""
+
+#: blog/admin/utils.py:118
+msgid "To edit a category of post, please log as admin."
+msgstr ""
+
+#: blog/admin/utils.py:130
+#, python-format
+msgid "Category \"%(category)s\" successfully delete."
+msgstr ""
+
+#: blog/admin/utils.py:136
+msgid "To delete a category of post, please log as admin."
+msgstr ""
+
+#: blog/admin/utils.py:154
+#, python-format
+msgid "Congratulations, tag \"%(tag)s\" has been saved."
+msgstr ""
+
+#: blog/admin/utils.py:158
+msgid "To create a tag of post, please log as admin or author."
+msgstr ""
+
+#: blog/admin/utils.py:179
+#, python-format
+msgid "Changes to tag \"%(tag)s\" successfully made."
+msgstr ""
+
+#: blog/admin/utils.py:189
+msgid "To edit a tag of post, please log as admin."
+msgstr ""
+
+#: blog/admin/utils.py:200
+#, python-format
+msgid "Tag \"%(tag)s\" successfully delete."
+msgstr ""
+
+#: blog/admin/utils.py:203
+msgid "To delete a tag of post, please log as admin."
+msgstr ""
+
+#: blog/admin/view.py:16
+msgid "Creating a blog post category."
+msgstr ""
+
+#: blog/admin/view.py:23
+msgid "Admin panel. Editing a blog post category."
+msgstr ""
+
+#: blog/admin/view.py:36
+msgid "Creating a post tag."
+msgstr ""
+
+#: blog/admin/view.py:43
+msgid "Admin panel. Editing a post tag."
 msgstr ""
 
 #: blog/errors/handlers.py:9
@@ -65,101 +184,132 @@ msgstr ""
 msgid "Error: \"500\""
 msgstr ""
 
-#: blog/main/view.py:22 blog/post/view.py:10
+#: blog/main/view.py:24 blog/post/view.py:10
 msgid "Resent posts."
 msgstr ""
 
-#: blog/post/forms.py:8 blog/post/forms.py:22
+#: blog/post/forms.py:9 blog/post/forms.py:22
 msgid "Posts title:"
 msgstr ""
 
-#: blog/post/forms.py:10 blog/post/forms.py:24
+#: blog/post/forms.py:10 blog/post/forms.py:23
 msgid "Post URL (optional):"
 msgstr ""
 
-#: blog/post/forms.py:12 blog/post/forms.py:26
+#: blog/post/forms.py:11 blog/post/forms.py:24
 msgid "Content post:"
 msgstr ""
 
-#: blog/post/forms.py:14 blog/post/forms.py:28
+#: blog/post/forms.py:12 blog/post/forms.py:25
 msgid "Category:"
 msgstr ""
 
-#: blog/post/forms.py:16 blog/post/forms.py:31
+#: blog/post/forms.py:13 blog/post/forms.py:27
 msgid "Save post"
 msgstr ""
 
-#: blog/post/forms.py:20 blog/templates/post/createpost.html:21
-#: blog/templates/post/editpost.html:21 blog/templates/user/edituser.html:34
-msgid "User ID"
+#: blog/post/forms.py:21 blog/templates/admin/blocks/postinfo.html:26
+msgid "Author:"
 msgstr ""
 
-#: blog/post/forms.py:30
+#: blog/post/forms.py:26
 msgid "Publish after saving"
 msgstr ""
 
-#: blog/post/utils.py:56
+#: blog/post/utils.py:78
 msgid "You are not subscribed to anyone."
 msgstr ""
 
-#: blog/post/utils.py:61
+#: blog/post/utils.py:83
 msgid "Sign in to your account to view subscriptions."
 msgstr ""
 
-#: blog/post/utils.py:81
+#: blog/post/utils.py:105
+msgid "There are no posts in the selected category."
+msgstr ""
+
+#: blog/post/utils.py:108
+#, python-format
+msgid "Posts in category: \"%(name)s\""
+msgstr ""
+
+#: blog/post/utils.py:130
+#, python-format
+msgid "No posts associated with the tag: \"%(name)s\"."
+msgstr ""
+
+#: blog/post/utils.py:133
+#, python-format
+msgid "Posts containing tag: \"%(name)s\""
+msgstr ""
+
+#: blog/post/utils.py:156
 msgid "You do not have sufficient rights to create a post."
 msgstr ""
 
-#: blog/post/utils.py:96
+#: blog/post/utils.py:174
 #, python-format
 msgid "The user with this ID was not found. Authorship assigned %(username)s."
 msgstr ""
 
-#: blog/post/utils.py:102
-msgid "Please fill in all required fields."
-msgstr ""
-
-#: blog/post/utils.py:109
+#: blog/post/utils.py:185
 #, python-format
 msgid "Congratulations, your post \"%(title)s\" has been saved."
 msgstr ""
 
-#: blog/post/utils.py:113
+#: blog/post/utils.py:189
 msgid "To create an post, please log in to your account."
 msgstr ""
 
-#: blog/post/utils.py:118
+#: blog/post/utils.py:195
 msgid "Log in to your account to edit posts."
 msgstr ""
 
-#: blog/post/utils.py:125
+#: blog/post/utils.py:204
 msgid "You do not have sufficient rights to edit posts."
 msgstr ""
 
-#: blog/post/utils.py:138
+#: blog/post/utils.py:216
 msgid "Please check the user ID. User with this ID was not found."
 msgstr ""
 
-#: blog/post/utils.py:151
+#: blog/post/utils.py:235
 #, python-format
 msgid "Changes to \"%(title)s\" successfully made."
 msgstr ""
 
-#: blog/post/utils.py:173
+#: blog/post/utils.py:257
+#, python-format
+msgid "You do not have sufficient rights to edit: %(title)s"
+msgstr ""
+
+#: blog/post/utils.py:271
 #, python-format
 msgid "You do not have sufficient rights to delete: %(title)s"
 msgstr ""
 
-#: blog/post/view.py:17
+#: blog/post/view.py:16
+msgid "Tags."
+msgstr ""
+
+#: blog/post/view.py:22
+msgid "Categorys."
+msgstr ""
+
+#: blog/post/view.py:29
 msgid "Subscriptions."
 msgstr ""
 
-#: blog/post/view.py:34
+#: blog/post/view.py:56
 msgid "Create new post."
 msgstr ""
 
-#: blog/post/view.py:41
+#: blog/post/view.py:63
 msgid "Edit post: "
+msgstr ""
+
+#: blog/post/view.py:70
+msgid "Edit tags. Post: "
 msgstr ""
 
 #: blog/search/forms.py:8
@@ -242,34 +392,86 @@ msgstr ""
 msgid "Posts in progress"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:20
+#: blog/templates/admin/blocks/adminmenu.html:65
+msgid "CATEGORYS"
+msgstr ""
+
+#: blog/templates/admin/blocks/adminmenu.html:68
+#: blog/templates/admin/blocks/adminmenu.html:70
+msgid "All categorys"
+msgstr ""
+
+#: blog/templates/admin/blocks/adminmenu.html:73
+msgid "TAGS"
+msgstr ""
+
+#: blog/templates/admin/blocks/adminmenu.html:76
+#: blog/templates/admin/blocks/adminmenu.html:78
+msgid "All tags"
+msgstr ""
+
+#: blog/templates/admin/blocks/categorysinfo.html:6
+#: blog/templates/post/categorys.html:29
+msgid "Create new category"
+msgstr ""
+
+#: blog/templates/admin/blocks/categorysinfo.html:14
+#: blog/templates/admin/blocks/categorysinfo.html:16
+#, python-format
+msgid "Category: %(name)s. Number of posts: %(countposts)s."
+msgstr ""
+
+#: blog/templates/admin/blocks/categorysinfo.html:20
+#: blog/templates/admin/blocks/postinfo.html:27
+#: blog/templates/admin/blocks/tagsinfo.html:17
+#: blog/templates/admin/blocks/userinfo.html:57
+#: blog/templates/post/blocks/postinfo.html:6 blog/templates/user/user.html:86
+msgid "Edit"
+msgstr ""
+
+#: blog/templates/admin/blocks/categorysinfo.html:21
+#: blog/templates/admin/blocks/postinfo.html:28
+#: blog/templates/admin/blocks/tagsinfo.html:18
+#: blog/templates/admin/blocks/userinfo.html:60
+#: blog/templates/post/blocks/postinfo.html:7 blog/templates/user/user.html:87
+msgid "Delete"
+msgstr ""
+
+#: blog/templates/admin/blocks/createeditcategorytag.html:10
+msgid "Name"
+msgstr ""
+
+#: blog/templates/admin/blocks/createeditcategorytag.html:23
+msgid "Slug"
+msgstr ""
+
+#: blog/templates/admin/blocks/postinfo.html:19
 #: blog/templates/admin/blocks/userinfo.html:23
 #: blog/templates/user/user.html:26
 msgid "Status:"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:22
+#: blog/templates/admin/blocks/postinfo.html:21
 msgid "Published"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:24
+#: blog/templates/admin/blocks/postinfo.html:23
 msgid "In progress"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:27
-msgid "Author:"
+#: blog/templates/admin/blocks/tagsinfo.html:6
+#: blog/templates/post/editposttags.html:47 blog/templates/post/tags.html:29
+msgid "Create new tag"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:28
-#: blog/templates/admin/blocks/userinfo.html:57
-#: blog/templates/post/blocks/postinfo.html:7 blog/templates/user/user.html:86
-msgid "Edit"
+#: blog/templates/admin/blocks/tagsinfo.html:13
+#, python-format
+msgid "Tag: %(name)s."
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:29
-#: blog/templates/admin/blocks/userinfo.html:60
-#: blog/templates/post/blocks/postinfo.html:8 blog/templates/user/user.html:87
-msgid "Delete"
+#: blog/templates/admin/blocks/tagsinfo.html:16
+#, python-format
+msgid "Number of posts: %(countposts)s."
 msgstr ""
 
 #: blog/templates/admin/blocks/userinfo.html:25
@@ -278,8 +480,8 @@ msgid "ADMIN"
 msgstr ""
 
 #: blog/templates/admin/blocks/userinfo.html:27
-#: blog/templates/post/blocks/postinfo.html:4 blog/templates/user/user.html:30
-#: blog/user/forms.py:74
+#: blog/templates/post/blocks/postinfo.html:3 blog/templates/user/user.html:30
+#: blog/user/forms.py:59
 msgid "Author"
 msgstr ""
 
@@ -289,8 +491,7 @@ msgid "Reader"
 msgstr ""
 
 #: blog/templates/admin/blocks/userinfo.html:33
-#: blog/templates/main/blocks/navbar.html:18
-#: blog/templates/main/blocks/navbar.html:44
+#: blog/templates/main/blocks/navbar.html:64
 msgid "Posts"
 msgstr ""
 
@@ -391,45 +592,49 @@ msgstr ""
 msgid "Have a nice day"
 msgstr ""
 
-#: blog/templates/main/blocks/jquery.html:43
-msgid "Error: Could not contact server."
+#: blog/templates/main/blocks/navbar.html:18
+msgid "Blog"
 msgstr ""
 
 #: blog/templates/main/blocks/navbar.html:26
 msgid "Subscriptions"
 msgstr ""
 
-#: blog/templates/main/blocks/navbar.html:32
-#: blog/templates/post/blocks/postinfo.html:5
-#: blog/templates/post/createpost.html:76 blog/templates/post/editpost.html:76
-msgid "Category"
+#: blog/templates/main/blocks/navbar.html:30
+#: blog/templates/main/blocks/navbar.html:70
+msgid "Tags"
 msgstr ""
 
-#: blog/templates/main/blocks/navbar.html:37
-msgid "Admin panel"
-msgstr ""
-
-#: blog/templates/main/blocks/navbar.html:41
-msgid "Users"
-msgstr ""
-
-#: blog/templates/main/blocks/navbar.html:51
+#: blog/templates/main/blocks/navbar.html:34
 msgid "New post"
 msgstr ""
 
-#: blog/templates/main/blocks/navbar.html:66
+#: blog/templates/main/blocks/navbar.html:41
+#: blog/templates/main/blocks/navbar.html:67
+msgid "Categorys"
+msgstr ""
+
+#: blog/templates/main/blocks/navbar.html:57
+msgid "Admin panel"
+msgstr ""
+
+#: blog/templates/main/blocks/navbar.html:61
+msgid "Users"
+msgstr ""
+
+#: blog/templates/main/blocks/navbar.html:87
 msgid "Sign Up"
 msgstr ""
 
-#: blog/templates/main/blocks/navbar.html:69
+#: blog/templates/main/blocks/navbar.html:90
 msgid "Sign In"
 msgstr ""
 
-#: blog/templates/main/blocks/navbar.html:75
+#: blog/templates/main/blocks/navbar.html:96
 msgid "Login as"
 msgstr ""
 
-#: blog/templates/main/blocks/navbar.html:78
+#: blog/templates/main/blocks/navbar.html:99
 msgid "Logout"
 msgstr ""
 
@@ -441,36 +646,73 @@ msgstr ""
 msgid "Forward"
 msgstr ""
 
-#: blog/templates/post/createpost.html:19 blog/templates/post/editpost.html:19
-#, python-format
-msgid "Author: \"%(username)s\". User ID:"
+#: blog/templates/post/categorys.html:31
+msgid "Edit categorys"
 msgstr ""
 
-#: blog/templates/post/createpost.html:24 blog/templates/post/editpost.html:24
+#: blog/templates/post/createpost.html:47 blog/templates/post/editpost.html:52
 #, python-format
 msgid "Author: \"%(username)s\"."
 msgstr ""
 
-#: blog/templates/post/createpost.html:30 blog/templates/post/editpost.html:30
+#: blog/templates/post/createpost.html:53 blog/templates/post/editpost.html:59
 msgid "Post title"
 msgstr ""
 
-#: blog/templates/post/createpost.html:43 blog/templates/post/editpost.html:43
+#: blog/templates/post/createpost.html:66 blog/templates/post/editpost.html:72
 msgid "Post URL"
 msgstr ""
 
-#: blog/templates/post/createpost.html:56 blog/templates/post/editpost.html:56
+#: blog/templates/post/createpost.html:79
+#: blog/templates/post/createpost.html:80 blog/templates/post/editpost.html:85
+#: blog/templates/post/editpost.html:86
 msgid "Post content"
 msgstr ""
 
-#: blog/templates/post/blocks/postbody.html:10
+#: blog/templates/post/editpost.html:42
 #, python-format
-msgid "Posts language is: %(postlang)s.  Translate on: %(localelang)s."
+msgid "Author: \"%(username)s\". User ID: %(userid)s."
+msgstr ""
+
+#: blog/templates/post/editpost.html:104
+msgid "Tags:"
+msgstr ""
+
+#: blog/templates/post/editposttags.html:35
+#, python-format
+msgid ""
+"Select the tags for the relevant post: \"%(posttitle)s\". Or create new "
+"tags."
+msgstr ""
+
+#: blog/templates/post/editposttags.html:48
+msgid "Edit post"
+msgstr ""
+
+#: blog/templates/post/index.html:26
+msgid "Read more"
+msgstr ""
+
+#: blog/templates/post/blocks/posttags.html:3 blog/templates/post/tags.html:31
+msgid "Edit tags"
+msgstr ""
+
+#: blog/templates/post/blocks/postbody.html:9
+#, python-format
+msgid "Post title language is: %(postlang)s. Translate on: %(localelang)s."
+msgstr ""
+
+#: blog/templates/post/blocks/postinfo.html:4
+msgid "Category"
 msgstr ""
 
 #: blog/templates/user/edituser.html:20 blog/templates/user/reguser.html:20
-#: blog/user/forms.py:30 blog/user/forms.py:62
+#: blog/user/forms.py:28 blog/user/forms.py:52
 msgid "Username"
+msgstr ""
+
+#: blog/templates/user/edituser.html:34
+msgid "User ID"
 msgstr ""
 
 #: blog/templates/user/edituser.html:48 blog/templates/user/reguser.html:33
@@ -592,7 +834,7 @@ msgstr ""
 msgid "Posts&nbsp;(%(nums)s):"
 msgstr ""
 
-#: blog/translate/translate.py:14
+#: blog/translate/translate.py:21
 msgid "Error: the translation service failed."
 msgstr ""
 
@@ -608,12 +850,12 @@ msgstr ""
 msgid "[TipsEtc...] Confirmation of registration."
 msgstr ""
 
-#: blog/user/forms.py:10 blog/user/forms.py:17 blog/user/forms.py:34
-#: blog/user/forms.py:66
+#: blog/user/forms.py:10 blog/user/forms.py:17 blog/user/forms.py:30
+#: blog/user/forms.py:54
 msgid "Email"
 msgstr ""
 
-#: blog/user/forms.py:11 blog/user/forms.py:22 blog/user/forms.py:39
+#: blog/user/forms.py:11 blog/user/forms.py:22 blog/user/forms.py:33
 msgid "Password"
 msgstr ""
 
@@ -629,59 +871,59 @@ msgstr ""
 msgid "Restore password"
 msgstr ""
 
-#: blog/user/forms.py:24 blog/user/forms.py:41
+#: blog/user/forms.py:23 blog/user/forms.py:34
 msgid "Confirm password"
 msgstr ""
 
-#: blog/user/forms.py:26
+#: blog/user/forms.py:24
 msgid "Save new password"
 msgstr ""
 
-#: blog/user/forms.py:32 blog/user/forms.py:64
+#: blog/user/forms.py:29 blog/user/forms.py:53
 msgid "Full name (optional)"
 msgstr ""
 
-#: blog/user/forms.py:36 blog/user/forms.py:68
+#: blog/user/forms.py:31 blog/user/forms.py:55
 msgid "Username Telegram (optional)"
 msgstr ""
 
-#: blog/user/forms.py:38 blog/user/forms.py:70
+#: blog/user/forms.py:32 blog/user/forms.py:56
 msgid "Show personal details (Email, Telegram)"
 msgstr ""
 
-#: blog/user/forms.py:43 blog/user/forms.py:71
+#: blog/user/forms.py:35 blog/user/forms.py:57
 msgid "About me (optional)"
 msgstr ""
 
-#: blog/user/forms.py:45
+#: blog/user/forms.py:36
 msgid "I accept the terms of the user agreement"
 msgstr ""
 
-#: blog/user/forms.py:46
+#: blog/user/forms.py:37
 msgid "Registration"
 msgstr ""
 
-#: blog/user/forms.py:51 blog/user/forms.py:82
+#: blog/user/forms.py:42 blog/user/forms.py:67
 msgid "Please use a different username."
 msgstr ""
 
-#: blog/user/forms.py:56 blog/user/forms.py:89
+#: blog/user/forms.py:47 blog/user/forms.py:73
 msgid "Please use a different email address."
 msgstr ""
 
-#: blog/user/forms.py:60
+#: blog/user/forms.py:51
 msgid "ID user"
 msgstr ""
 
-#: blog/user/forms.py:73
+#: blog/user/forms.py:58
 msgid "Admin"
 msgstr ""
 
-#: blog/user/forms.py:75
+#: blog/user/forms.py:60
 msgid "Account verified"
 msgstr ""
 
-#: blog/user/forms.py:76
+#: blog/user/forms.py:61
 msgid "Update Profile"
 msgstr ""
 
@@ -736,28 +978,28 @@ msgstr ""
 msgid "Your password has been reset."
 msgstr ""
 
-#: blog/user/utils.py:124
+#: blog/user/utils.py:123
 #, python-format
 msgid "Congratulations, you \"%(username)s\" have become a registered user."
 msgstr ""
 
-#: blog/user/utils.py:127
+#: blog/user/utils.py:126
 msgid "Please accept the terms of the user agreement. Thanks."
 msgstr ""
 
-#: blog/user/utils.py:150
+#: blog/user/utils.py:149
 msgid "The profile changes have been made."
 msgstr ""
 
-#: blog/user/utils.py:153
+#: blog/user/utils.py:152
 msgid "The user with this ID is already registered."
 msgstr ""
 
-#: blog/user/utils.py:167
+#: blog/user/utils.py:166
 msgid "You do not have enough rights to change the user profile: $(username)s"
 msgstr ""
 
-#: blog/user/utils.py:221
+#: blog/user/utils.py:218
 #, python-format
 msgid "User \"%(username)s\" has been deleted."
 msgstr ""
@@ -767,25 +1009,25 @@ msgstr ""
 msgid "You do not have sufficient rights to delete a user: %(username)s."
 msgstr ""
 
-#: blog/user/utils.py:230 blog/user/utils.py:243
+#: blog/user/utils.py:229 blog/user/utils.py:242
 #, python-format
 msgid "User \"%(username)s\" is not found."
 msgstr ""
 
-#: blog/user/utils.py:233
+#: blog/user/utils.py:232
 msgid "You cannot subscribe to yourself."
 msgstr ""
 
-#: blog/user/utils.py:237
+#: blog/user/utils.py:236
 #, python-format
 msgid "You followed: \"%(username)s\"!"
 msgstr ""
 
-#: blog/user/utils.py:246
+#: blog/user/utils.py:245
 msgid "You cannot unsubscribe to yourself."
 msgstr ""
 
-#: blog/user/utils.py:250
+#: blog/user/utils.py:249
 #, python-format
 msgid "You unfollowed: \"%(username)s\"."
 msgstr ""

@@ -1,0 +1,63 @@
+{% extends "main/base.html" %}
+
+
+{% block title %}{{ title.title }}{% endblock %}
+
+
+{% block css %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tags.css')}}">
+{% endblock %}
+
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content%}
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="box content">
+          <a href="{{ url_for('post.post', slug=post.slug) }}">
+            <h2>
+              {% block content_title %}TipsEtc... {{ title.title }}{{ post.title }}{% endblock %}
+            </h2>
+          </a>
+          <div class="media">
+            <div class="media-content">
+              <div class="content">
+
+
+                <h5>{{ _('Select the tags for the relevant post: "%(posttitle)s". Or create new tags.', posttitle = post.title) }}</h5>
+
+                {% for tag in tags %}
+                <a class="taglable" {% if post.is_assigned_tag(tag) %}href="{{ url_for('post.unassigntag', postid=post.id, tagid=tag.id) }}"{% endif %}{% if not post.is_assigned_tag(tag) %}href="{{ url_for('post.assigntag', postid=post.id, tagid=tag.id) }}"{% endif %}>
+                  <input type="checkbox"{% if post.is_assigned_tag(tag) %} checked="true"{% endif %}>
+                  <span class="tag is-rounded is-light">{{ tag.name }}</span>
+                  &nbsp;
+                </a>
+                {% endfor %}
+
+                <div class="box">
+                  <p>
+                    <a class="button is-dark is-rounded" href="{{ url_for('admin.createtag') }}">{{ _('Create new tag') }}</a>
+                    <a class="button is-dark is-rounded" href="{{ url_for('post.editpost', id = post.id) }}">{{ _('Edit post') }}</a>
+
+                  </p>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

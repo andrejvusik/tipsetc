@@ -5,7 +5,7 @@ from flask_mail import Message
 from flask_babel import _, lazy_gettext as _l
 from werkzeug.urls import url_parse
 from blog.post.forms import CreateEditPostForm, CreateEditPostFormAdmin
-from blog.models import Users, Posts, Categorys
+from blog.models import Users, Posts, Categorys, Tags, posttag
 from slugify import slugify
 from guess_language import guess_language
 
@@ -45,6 +45,16 @@ class BlogPosts():
             'last_lable': posts.pages
         }
         return render_template('post/index.html', title=title, posts=posts.items, paginationlist=paginationlist)
+
+
+    def tags_blog(title):
+        tags = Tags.query.all()
+        return render_template('post/tags.html', title=title, tags=tags)
+
+
+    def categorys_blog(title):
+        categorys = Categorys.query.all()
+        return render_template('post/categorys.html', title=title, categorys=categorys)
 
 
     def followed_posts_blog(title):
@@ -96,6 +106,31 @@ class BlogPosts():
             return redirect(url_for('post.indexblog'))
         else:
             title = {'title': _('Posts in category: "%(name)s"', name = category.name)}
+            return render_template('post/index.html', title=title, posts=posts.items, paginationlist=paginationlist)
+
+
+    def tag_posts_blog(slug):
+        page = request.args.get('page', 1, type=int)
+        tag = Tags.query.filter_by(slug=slug).first_or_404()
+        posts = tag.posts.filter_by(published="1").order_by(Posts.timestamp.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+        countposts = tag.posts.filter_by(published="1").count()
+        paginationlist = {
+            'first_url': url_for('post.tagposts', slug=tag.slug, page=1),
+            'prev_url': url_for('post.tagposts', slug=tag.slug, page=posts.prev_num),
+            'this_url': url_for('post.tagposts', slug=tag.slug, page=posts.page),
+            'next_url': url_for('post.tagposts', slug=tag.slug, page=posts.next_num),
+            'last_url': url_for('post.tagposts', slug=tag.slug, page=posts.pages),
+            'first_lable': 1,
+            'prev_lable': posts.prev_num,
+            'this_lable': posts.page,
+            'next_lable': posts.next_num,
+            'last_lable': posts.pages
+            }
+        if countposts == 0:
+            flash(_('No posts associated with the tag: "%(name)s".', name = tag.name))
+            return redirect(url_for('post.indexblog'))
+        else:
+            title = {'title': _('Posts containing tag: "%(name)s"', name = tag.name)}
             return render_template('post/index.html', title=title, posts=posts.items, paginationlist=paginationlist)
 
 
@@ -169,6 +204,7 @@ class BlogPosts():
             flash(_('You do not have sufficient rights to edit posts.'))
             return redirect(url_for('post.postid', id=id))
         post = Posts.query.filter_by(id=id).first_or_404()
+        tags = Tags.query.all()
         if form.validate_on_submit():
             language = guess_language(form.title.data)
             if language == 'UNKNOWN' or len(language) > 5:
@@ -207,7 +243,20 @@ class BlogPosts():
             form.content.data = post.content
             if post.category:
                 form.category.data = post.category.name
-        return render_template('post/editpost.html', title=title, form=form, post=post)
+        return render_template('post/editpost.html', title=title, form=form, post=post, tags=tags)
+
+
+    def edit_post_tags_blog(title, id):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=id).first_or_404()
+            user = Users.query.filter_by(id=post.users_id).first_or_404()
+            tags = Tags.query.all()
+            if current_user.username == user.username or current_user.admin:
+                return render_template('post/editposttags.html', title=title, post=post, tags=tags)
+            else:
+                flash(_('You do not have sufficient rights to edit: %(title)s', title=post.title))
+                return redirect(url_for('post.post', slug=post.slug))
+
 
 
     def post_delete_blog(id):
@@ -219,6 +268,27 @@ class BlogPosts():
                 db.session.commit()
                 flash('Post "{}" deleted'.format(post.title))
                 return redirect(url_for('post.indexblog'))
-            flash(
-                _('You do not have sufficient rights to delete: %(title)s', title=post.title))
+            flash(_('You do not have sufficient rights to delete: %(title)s', title=post.title))
             return redirect(url_for('post.post', slug=post.slug))
+
+
+    def post_assign_tag(postid, tagid):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=postid).first()
+            user = Users.query.filter_by(id=post.users_id).first_or_404()
+            tag = Tags.query.filter_by(id=tagid).first()
+            if current_user.username == user.username or current_user.admin:
+                post.assign_tag(tag)
+                db.session.commit()
+                return redirect(url_for('post.editposttags', id=post.id))
+
+
+    def post_unassign_tag(postid, tagid):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=postid).first()
+            user = Users.query.filter_by(id=post.users_id).first_or_404()
+            tag = Tags.query.filter_by(id=tagid).first()
+            if current_user.username == user.username or current_user.admin:
+                post.unassign_tag(tag)
+                db.session.commit()
+                return redirect(url_for('post.editposttags', id=post.id))

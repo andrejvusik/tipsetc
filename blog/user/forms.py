@@ -70,5 +70,4 @@ class EditProfilForm(FlaskForm):
         user = Users.query.filter_by(email=email.data).first()
         if user is not None:
             if user.email is not user.email:
-                raise ValidationError(
-                    _l('Please use a different email address.'))
+                raise ValidationError(_l('Please use a different email address.'))

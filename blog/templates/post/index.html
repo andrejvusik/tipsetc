@@ -22,10 +22,12 @@
           <div class="box">
             {% include "post/blocks/postbody.html" %}
             <a href = "{{ url_for('post.post', slug=post.slug) }}">
-              <p class="title is-6">
+              <p class="title is-6 has-text-right">
                 {{ _('Read more') }}
               </p>
             </a>
+            <p></p>
+            {% include "post/blocks/postinfo.html" %}
           </div>
           <p></p>
           {% endfor %}

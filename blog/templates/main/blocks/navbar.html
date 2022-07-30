@@ -26,6 +26,9 @@
             {{ _('Subscriptions') }}
           </a>
           {% endif %}
+          <a class="navbar-item" href="{{ url_for('post.tagsblog') }}">
+            {{ _('Tags') }}
+          </a>
           {% if current_user.admin or current_user.author %}
           <a class="navbar-item" href="{{ url_for('post.createpost') }}">
             {{ _('New post') }}
@@ -34,8 +37,8 @@
         </div>
       </div>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          {{ _('Category') }}
+        <a class="navbar-link" href="{{ url_for('post.categorysblog') }}">
+          {{ _('Categorys') }}
         </a>
         <div class="navbar-dropdown">
           {% for category in g.categorys %}
@@ -62,6 +65,9 @@
           </a>
           <a class="navbar-item" href="{{ url_for('admin.adminblog', data = 'allcategorys') }}">
             {{ _('Categorys') }}
+          </a>
+          <a class="navbar-item" href="{{ url_for('admin.adminblog', data = 'alltags') }}">
+            {{ _('Tags') }}
           </a>
         </div>
       </div>

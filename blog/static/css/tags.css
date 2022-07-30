@@ -1,0 +1,14 @@
+.taglable {
+  display: inline-block;
+}
+
+.taglable input {display:none;}
+
+.tag {
+  cursor: pointer;
+}
+
+input:checked + .tag {
+  background-color: #363636;
+  color: #ffffff;
+}

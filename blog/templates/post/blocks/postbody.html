@@ -6,11 +6,11 @@
 {% if post.language and post.language != g.locale %}
 <h2 class = "title">
   <span id="translation{{ post.id }}">
-    <a class="button is-dark is-rounded is-inverted is-small" href="javascript:translate('#post{{ post.id }}', '#translation{{ post.id }}', '{{ post.language }}', '{{ g.locale }}');">{{ _('Post title language is: %(postlang)s.  Translate on: %(localelang)s.', postlang = post.language, localelang = g.locale) }}</a>
+    <a class="button is-dark is-rounded is-inverted is-small" href="javascript:translate('#post{{ post.id }}', '#translation{{ post.id }}', '{{ post.language }}', '{{ g.locale }}');">{{ _('Post title language is: %(postlang)s. Translate on: %(localelang)s.', postlang = post.language, localelang = g.locale) }}</a>
   </span>
 </h2>
 {% endif %}
-{% include "post/blocks/postinfo.html" %}
+{% include "post/blocks/posttags.html" %}
 <div class="media">
   <div class="media-content">
     <div class="content">

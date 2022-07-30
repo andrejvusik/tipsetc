@@ -11,15 +11,33 @@ def indexblog():
     return BlogPosts.index_blog(title)
 
 
+@bp.route("/tags")
+def tagsblog():
+    title = {'title': _('Tags.')}
+    return BlogPosts.tags_blog(title)
+
+
+@bp.route("/categorys")
+def categorysblog():
+    title = {'title': _('Categorys.')}
+    return BlogPosts.categorys_blog(title)
+
+
 @bp.route("/followed/posts")
 @login_required
 def followedposts():
     title = {'title': _('Subscriptions.')}
     return BlogPosts.followed_posts_blog(title)
 
+
 @bp.route("/category/<slug>")
 def categoryposts(slug):
     return BlogPosts.category_posts_blog(slug)
+
+
+@bp.route("/tag/<slug>")
+def tagposts(slug):
+    return BlogPosts.tag_posts_blog(slug)
 
 
 @bp.route("/<slug>")
@@ -46,7 +64,26 @@ def editpost(id):
     return BlogPosts.edit_post_blog(title, id)
 
 
+@bp.route('/id/<id>/edittags', methods=('GET', 'POST'))
+@login_required
+def editposttags(id):
+    title = {'title': _('Edit tags. Post: ')}
+    return BlogPosts.edit_post_tags_blog(title, id)
+
+
 @bp.route("/id/<id>/delete")
 @login_required
 def deletepost(id):
     return BlogPosts.post_delete_blog(id)
+
+
+@bp.route('/id/<postid>/assigntag/<tagid>', methods=('GET', 'POST'))
+@login_required
+def assigntag(postid, tagid):
+    return BlogPosts.post_assign_tag(postid, tagid)
+
+
+@bp.route('/id/<postid>/unassigntag/<tagid>', methods=('GET', 'POST'))
+@login_required
+def unassigntag(postid, tagid):
+    return BlogPosts.post_unassign_tag(postid, tagid)
