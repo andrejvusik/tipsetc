@@ -212,6 +212,9 @@ class BlogUsers():
     def user_delete_blog(username):
         user = Users.query.filter_by(username=username).first_or_404()
         usersposts = Posts.query.filter_by(users_id=user.id).all()
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('main.index')
         if current_user.username == user.username or current_user.admin:
             db.session.delete(user)
             db.session.commit()
@@ -219,7 +222,7 @@ class BlogUsers():
             for post in usersposts:
                 post.users_id = '1'
                 db.session.commit()
-            return redirect(url_for('main.index'))
+            return redirect(next_page)
         flash(_('You do not have sufficient rights to delete a user: %(username)s.', username=user.username))
         return redirect(url_for('user.user', username=user.username))
 

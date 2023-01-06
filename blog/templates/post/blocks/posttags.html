@@ -1,8 +1,9 @@
 <div class="block is-centered is-small">
+  <a class="tag is-rounded" href="{{ url_for('post.tagsblog') }}">{{ _('Tags:') }}</a>
   {% if post.author and post.author.username in current_user.username or current_user.admin %}
-  <a class="button is-dark is-rounded is-small" href="{{ url_for('post.editposttags', id = post.id) }}">{{ _('Edit tags') }}&nbsp;</a>
+  <a class="tag is-dark is-rounded" href="{{ url_for('post.editposttags', id = post.id) }}">{{ _('Edit tags') }}&nbsp;</a>
   {% endif %}
   {% for tag in post.assignedtags %}
-  <a class="button is-inverted is-rounded is-small is-outlined" href="{{ url_for('post.tagposts', slug = tag.slug) }}">{{ tag.name }}&nbsp;</a>
+  <a class="tag is-rounded" href="{{ url_for('post.tagposts', slug = tag.slug) }}">{{ tag.name }}&nbsp;</a>
   {% endfor %}
 </div>

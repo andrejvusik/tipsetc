@@ -18,7 +18,7 @@
           </div>
           <div class="column is-narrow">
             <a class="button is-dark is-rounded is-small" href="{{ url_for('admin.editcategory', slug=category.slug) }}">{{ _('Edit') }}</a>
-            <a class="button is-dark is-rounded is-small" href="{{ url_for('admin.deletecategory', slug=category.slug) }}">{{ _('Delete') }}</a>
+            <a class="button is-dark is-rounded is-small" href="{{ url_for('admin.deletecategory', slug=category.slug, next=url_for('admin.adminblog', data=data)) }}">{{ _('Delete') }}</a>
           </div>
         </div>
       </div>

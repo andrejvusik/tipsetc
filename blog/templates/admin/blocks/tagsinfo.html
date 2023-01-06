@@ -15,7 +15,7 @@
           <div class="column is-narrow">
             <a class="button is-dark is-rounded is-small" href="{{ url_for('post.tagposts', slug = tag.slug) }}">{{ _('Number of posts: %(countposts)s.', countposts = tag.posts.count()) }}</a>
             <a class="button is-dark is-rounded is-small" href="{{ url_for('admin.edittag', slug=tag.slug) }}">{{ _('Edit') }}</a>
-            <a class="button is-dark is-rounded is-small" href="{{ url_for('admin.deletetag', slug=tag.slug) }}">{{ _('Delete') }}</a>
+            <a class="button is-dark is-rounded is-small" href="{{ url_for('admin.deletetag', slug=tag.slug, next=url_for('admin.adminblog', data=data)) }}">{{ _('Delete') }}</a>
           </div>
         </div>
       </div>

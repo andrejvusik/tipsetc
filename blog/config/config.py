@@ -12,14 +12,14 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #PAGINATION
-    POSTS_PER_PAGE = 5
+    POSTS_PER_PAGE = 9
 
     # MAIL
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.yandex.ru'
     MAIL_PORT = int(os.environ.get('MAIL_PORT') or 465)
     MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL') or True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'elektriks@tut.by'
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'ndvvvmurnyhxwfbz'
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'tipsetc@yandex.com'
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'jcemewqtdvjzxlyr'
     ADMINS = ['andrejvusik@gmail.com']
 
     #BABEL

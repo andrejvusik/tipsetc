@@ -25,7 +25,7 @@
               </a>
               <a class="button is-dark is-rounded is-small" href="{{ url_for('user.user', username = post.author.username) }}">{{ _('Author:') }} {{ post.author.username }}</a>
               <a class="button is-dark is-rounded is-small" href="{{ url_for('post.editpost', id = post.id) }}">{{ _('Edit') }}</a>
-              <a class="button is-dark is-rounded is-small" href="{{ url_for('post.deletepost', id = post.id) }}">{{ _('Delete') }}</a>
+              <a class="button is-dark is-rounded is-small" href="{{ url_for('post.deletepost', id = post.id, next=url_for('admin.adminblog', data = data)) }}">{{ _('Delete') }}</a>
             </p>
           </div>
         </div>

@@ -20,7 +20,7 @@
           <p class="title is-6 has-text-centered">
             {% for tag in tags %}
             {% if tag.posts.count() > 0 %}
-            <a class="button is-inverted is-rounded is-outlined" href="{{ url_for('post.tagposts', slug = tag.slug) }}">{{ tag.name }} ({{ tag.posts.count() }})&nbsp;</a>
+            <a class="tag is-medium is-inverted is-rounded is-outlined" href="{{ url_for('post.tagposts', slug = tag.slug) }}">{{ tag.name }} ({{ tag.posts.count() }})&nbsp;</a>
             {% endif %}
             {% endfor %}
           </p>

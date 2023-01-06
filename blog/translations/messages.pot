@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2023 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-31 01:07+0300\n"
+"POT-Creation-Date: 2023-01-06 16:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Save category"
 msgstr ""
 
-#: blog/admin/forms.py:16 blog/admin/utils.py:111
+#: blog/admin/forms.py:16 blog/admin/utils.py:113
 msgid "A category with the same name has already been created."
 msgstr ""
 
@@ -49,114 +49,114 @@ msgstr ""
 msgid "Save tag"
 msgstr ""
 
-#: blog/admin/forms.py:33 blog/admin/utils.py:182
+#: blog/admin/forms.py:33 blog/admin/utils.py:187
 msgid "The same tag has already been created."
 msgstr ""
 
-#: blog/admin/utils.py:36
+#: blog/admin/utils.py:38
 msgid "Admin panel. All users."
 msgstr ""
 
-#: blog/admin/utils.py:39
+#: blog/admin/utils.py:41
 msgid "Admin panel. Admins."
 msgstr ""
 
-#: blog/admin/utils.py:42
+#: blog/admin/utils.py:44
 msgid "Admin panel. Authors."
 msgstr ""
 
-#: blog/admin/utils.py:45
+#: blog/admin/utils.py:47
 msgid "Admin panel. Readers."
 msgstr ""
 
-#: blog/admin/utils.py:48
+#: blog/admin/utils.py:50
 msgid "Admin panel. Verified users."
 msgstr ""
 
-#: blog/admin/utils.py:51
+#: blog/admin/utils.py:53
 msgid "Admin panel. Unverified users."
 msgstr ""
 
-#: blog/admin/utils.py:53
+#: blog/admin/utils.py:55
 msgid "Admin panel. All posts."
 msgstr ""
 
-#: blog/admin/utils.py:56
+#: blog/admin/utils.py:58
 msgid "Admin panel. Published posts."
 msgstr ""
 
-#: blog/admin/utils.py:59
+#: blog/admin/utils.py:61
 msgid "Admin panel. Posts in progress."
 msgstr ""
 
-#: blog/admin/utils.py:61
+#: blog/admin/utils.py:63
 msgid "Admin panel. Categorys of posts."
 msgstr ""
 
-#: blog/admin/utils.py:63
+#: blog/admin/utils.py:65
 msgid "Admin panel. Tags of posts."
 msgstr ""
 
-#: blog/admin/utils.py:66
+#: blog/admin/utils.py:68
 msgid "Please log as admin."
 msgstr ""
 
-#: blog/admin/utils.py:77 blog/admin/utils.py:101 blog/admin/utils.py:148
-#: blog/admin/utils.py:172 blog/post/utils.py:179
+#: blog/admin/utils.py:79 blog/admin/utils.py:103 blog/admin/utils.py:153
+#: blog/admin/utils.py:177 blog/post/utils.py:218
 msgid "Please fill in all required fields."
 msgstr ""
 
-#: blog/admin/utils.py:83
+#: blog/admin/utils.py:85
 #, python-format
 msgid "Congratulations, category \"%(category)s\" has been saved."
 msgstr ""
 
-#: blog/admin/utils.py:87
+#: blog/admin/utils.py:89
 msgid "To create a category of post, please log as admin or author."
 msgstr ""
 
-#: blog/admin/utils.py:108
+#: blog/admin/utils.py:110
 #, python-format
 msgid "Changes to category \"%(category)s\" successfully made."
 msgstr ""
 
-#: blog/admin/utils.py:118
+#: blog/admin/utils.py:120
 msgid "To edit a category of post, please log as admin."
 msgstr ""
 
-#: blog/admin/utils.py:130
+#: blog/admin/utils.py:135
 #, python-format
 msgid "Category \"%(category)s\" successfully delete."
 msgstr ""
 
-#: blog/admin/utils.py:136
+#: blog/admin/utils.py:141
 msgid "To delete a category of post, please log as admin."
 msgstr ""
 
-#: blog/admin/utils.py:154
+#: blog/admin/utils.py:159
 #, python-format
 msgid "Congratulations, tag \"%(tag)s\" has been saved."
 msgstr ""
 
-#: blog/admin/utils.py:158
+#: blog/admin/utils.py:163
 msgid "To create a tag of post, please log as admin or author."
 msgstr ""
 
-#: blog/admin/utils.py:179
+#: blog/admin/utils.py:184
 #, python-format
 msgid "Changes to tag \"%(tag)s\" successfully made."
 msgstr ""
 
-#: blog/admin/utils.py:189
+#: blog/admin/utils.py:194
 msgid "To edit a tag of post, please log as admin."
 msgstr ""
 
-#: blog/admin/utils.py:200
+#: blog/admin/utils.py:208
 #, python-format
 msgid "Tag \"%(tag)s\" successfully delete."
 msgstr ""
 
-#: blog/admin/utils.py:203
+#: blog/admin/utils.py:211
 msgid "To delete a tag of post, please log as admin."
 msgstr ""
 
@@ -216,74 +216,74 @@ msgstr ""
 msgid "Publish after saving"
 msgstr ""
 
-#: blog/post/utils.py:78
-msgid "You are not subscribed to anyone."
-msgstr ""
-
-#: blog/post/utils.py:83
-msgid "Sign in to your account to view subscriptions."
-msgstr ""
-
-#: blog/post/utils.py:105
-msgid "There are no posts in the selected category."
-msgstr ""
-
-#: blog/post/utils.py:108
-#, python-format
-msgid "Posts in category: \"%(name)s\""
-msgstr ""
-
-#: blog/post/utils.py:130
-#, python-format
-msgid "No posts associated with the tag: \"%(name)s\"."
-msgstr ""
-
-#: blog/post/utils.py:133
-#, python-format
-msgid "Posts containing tag: \"%(name)s\""
-msgstr ""
-
-#: blog/post/utils.py:156
-msgid "You do not have sufficient rights to create a post."
-msgstr ""
-
-#: blog/post/utils.py:174
-#, python-format
-msgid "The user with this ID was not found. Authorship assigned %(username)s."
-msgstr ""
-
-#: blog/post/utils.py:185
-#, python-format
-msgid "Congratulations, your post \"%(title)s\" has been saved."
-msgstr ""
-
-#: blog/post/utils.py:189
-msgid "To create an post, please log in to your account."
-msgstr ""
-
-#: blog/post/utils.py:195
-msgid "Log in to your account to edit posts."
-msgstr ""
-
-#: blog/post/utils.py:204
-msgid "You do not have sufficient rights to edit posts."
-msgstr ""
-
-#: blog/post/utils.py:216
-msgid "Please check the user ID. User with this ID was not found."
-msgstr ""
-
-#: blog/post/utils.py:235
-#, python-format
-msgid "Changes to \"%(title)s\" successfully made."
-msgstr ""
-
-#: blog/post/utils.py:257
+#: blog/post/utils.py:26
 #, python-format
 msgid "You do not have sufficient rights to edit: %(title)s"
 msgstr ""
 
-#: blog/post/utils.py:271
+#: blog/post/utils.py:117
+msgid "You are not subscribed to anyone."
+msgstr ""
+
+#: blog/post/utils.py:122
+msgid "Sign in to your account to view subscriptions."
+msgstr ""
+
+#: blog/post/utils.py:144
+msgid "There are no posts in the selected category."
+msgstr ""
+
+#: blog/post/utils.py:147
+#, python-format
+msgid "Posts in category: \"%(name)s\""
+msgstr ""
+
+#: blog/post/utils.py:169
+#, python-format
+msgid "No posts associated with the tag: \"%(name)s\"."
+msgstr ""
+
+#: blog/post/utils.py:172
+#, python-format
+msgid "Posts containing tag: \"%(name)s\""
+msgstr ""
+
+#: blog/post/utils.py:195
+msgid "You do not have sufficient rights to create a post."
+msgstr ""
+
+#: blog/post/utils.py:213
+#, python-format
+msgid "The user with this ID was not found. Authorship assigned %(username)s."
+msgstr ""
+
+#: blog/post/utils.py:224
+#, python-format
+msgid "Congratulations, your post \"%(title)s\" has been saved."
+msgstr ""
+
+#: blog/post/utils.py:228
+msgid "To create an post, please log in to your account."
+msgstr ""
+
+#: blog/post/utils.py:234
+msgid "Log in to your account to edit posts."
+msgstr ""
+
+#: blog/post/utils.py:243
+msgid "You do not have sufficient rights to edit posts."
+msgstr ""
+
+#: blog/post/utils.py:255
+msgid "Please check the user ID. User with this ID was not found."
+msgstr ""
+
+#: blog/post/utils.py:274
+#, python-format
+msgid "Changes to \"%(title)s\" successfully made."
+msgstr ""
+
+#: blog/post/utils.py:300
 #, python-format
 msgid "You do not have sufficient rights to delete: %(title)s"
 msgstr ""
@@ -308,7 +308,7 @@ msgstr ""
 msgid "Edit post: "
 msgstr ""
 
-#: blog/post/view.py:70
+#: blog/post/view.py:77
 msgid "Edit tags. Post: "
 msgstr ""
 
@@ -425,7 +425,8 @@ msgstr ""
 #: blog/templates/admin/blocks/postinfo.html:27
 #: blog/templates/admin/blocks/tagsinfo.html:17
 #: blog/templates/admin/blocks/userinfo.html:57
-#: blog/templates/post/blocks/postinfo.html:6 blog/templates/user/user.html:86
+#: blog/templates/post/blocks/postinfoafter.html:4
+#: blog/templates/user/user.html:86
 msgid "Edit"
 msgstr ""
 
@@ -433,7 +434,8 @@ msgstr ""
 #: blog/templates/admin/blocks/postinfo.html:28
 #: blog/templates/admin/blocks/tagsinfo.html:18
 #: blog/templates/admin/blocks/userinfo.html:60
-#: blog/templates/post/blocks/postinfo.html:7 blog/templates/user/user.html:87
+#: blog/templates/post/blocks/postinfoafter.html:5
+#: blog/templates/user/user.html:87
 msgid "Delete"
 msgstr ""
 
@@ -480,8 +482,8 @@ msgid "ADMIN"
 msgstr ""
 
 #: blog/templates/admin/blocks/userinfo.html:27
-#: blog/templates/post/blocks/postinfo.html:3 blog/templates/user/user.html:30
-#: blog/user/forms.py:59
+#: blog/templates/post/blocks/postinfobefore.html:2
+#: blog/templates/user/user.html:30 blog/user/forms.py:59
 msgid "Author"
 msgstr ""
 
@@ -674,6 +676,7 @@ msgstr ""
 msgid "Author: \"%(username)s\". User ID: %(userid)s."
 msgstr ""
 
+#: blog/templates/post/blocks/posttags.html:2
 #: blog/templates/post/editpost.html:104
 msgid "Tags:"
 msgstr ""
@@ -693,7 +696,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: blog/templates/post/blocks/posttags.html:3 blog/templates/post/tags.html:31
+#: blog/templates/post/blocks/posttags.html:4 blog/templates/post/tags.html:31
 msgid "Edit tags"
 msgstr ""
 
@@ -702,7 +705,7 @@ msgstr ""
 msgid "Post title language is: %(postlang)s. Translate on: %(localelang)s."
 msgstr ""
 
-#: blog/templates/post/blocks/postinfo.html:4
+#: blog/templates/post/blocks/postinfobefore.html:3
 msgid "Category"
 msgstr ""
 
@@ -999,35 +1002,35 @@ msgstr ""
 msgid "You do not have enough rights to change the user profile: $(username)s"
 msgstr ""
 
-#: blog/user/utils.py:218
+#: blog/user/utils.py:221
 #, python-format
 msgid "User \"%(username)s\" has been deleted."
 msgstr ""
 
-#: blog/user/utils.py:223
+#: blog/user/utils.py:226
 #, python-format
 msgid "You do not have sufficient rights to delete a user: %(username)s."
 msgstr ""
 
-#: blog/user/utils.py:229 blog/user/utils.py:242
+#: blog/user/utils.py:232 blog/user/utils.py:245
 #, python-format
 msgid "User \"%(username)s\" is not found."
 msgstr ""
 
-#: blog/user/utils.py:232
+#: blog/user/utils.py:235
 msgid "You cannot subscribe to yourself."
 msgstr ""
 
-#: blog/user/utils.py:236
+#: blog/user/utils.py:239
 #, python-format
 msgid "You followed: \"%(username)s\"!"
 msgstr ""
 
-#: blog/user/utils.py:245
+#: blog/user/utils.py:248
 msgid "You cannot unsubscribe to yourself."
 msgstr ""
 
-#: blog/user/utils.py:249
+#: blog/user/utils.py:252
 #, python-format
 msgid "You unfollowed: \"%(username)s\"."
 msgstr ""

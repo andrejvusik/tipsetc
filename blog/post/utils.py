@@ -10,10 +10,49 @@ from slugify import slugify
 from guess_language import guess_language
 
 
-class BlogCategory():
+class BlogTags():
 
     def __init__(self, *args, **kwargs):
-        super(BlogCateory, self).__init__(*args, **kwargs)
+        super(BlogTags, self).__init__(*args, **kwargs)
+
+    def edit_post_tags_blog(title, id):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=id).first_or_404()
+            user = Users.query.filter_by(id=post.users_id).first_or_404()
+            tags = Tags.query.all()
+            if current_user.username == user.username or current_user.admin:
+                return render_template('post/editposttags.html', title=title, post=post, tags=tags)
+            else:
+                flash(_('You do not have sufficient rights to edit: %(title)s', title=post.title))
+                return redirect(url_for('post.post', slug=post.slug))
+
+
+    def post_assign_tag(postid, tagid):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=postid).first()
+            user = Users.query.filter_by(id=post.users_id).first_or_404()
+            tag = Tags.query.filter_by(id=tagid).first()
+            if current_user.username == user.username or current_user.admin:
+                post.assign_tag(tag)
+                db.session.commit()
+                return redirect(url_for('post.editposttags', id=post.id))
+
+
+    def post_unassign_tag(postid, tagid):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=postid).first()
+            user = Users.query.filter_by(id=post.users_id).first_or_404()
+            tag = Tags.query.filter_by(id=tagid).first()
+            if current_user.username == user.username or current_user.admin:
+                post.unassign_tag(tag)
+                db.session.commit()
+                return redirect(url_for('post.editposttags', id=post.id))
+
+
+class BlogCategorys():
+
+    def __init__(self, *args, **kwargs):
+        super(BlogCategorys, self).__init__(*args, **kwargs)
 
     def create_category_post_blog(name):
         category = Categorys(name=name, slug=slugify(name))
@@ -163,7 +202,7 @@ class BlogPosts():
                 if form.category.data:
                     category = Categorys.query.filter_by(name=form.category.data).first()
                     if not category:
-                        category = BlogCategory.create_category_post_blog(name=form.category.data)
+                        category = BlogCategorys.create_category_post_blog(name=form.category.data)
                     post.category_id = category.id
                 elif not form.category.data:
                     post.category_id = '1'
@@ -226,7 +265,7 @@ class BlogPosts():
             if form.category.data:
                 newcategory = Categorys.query.filter_by(name=form.category.data).first()
                 if not newcategory:
-                    newcategory = BlogCategory.create_category_post_blog(name=form.category.data)
+                    newcategory = BlogCategorys.create_category_post_blog(name=form.category.data)
                 post.category_id = newcategory.id
             elif not form.category.data:
                 post.category_id = '1'
@@ -246,49 +285,17 @@ class BlogPosts():
         return render_template('post/editpost.html', title=title, form=form, post=post, tags=tags)
 
 
-    def edit_post_tags_blog(title, id):
-        if current_user.is_authenticated:
-            post = Posts.query.filter_by(id=id).first_or_404()
-            user = Users.query.filter_by(id=post.users_id).first_or_404()
-            tags = Tags.query.all()
-            if current_user.username == user.username or current_user.admin:
-                return render_template('post/editposttags.html', title=title, post=post, tags=tags)
-            else:
-                flash(_('You do not have sufficient rights to edit: %(title)s', title=post.title))
-                return redirect(url_for('post.post', slug=post.slug))
-
-
-
     def post_delete_blog(id):
         if current_user.is_authenticated:
             post = Posts.query.filter_by(id=id).first_or_404()
             user = Users.query.filter_by(id=post.users_id).first_or_404()
+            next_page = request.args.get('next')
+            if not next_page or url_parse(next_page).netloc != '':
+                next_page = url_for('main.index')
             if current_user.username == user.username or current_user.admin:
                 db.session.delete(post)
                 db.session.commit()
                 flash('Post "{}" deleted'.format(post.title))
-                return redirect(url_for('post.indexblog'))
+                return redirect(next_page)
             flash(_('You do not have sufficient rights to delete: %(title)s', title=post.title))
             return redirect(url_for('post.post', slug=post.slug))
-
-
-    def post_assign_tag(postid, tagid):
-        if current_user.is_authenticated:
-            post = Posts.query.filter_by(id=postid).first()
-            user = Users.query.filter_by(id=post.users_id).first_or_404()
-            tag = Tags.query.filter_by(id=tagid).first()
-            if current_user.username == user.username or current_user.admin:
-                post.assign_tag(tag)
-                db.session.commit()
-                return redirect(url_for('post.editposttags', id=post.id))
-
-
-    def post_unassign_tag(postid, tagid):
-        if current_user.is_authenticated:
-            post = Posts.query.filter_by(id=postid).first()
-            user = Users.query.filter_by(id=post.users_id).first_or_404()
-            tag = Tags.query.filter_by(id=tagid).first()
-            if current_user.username == user.username or current_user.admin:
-                post.unassign_tag(tag)
-                db.session.commit()
-                return redirect(url_for('post.editposttags', id=post.id))

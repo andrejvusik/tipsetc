@@ -1,6 +1,6 @@
 .truncate-text {
-  min-height: 80px;
-  max-height: 135px;
+  min-height: 170px;
+  max-height: 220px;
   overflow: hidden;
   position: relative;
 }

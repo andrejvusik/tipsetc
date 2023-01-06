@@ -5,6 +5,8 @@ from blog.admin.forms import CreateCategoryForm, EditCategoryForm, CreateTagForm
 from flask_babel import _, lazy_gettext as _l
 from flask_login import current_user
 from slugify import slugify
+from werkzeug.urls import url_parse
+
 
 
 class BlogAdmin():
@@ -17,17 +19,17 @@ class BlogAdmin():
         if current_user.is_authenticated and current_user.admin:
             nums = {
                 'allusers': Users.query.count(),
-            'admins': Users.query.filter_by(admin="1").count(),
-            'authors': Users.query.filter_by(admin="0").filter_by(author="1").count(),
-            'readers': Users.query.filter_by(admin="0").filter_by(author="0").count(),
-            'confirmed': Users.query.filter_by(confirmed="1").count(),
-            'noconfirmed': Users.query.filter_by(confirmed="0").count(),
-            'allposts': Posts.query.count(),
-            'publishedposts': Posts.query.filter_by(published="1").count(),
-            'inworkposts': Posts.query.filter_by(published="0").count(),
-            'allcategorys': Categorys.query.count(),
-            'alltags': Tags.query.count()
-            }
+                'admins': Users.query.filter_by(admin="1").count(),
+                'authors': Users.query.filter_by(admin="0").filter_by(author="1").count(),
+                'readers': Users.query.filter_by(admin="0").filter_by(author="0").count(),
+                'confirmed': Users.query.filter_by(confirmed="1").count(),
+                'noconfirmed': Users.query.filter_by(confirmed="0").count(),
+                'allposts': Posts.query.count(),
+                'publishedposts': Posts.query.filter_by(published="1").count(),
+                'inworkposts': Posts.query.filter_by(published="0").count(),
+                'allcategorys': Categorys.query.count(),
+                'alltags': Tags.query.count()
+                }
             users = Users.query.all()
             posts = Posts.query.all()
             categorys = Categorys.query.all()
@@ -124,6 +126,9 @@ class BlogAdmin():
     def delete_category(slug):
         category = Categorys.query.filter_by(slug=slug).first_or_404()
         postsincategory = Posts.query.filter_by(category_id=category.id).all()
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('main.index')
         if current_user.is_authenticated and current_user.admin:
             db.session.delete(category)
             db.session.commit()
@@ -131,7 +136,7 @@ class BlogAdmin():
             for post in postsincategory:
                 post.category_id = '1'
                 db.session.commit()
-            return redirect(url_for('admin.adminblog', data='allcategorys'))
+            return redirect(next_page)
         else:
             flash(_('To delete a category of post, please log as admin.'))
             if current_user.is_authenticated:
@@ -194,11 +199,14 @@ class BlogAdmin():
 
     def delete_tag(slug):
         tag = Tags.query.filter_by(slug=slug).first_or_404()
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('main.index')
         if current_user.is_authenticated and current_user.admin:
             db.session.delete(tag)
             db.session.commit()
             flash(_('Tag "%(tag)s" successfully delete.', tag=tag.name))
-            return redirect(url_for('admin.adminblog', data='alltags'))
+            return redirect(next_page)
         else:
             flash(_('To delete a tag of post, please log as admin.'))
             if current_user.is_authenticated:

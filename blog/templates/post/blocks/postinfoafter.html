@@ -1,0 +1,7 @@
+<div class="block is-centered is-small">
+  <a class="button is-dark is-rounded is-inverted is-small">{{ moment(post.timestamp).format('LL') }}&nbsp;({{ moment(post.timestamp).fromNow() }})</a>
+  {% if post.author and post.author.username in current_user.username or current_user.admin %}
+  <a class="button is-dark is-rounded is-small" href="{{ url_for('post.editpost', id = post.id) }}">{{ _('Edit') }}</a>
+  <a class="button is-dark is-rounded is-small" href="{{ url_for('post.deletepost', id = post.id) }}">{{ _('Delete') }}</a>
+  {% endif %}
+</div>

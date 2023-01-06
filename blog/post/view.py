@@ -1,5 +1,5 @@
 from blog.post import bp
-from blog.post.utils import BlogPosts
+from blog.post.utils import BlogTags, BlogPosts
 from flask_login import login_required
 from flask_babel import _
 
@@ -64,26 +64,27 @@ def editpost(id):
     return BlogPosts.edit_post_blog(title, id)
 
 
-@bp.route('/id/<id>/edittags', methods=('GET', 'POST'))
-@login_required
-def editposttags(id):
-    title = {'title': _('Edit tags. Post: ')}
-    return BlogPosts.edit_post_tags_blog(title, id)
-
-
 @bp.route("/id/<id>/delete")
 @login_required
 def deletepost(id):
     return BlogPosts.post_delete_blog(id)
 
 
+
+@bp.route('/id/<id>/edittags', methods=('GET', 'POST'))
+@login_required
+def editposttags(id):
+    title = {'title': _('Edit tags. Post: ')}
+    return BlogTags.edit_post_tags_blog(title, id)
+
+
 @bp.route('/id/<postid>/assigntag/<tagid>', methods=('GET', 'POST'))
 @login_required
 def assigntag(postid, tagid):
-    return BlogPosts.post_assign_tag(postid, tagid)
+    return BlogTags.post_assign_tag(postid, tagid)
 
 
 @bp.route('/id/<postid>/unassigntag/<tagid>', methods=('GET', 'POST'))
 @login_required
 def unassigntag(postid, tagid):
-    return BlogPosts.post_unassign_tag(postid, tagid)
+    return BlogTags.post_unassign_tag(postid, tagid)
