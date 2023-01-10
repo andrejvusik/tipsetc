@@ -42,7 +42,7 @@
         </a>
         <div class="navbar-dropdown">
           {% for category in g.categorys %}
-          {% set countposts = g.posts.query.filter_by(category_id=category.id).count() %}
+          {% set countposts = g.posts.query.filter_by(category_id=category.id).filter_by(published=1).count() %}
           {% if countposts %}
           <a class="navbar-item" href="{{ url_for('post.categoryposts', slug = category.slug) }}">
             {{ category.name }} ({{ countposts }})

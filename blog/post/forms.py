@@ -23,6 +23,7 @@ class CreateEditPostFormAdmin(FlaskForm):
     slug = StringField(_l('Post URL (optional):'), validators=[Length(min=0, max=128), Optional()])
     content = TextAreaField(_l('Content post:'), validators=[DataRequired(), InputRequired()])
     category = SelectField(_l('Category:'), choices=[])
+    edittagsaftersaving = BooleanField(_l('Edit tags after saving'))
     published = BooleanField(_l('Publish after saving'))
     submit = SubmitField(_l('Save post'))
 

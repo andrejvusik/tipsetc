@@ -19,8 +19,8 @@
           <h1>{% block content_title %}TipsEtc... {{ title.title }}{% endblock %}</h1>
           <p class="title is-6 has-text-centered">
             {% for category in categorys %}
-            {% if category.posts.count() > 0 %}
-            <a class="button is-inverted is-rounded is-outlined" href="{{ url_for('post.categoryposts', slug = category.slug) }}">{{ category.name }} ({{ category.posts.count() }})&nbsp;</a>
+            {% if category.posts.filter_by(published="1").count() > 0 %}
+            <a class="button is-inverted is-rounded is-outlined" href="{{ url_for('post.categoryposts', slug = category.slug) }}">{{ category.name }} ({{ category.posts.filter_by(published="1").count() }})&nbsp;</a>
             {% endif %}
             {% endfor %}
           </p>

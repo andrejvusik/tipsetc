@@ -93,7 +93,7 @@ class BlogPosts():
 
     def categorys_blog(title):
         categorys = Categorys.query.all()
-        return render_template('post/categorys.html', title=title, categorys=categorys)
+        return render_template('post/categorys.html', title=title, categorys=categorys, Posts=Posts)
 
 
     def followed_posts_blog(title):
@@ -272,6 +272,8 @@ class BlogPosts():
             post.language = language
             db.session.commit()
             flash(_('Changes to "%(title)s" successfully made.', title=post.title))
+            if form.edittagsaftersaving.data:
+                return redirect(url_for('post.editposttags', id = post.id))
             return redirect(url_for('post.post', slug=post.slug))
         elif request.method == 'GET':
             if current_user.admin:
