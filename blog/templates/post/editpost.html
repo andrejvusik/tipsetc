@@ -98,23 +98,15 @@
                     {{ form.category }}
                   </div>
                   <p></p>
-
-
-
                   <label class="label">{{ _('Tags:') }}</label>
-
-
-
                   {% include "post/blocks/posttagsshow.html" %}
-
-
                   <p></p>
-                  {% if current_user.admin %}
                   <div class="field">
                     <label class="checkbox">
                       {{ form.edittagsaftersaving(type="checkbox") }} {{ form.edittagsaftersaving.label }}.
                     </label>
                   </div>
+                  {% if current_user.admin %}
                   <div class="field">
                     <label class="checkbox">
                       {{ form.published(type="checkbox") }} {{ form.published.label }}.

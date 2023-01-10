@@ -8,6 +8,7 @@ from blog.post.forms import CreateEditPostForm, CreateEditPostFormAdmin
 from blog.models import Users, Posts, Categorys, Tags, posttag
 from slugify import slugify
 from guess_language import guess_language
+from datetime import datetime
 
 
 class BlogTags():
@@ -174,12 +175,20 @@ class BlogPosts():
 
 
     def post_slug_blog(slug):
-        post = Posts.query.filter_by(slug=slug).first_or_404()
+        if current_user.is_authenticated:
+            if current_user.admin or current_user.author:
+                post = Posts.query.filter_by(slug=slug).first_or_404()
+                return render_template('post/post.html', post=post)
+        post = Posts.query.filter_by(slug=slug).filter_by(published=1).first_or_404()
         return render_template('post/post.html', post=post)
 
 
     def post_id_blog(id):
-        post = Posts.query.filter_by(id=id).first_or_404()
+        if current_user.is_authenticated:
+            if current_user.admin or current_user.author:
+                post = Posts.query.filter_by(id=id).first_or_404()
+                return render_template('post/post.html', post=post)
+        post = Posts.query.filter_by(id=id).filter_by(published=1).first_or_404()
         return render_template('post/post.html', post=post)
 
 
@@ -222,6 +231,8 @@ class BlogPosts():
                     db.session.add(post)
                     db.session.commit()
                     flash(_('Congratulations, your post "%(title)s" has been saved.', title=post.title))
+                    if form.edittagsaftersaving.data:
+                        return redirect(url_for('post.editposttags', id = post.id))
                     return redirect(url_for('post.post', slug=post.slug))
             return render_template('post/createpost.html', title=title, form=form)
         else:
@@ -285,6 +296,27 @@ class BlogPosts():
             if post.category:
                 form.category.data = post.category.name
         return render_template('post/editpost.html', title=title, form=form, post=post, tags=tags)
+
+
+    def post_publish_slug_blog(id):
+        if current_user.is_authenticated:
+            post = Posts.query.filter_by(id=id).first_or_404()
+            if current_user.admin:
+                next_page = request.args.get('next')
+                if not next_page or url_parse(next_page).netloc != '':
+                    next_page = url_for('post.post', slug=post.slug)
+                if post.published:
+                    post.published = '0'
+                    flash('Post "{}" unpublished'.format(post.title))
+                else:
+                    post.published = '1'
+                    post.timestamp = datetime.utcnow()
+                    flash('Post "{}" published'.format(post.title))
+                db.session.commit()
+                return redirect(next_page)
+            flash(_('You do not have sufficient rights to publishing: %(title)s', title=post.title))
+            return redirect(url_for('main.index'))
+
 
 
     def post_delete_blog(id):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-06 16:35+0300\n"
+"POT-Creation-Date: 2023-01-11 01:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,7 +102,7 @@ msgid "Please log as admin."
 msgstr ""
 
 #: blog/admin/utils.py:79 blog/admin/utils.py:103 blog/admin/utils.py:153
-#: blog/admin/utils.py:177 blog/post/utils.py:218
+#: blog/admin/utils.py:177 blog/post/utils.py:227
 msgid "Please fill in all required fields."
 msgstr ""
 
@@ -188,102 +188,111 @@ msgstr ""
 msgid "Resent posts."
 msgstr ""
 
-#: blog/post/forms.py:9 blog/post/forms.py:22
+#: blog/post/forms.py:9 blog/post/forms.py:23
 msgid "Posts title:"
 msgstr ""
 
-#: blog/post/forms.py:10 blog/post/forms.py:23
+#: blog/post/forms.py:10 blog/post/forms.py:24
 msgid "Post URL (optional):"
 msgstr ""
 
-#: blog/post/forms.py:11 blog/post/forms.py:24
+#: blog/post/forms.py:11 blog/post/forms.py:25
 msgid "Content post:"
 msgstr ""
 
-#: blog/post/forms.py:12 blog/post/forms.py:25
+#: blog/post/forms.py:12 blog/post/forms.py:26
 msgid "Category:"
 msgstr ""
 
 #: blog/post/forms.py:13 blog/post/forms.py:27
+msgid "Edit tags after saving"
+msgstr ""
+
+#: blog/post/forms.py:14 blog/post/forms.py:29
 msgid "Save post"
 msgstr ""
 
-#: blog/post/forms.py:21 blog/templates/admin/blocks/postinfo.html:26
+#: blog/post/forms.py:22 blog/templates/admin/blocks/postinfo.html:33
 msgid "Author:"
 msgstr ""
 
-#: blog/post/forms.py:26
+#: blog/post/forms.py:28
 msgid "Publish after saving"
 msgstr ""
 
-#: blog/post/utils.py:26
+#: blog/post/utils.py:27
 #, python-format
 msgid "You do not have sufficient rights to edit: %(title)s"
 msgstr ""
 
-#: blog/post/utils.py:117
+#: blog/post/utils.py:118
 msgid "You are not subscribed to anyone."
 msgstr ""
 
-#: blog/post/utils.py:122
+#: blog/post/utils.py:123
 msgid "Sign in to your account to view subscriptions."
 msgstr ""
 
-#: blog/post/utils.py:144
+#: blog/post/utils.py:145
 msgid "There are no posts in the selected category."
 msgstr ""
 
-#: blog/post/utils.py:147
+#: blog/post/utils.py:148
 #, python-format
 msgid "Posts in category: \"%(name)s\""
 msgstr ""
 
-#: blog/post/utils.py:169
+#: blog/post/utils.py:170
 #, python-format
 msgid "No posts associated with the tag: \"%(name)s\"."
 msgstr ""
 
-#: blog/post/utils.py:172
+#: blog/post/utils.py:173
 #, python-format
 msgid "Posts containing tag: \"%(name)s\""
 msgstr ""
 
-#: blog/post/utils.py:195
+#: blog/post/utils.py:204
 msgid "You do not have sufficient rights to create a post."
 msgstr ""
 
-#: blog/post/utils.py:213
+#: blog/post/utils.py:222
 #, python-format
 msgid "The user with this ID was not found. Authorship assigned %(username)s."
 msgstr ""
 
-#: blog/post/utils.py:224
+#: blog/post/utils.py:233
 #, python-format
 msgid "Congratulations, your post \"%(title)s\" has been saved."
 msgstr ""
 
-#: blog/post/utils.py:228
+#: blog/post/utils.py:239
 msgid "To create an post, please log in to your account."
 msgstr ""
 
-#: blog/post/utils.py:234
+#: blog/post/utils.py:245
 msgid "Log in to your account to edit posts."
 msgstr ""
 
-#: blog/post/utils.py:243
+#: blog/post/utils.py:254
 msgid "You do not have sufficient rights to edit posts."
 msgstr ""
 
-#: blog/post/utils.py:255
+#: blog/post/utils.py:266
 msgid "Please check the user ID. User with this ID was not found."
 msgstr ""
 
-#: blog/post/utils.py:274
+#: blog/post/utils.py:285
 #, python-format
 msgid "Changes to \"%(title)s\" successfully made."
 msgstr ""
 
-#: blog/post/utils.py:300
+#: blog/post/utils.py:317
+#, python-format
+msgid "You do not have sufficient rights to publishing: %(title)s"
+msgstr ""
+
+#: blog/post/utils.py:334
 #, python-format
 msgid "You do not have sufficient rights to delete: %(title)s"
 msgstr ""
@@ -304,11 +313,11 @@ msgstr ""
 msgid "Create new post."
 msgstr ""
 
-#: blog/post/view.py:63
+#: blog/post/view.py:69
 msgid "Edit post: "
 msgstr ""
 
-#: blog/post/view.py:77
+#: blog/post/view.py:83
 msgid "Edit tags. Post: "
 msgstr ""
 
@@ -422,19 +431,19 @@ msgid "Category: %(name)s. Number of posts: %(countposts)s."
 msgstr ""
 
 #: blog/templates/admin/blocks/categorysinfo.html:20
-#: blog/templates/admin/blocks/postinfo.html:27
+#: blog/templates/admin/blocks/postinfo.html:34
 #: blog/templates/admin/blocks/tagsinfo.html:17
 #: blog/templates/admin/blocks/userinfo.html:57
-#: blog/templates/post/blocks/postinfoafter.html:4
+#: blog/templates/post/blocks/postinfoafter.html:21
 #: blog/templates/user/user.html:86
 msgid "Edit"
 msgstr ""
 
 #: blog/templates/admin/blocks/categorysinfo.html:21
-#: blog/templates/admin/blocks/postinfo.html:28
+#: blog/templates/admin/blocks/postinfo.html:35
 #: blog/templates/admin/blocks/tagsinfo.html:18
 #: blog/templates/admin/blocks/userinfo.html:60
-#: blog/templates/post/blocks/postinfoafter.html:5
+#: blog/templates/post/blocks/postinfoafter.html:22
 #: blog/templates/user/user.html:87
 msgid "Delete"
 msgstr ""
@@ -447,17 +456,30 @@ msgstr ""
 msgid "Slug"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:19
+#: blog/templates/admin/blocks/postinfo.html:18
+#: blog/templates/post/blocks/postinfoafter.html:5
+msgid "Unpublish"
+msgstr ""
+
+#: blog/templates/admin/blocks/postinfo.html:20
+#: blog/templates/post/blocks/postinfoafter.html:7
+msgid "Publish"
+msgstr ""
+
+#: blog/templates/admin/blocks/postinfo.html:23
 #: blog/templates/admin/blocks/userinfo.html:23
+#: blog/templates/post/blocks/postinfoafter.html:10
 #: blog/templates/user/user.html:26
 msgid "Status:"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:21
+#: blog/templates/admin/blocks/postinfo.html:25
+#: blog/templates/post/blocks/postinfoafter.html:12
 msgid "Published"
 msgstr ""
 
-#: blog/templates/admin/blocks/postinfo.html:23
+#: blog/templates/admin/blocks/postinfo.html:27
+#: blog/templates/post/blocks/postinfoafter.html:14
 msgid "In progress"
 msgstr ""
 
@@ -676,8 +698,8 @@ msgstr ""
 msgid "Author: \"%(username)s\". User ID: %(userid)s."
 msgstr ""
 
-#: blog/templates/post/blocks/posttags.html:2
-#: blog/templates/post/editpost.html:104
+#: blog/templates/post/blocks/posttags.html:5
+#: blog/templates/post/editpost.html:101
 msgid "Tags:"
 msgstr ""
 
@@ -696,7 +718,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: blog/templates/post/blocks/posttags.html:4 blog/templates/post/tags.html:31
+#: blog/templates/post/blocks/posttags.html:3 blog/templates/post/tags.html:31
 msgid "Edit tags"
 msgstr ""
 

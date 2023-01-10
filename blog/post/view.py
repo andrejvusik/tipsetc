@@ -57,6 +57,12 @@ def createpost():
     return BlogPosts.create_post_blog(title)
 
 
+@bp.route("/id/<id>/publish")
+@login_required
+def publishpost(id):
+    return BlogPosts.post_publish_slug_blog(id)
+
+
 @bp.route('/id/<id>/edit', methods=('GET', 'POST'))
 @login_required
 def editpost(id):

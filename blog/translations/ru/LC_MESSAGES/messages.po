@@ -7,17 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-06 16:35+0300\n"
-"PO-Revision-Date: 2022-07-31 01:08+0300\n"
+"POT-Creation-Date: 2023-01-11 01:28+0300\n"
+"PO-Revision-Date: 2023-01-11 01:31+0300\n"
 "Last-Translator: \n"
-"Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 "
+"&& (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.9.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: blog/__init__.py:17
 msgid "Please log in to access this page."
@@ -104,7 +105,7 @@ msgid "Please log as admin."
 msgstr "Пожалуйста, войдите как администратор."
 
 #: blog/admin/utils.py:79 blog/admin/utils.py:103 blog/admin/utils.py:153
-#: blog/admin/utils.py:177 blog/post/utils.py:218
+#: blog/admin/utils.py:177 blog/post/utils.py:227
 msgid "Please fill in all required fields."
 msgstr "Пожалуйста, заполните все обязательные поля."
 
@@ -190,104 +191,113 @@ msgstr "Ошибка: \"500\""
 msgid "Resent posts."
 msgstr "Последние записи."
 
-#: blog/post/forms.py:9 blog/post/forms.py:22
+#: blog/post/forms.py:9 blog/post/forms.py:23
 msgid "Posts title:"
 msgstr "Заголовок записи:"
 
-#: blog/post/forms.py:10 blog/post/forms.py:23
+#: blog/post/forms.py:10 blog/post/forms.py:24
 msgid "Post URL (optional):"
 msgstr "URL записи (необязательно):"
 
-#: blog/post/forms.py:11 blog/post/forms.py:24
+#: blog/post/forms.py:11 blog/post/forms.py:25
 msgid "Content post:"
 msgstr "Содержание записи:"
 
-#: blog/post/forms.py:12 blog/post/forms.py:25
+#: blog/post/forms.py:12 blog/post/forms.py:26
 msgid "Category:"
 msgstr "Категория:"
 
 #: blog/post/forms.py:13 blog/post/forms.py:27
+msgid "Edit tags after saving"
+msgstr "Редактировать теги после сохранения"
+
+#: blog/post/forms.py:14 blog/post/forms.py:29
 msgid "Save post"
 msgstr "Сохранить запись"
 
-#: blog/post/forms.py:21 blog/templates/admin/blocks/postinfo.html:26
+#: blog/post/forms.py:22 blog/templates/admin/blocks/postinfo.html:33
 msgid "Author:"
 msgstr "Автор:"
 
-#: blog/post/forms.py:26
+#: blog/post/forms.py:28
 msgid "Publish after saving"
 msgstr "Опубликовать после сохранения"
 
-#: blog/post/utils.py:26
+#: blog/post/utils.py:27
 #, python-format
 msgid "You do not have sufficient rights to edit: %(title)s"
 msgstr "У вас недостаточно прав для редактирования: %(title)s"
 
-#: blog/post/utils.py:117
+#: blog/post/utils.py:118
 msgid "You are not subscribed to anyone."
 msgstr "Вы ни на кого не подписаны."
 
-#: blog/post/utils.py:122
+#: blog/post/utils.py:123
 msgid "Sign in to your account to view subscriptions."
 msgstr "Войдите в свою учетную запись, чтобы просмотреть подписки."
 
-#: blog/post/utils.py:144
+#: blog/post/utils.py:145
 msgid "There are no posts in the selected category."
 msgstr "В выбранной категории нет записей."
 
-#: blog/post/utils.py:147
+#: blog/post/utils.py:148
 #, python-format
 msgid "Posts in category: \"%(name)s\""
 msgstr "Сообщения в категории: \"%(name)s\""
 
-#: blog/post/utils.py:169
+#: blog/post/utils.py:170
 #, python-format
 msgid "No posts associated with the tag: \"%(name)s\"."
 msgstr "Нет сообщений, связанных с тегом: \"%(name)s\"."
 
-#: blog/post/utils.py:172
+#: blog/post/utils.py:173
 #, python-format
 msgid "Posts containing tag: \"%(name)s\""
 msgstr "Записи, содержащие тег: \"%(name)s\""
 
-#: blog/post/utils.py:195
+#: blog/post/utils.py:204
 msgid "You do not have sufficient rights to create a post."
 msgstr "У вас недостаточно прав для создания записей в блоге."
 
-#: blog/post/utils.py:213
+#: blog/post/utils.py:222
 #, python-format
 msgid "The user with this ID was not found. Authorship assigned %(username)s."
 msgstr "Пользователь с таким ID не найден. Авторство присвоено %(username)s."
 
-#: blog/post/utils.py:224
+#: blog/post/utils.py:233
 #, python-format
 msgid "Congratulations, your post \"%(title)s\" has been saved."
 msgstr "Поздравляем, ваша запись \"%(title)s\" сохранено."
 
-#: blog/post/utils.py:228
+#: blog/post/utils.py:239
 msgid "To create an post, please log in to your account."
 msgstr "Чтобы создать публикацию, пожалуйста, войдите в свою учетную запись."
 
-#: blog/post/utils.py:234
+#: blog/post/utils.py:245
 msgid "Log in to your account to edit posts."
 msgstr "Войдите в свою учетную запись, чтобы редактировать сообщения."
 
-#: blog/post/utils.py:243
+#: blog/post/utils.py:254
 msgid "You do not have sufficient rights to edit posts."
 msgstr "У вас недостаточно прав для редактирования записи."
 
-#: blog/post/utils.py:255
+#: blog/post/utils.py:266
 msgid "Please check the user ID. User with this ID was not found."
 msgstr ""
-"Пожалуйста, проверьте идентификатор пользователя. Пользователь с таким ID"
-" не найден."
+"Пожалуйста, проверьте идентификатор пользователя. Пользователь с таким ID не "
+"найден."
 
-#: blog/post/utils.py:274
+#: blog/post/utils.py:285
 #, python-format
 msgid "Changes to \"%(title)s\" successfully made."
 msgstr "Изменения в \"%(title)s\" успешно внесены."
 
-#: blog/post/utils.py:300
+#: blog/post/utils.py:317
+#, python-format
+msgid "You do not have sufficient rights to publishing: %(title)s"
+msgstr "У вас недостаточно прав для публикации: %(title)s"
+
+#: blog/post/utils.py:334
 #, python-format
 msgid "You do not have sufficient rights to delete: %(title)s"
 msgstr "У вас недостаточно прав для удаления: %(title)s"
@@ -308,11 +318,11 @@ msgstr "Подписки."
 msgid "Create new post."
 msgstr "Создать новую запись."
 
-#: blog/post/view.py:63
+#: blog/post/view.py:69
 msgid "Edit post: "
 msgstr "Редактировать запись: "
 
-#: blog/post/view.py:77
+#: blog/post/view.py:83
 msgid "Edit tags. Post: "
 msgstr "Редактировать теги. Запись: "
 
@@ -324,8 +334,8 @@ msgstr "Поиск"
 #, python-format
 msgid "No results were found for \"%(searchrequest)s\". Try other keywords."
 msgstr ""
-"По запросу \"%(searchrequest)s\" ничего не найдено. Попробуйте другие "
-"ключевые слова."
+"По запросу \"%(searchrequest)s\" ничего не найдено. Попробуйте другие ключевые "
+"слова."
 
 #: blog/search/view.py:15
 #, python-format
@@ -428,19 +438,19 @@ msgid "Category: %(name)s. Number of posts: %(countposts)s."
 msgstr "Категория: %(name)s. Количество сообщений: %(countposts)s."
 
 #: blog/templates/admin/blocks/categorysinfo.html:20
-#: blog/templates/admin/blocks/postinfo.html:27
+#: blog/templates/admin/blocks/postinfo.html:34
 #: blog/templates/admin/blocks/tagsinfo.html:17
 #: blog/templates/admin/blocks/userinfo.html:57
-#: blog/templates/post/blocks/postinfoafter.html:4
+#: blog/templates/post/blocks/postinfoafter.html:21
 #: blog/templates/user/user.html:86
 msgid "Edit"
 msgstr "Редактировать"
 
 #: blog/templates/admin/blocks/categorysinfo.html:21
-#: blog/templates/admin/blocks/postinfo.html:28
+#: blog/templates/admin/blocks/postinfo.html:35
 #: blog/templates/admin/blocks/tagsinfo.html:18
 #: blog/templates/admin/blocks/userinfo.html:60
-#: blog/templates/post/blocks/postinfoafter.html:5
+#: blog/templates/post/blocks/postinfoafter.html:22
 #: blog/templates/user/user.html:87
 msgid "Delete"
 msgstr "Удалить"
@@ -453,17 +463,30 @@ msgstr "Имя"
 msgid "Slug"
 msgstr "URL"
 
-#: blog/templates/admin/blocks/postinfo.html:19
+#: blog/templates/admin/blocks/postinfo.html:18
+#: blog/templates/post/blocks/postinfoafter.html:5
+msgid "Unpublish"
+msgstr "Снять с публикации"
+
+#: blog/templates/admin/blocks/postinfo.html:20
+#: blog/templates/post/blocks/postinfoafter.html:7
+msgid "Publish"
+msgstr "Опубликовть"
+
+#: blog/templates/admin/blocks/postinfo.html:23
 #: blog/templates/admin/blocks/userinfo.html:23
+#: blog/templates/post/blocks/postinfoafter.html:10
 #: blog/templates/user/user.html:26
 msgid "Status:"
 msgstr "Статус:"
 
-#: blog/templates/admin/blocks/postinfo.html:21
+#: blog/templates/admin/blocks/postinfo.html:25
+#: blog/templates/post/blocks/postinfoafter.html:12
 msgid "Published"
 msgstr "Опубликована"
 
-#: blog/templates/admin/blocks/postinfo.html:23
+#: blog/templates/admin/blocks/postinfo.html:27
+#: blog/templates/post/blocks/postinfoafter.html:14
 msgid "In progress"
 msgstr "В работе"
 
@@ -482,8 +505,7 @@ msgstr "Тег: %(name)s."
 msgid "Number of posts: %(countposts)s."
 msgstr "Количество записей: %(countposts)s."
 
-#: blog/templates/admin/blocks/userinfo.html:25
-#: blog/templates/user/user.html:28
+#: blog/templates/admin/blocks/userinfo.html:25 blog/templates/user/user.html:28
 msgid "ADMIN"
 msgstr "Администратор"
 
@@ -493,8 +515,7 @@ msgstr "Администратор"
 msgid "Author"
 msgstr "Автор"
 
-#: blog/templates/admin/blocks/userinfo.html:29
-#: blog/templates/user/user.html:32
+#: blog/templates/admin/blocks/userinfo.html:29 blog/templates/user/user.html:32
 msgid "Reader"
 msgstr "Читатель"
 
@@ -537,11 +558,10 @@ msgstr "нажмите на ссылку"
 #: blog/templates/emails/confirm_email.html:8
 #: blog/templates/emails/reset_password.html:8
 msgid ""
-"Alternatively, you can paste the following link into your browser&#39;s "
-"address bar:"
+"Alternatively, you can paste the following link into your browser&#39;s address "
+"bar:"
 msgstr ""
-"Кроме того, вы можете вставить следующую ссылку в адресную строку "
-"браузера:"
+"Кроме того, вы можете вставить следующую ссылку в адресную строку браузера:"
 
 #: blog/templates/emails/confirm_email.html:10
 #: blog/templates/emails/reset_password.html:10
@@ -673,9 +693,8 @@ msgstr "Заголовок записи"
 msgid "Post URL"
 msgstr "URL записи"
 
-#: blog/templates/post/createpost.html:79
-#: blog/templates/post/createpost.html:80 blog/templates/post/editpost.html:85
-#: blog/templates/post/editpost.html:86
+#: blog/templates/post/createpost.html:79 blog/templates/post/createpost.html:80
+#: blog/templates/post/editpost.html:85 blog/templates/post/editpost.html:86
 msgid "Post content"
 msgstr "Содержание записи"
 
@@ -684,19 +703,18 @@ msgstr "Содержание записи"
 msgid "Author: \"%(username)s\". User ID: %(userid)s."
 msgstr "Автор: \"%(username)s\". ID пользователя: %(userid)s."
 
-#: blog/templates/post/blocks/posttags.html:2
-#: blog/templates/post/editpost.html:104
+#: blog/templates/post/blocks/posttags.html:5
+#: blog/templates/post/editpost.html:101
 msgid "Tags:"
 msgstr "Теги:"
 
 #: blog/templates/post/editposttags.html:35
 #, python-format
 msgid ""
-"Select the tags for the relevant post: \"%(posttitle)s\". Or create new "
-"tags."
+"Select the tags for the relevant post: \"%(posttitle)s\". Or create new tags."
 msgstr ""
-"Выберите теги для соответствующие записи: «%(posttitle)s». Или создайте "
-"новые теги."
+"Выберите теги для соответствующие записи: «%(posttitle)s». Или создайте новые "
+"теги."
 
 #: blog/templates/post/editposttags.html:48
 msgid "Edit post"
@@ -706,7 +724,7 @@ msgstr "Редактировать запись"
 msgid "Read more"
 msgstr "Читать далее"
 
-#: blog/templates/post/blocks/posttags.html:4 blog/templates/post/tags.html:31
+#: blog/templates/post/blocks/posttags.html:3 blog/templates/post/tags.html:31
 msgid "Edit tags"
 msgstr "Редактировать теги"
 
@@ -747,8 +765,7 @@ msgid "Max 256 characters"
 msgstr "Максимум 256 символов"
 
 #: blog/templates/user/login.html:33 blog/templates/user/reguser.html:77
-#: blog/templates/user/reguser.html:90
-#: blog/templates/user/resetpassword.html:20
+#: blog/templates/user/reguser.html:90 blog/templates/user/resetpassword.html:20
 #: blog/templates/user/resetpassword.html:33
 msgid "********"
 msgstr "********"
@@ -982,8 +999,7 @@ msgstr "Поздравляем! Ваша учетная запись была п
 #: blog/user/utils.py:82
 msgid "Check your email for password reset instructions."
 msgstr ""
-"Проверьте свою электронную почту, чтобы получить инструкции по сбросу "
-"пароля."
+"Проверьте свою электронную почту, чтобы получить инструкции по сбросу пароля."
 
 #: blog/user/utils.py:85
 msgid "Check the email you entered."
@@ -1085,4 +1101,3 @@ msgstr "Редактор профиля."
 
 #~ msgid "Category slug"
 #~ msgstr "URL категории"
-

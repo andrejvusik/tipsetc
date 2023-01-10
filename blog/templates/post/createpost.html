@@ -87,6 +87,16 @@
                       {% endfor %}
                     </div>
                   </div>
+                  <label class="label">{{ form.category.label }}</label>
+                  <div class="select is-rounded is-fullwidth">
+                    {{ form.category }}
+                  </div>
+                  <p></p>
+                  <div class="field">
+                    <label class="checkbox">
+                      {{ form.edittagsaftersaving(type="checkbox") }} {{ form.edittagsaftersaving.label }}.
+                    </label>
+                  </div>
                   {% if current_user.admin %}
                   <div class="field">
                     <label class="checkbox">
@@ -94,11 +104,6 @@
                     </label>
                   </div>
                   {% endif %}
-                  <label class="label">{{ form.category.label }}</label>
-                  <div class="select is-rounded is-fullwidth">
-                    {{ form.category }}
-                  </div>
-                  <p></p>
                   <div class="field">
                     {{ form.submit(class="button is-rounded is-dark is-fullwidth") }}
                   </div>
