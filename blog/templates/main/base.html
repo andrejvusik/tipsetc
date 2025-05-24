@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %} | {{ settings.APP_NAME }}</title>
+    {% block css %}
+    {% include 'main/blocks/css.html' %}
+    {% endblock %}
+</head>
+<body>
+{% include 'main/blocks/navbar.html' %}
+<main class="container">
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+{% include 'main/blocks/footer.html' %}
+
+{% block scripts %}
+{% include 'main/blocks/scripts.html' %}
+{% endblock %}
+
+</body>
+</html>

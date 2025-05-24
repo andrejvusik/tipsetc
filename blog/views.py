@@ -1,6 +1,6 @@
-# from django.shortcuts import render
-from django.http.response import HttpResponse
-from django.template import loader
+from django.shortcuts import render
+from django.conf import settings
+
 
 from .models import Post
 
@@ -9,7 +9,6 @@ from .models import Post
 
 
 def index(request):
-    posts = Post.objects.order_by("-updated_at")[:5]
-    template = loader.get_template("index.html")
-    context = {"posts": posts}
-    return HttpResponse(template.render(context, request))
+    posts = Post.objects.filter(published="for_all").order_by("-updated_at")[:5]
+    context = {"posts": posts, "settings": settings}
+    return render(request, "index.html", context)
