@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %} | {{ settings.APP_NAME }}</title>
-    {% block css %}
     {% include 'main/blocks/css.html' %}
-    {% endblock %}
+    {% include 'main/blocks/scripts_head.html' %}
+    <title>{% block title %}{% endblock %} | {{ settings.APP_NAME }}</title>
+
 </head>
 <body>
 {% include 'main/blocks/navbar.html' %}
-<main class="container">
 
-    {% block content %}
-    {% endblock %}
-
-</main>
+{% block content %}{% endblock %}
 
 {% include 'main/blocks/footer.html' %}
 
-{% block scripts %}
-{% include 'main/blocks/scripts.html' %}
-{% endblock %}
+{% include 'main/blocks/scripts_body.html' %}
 
 </body>
 </html>
