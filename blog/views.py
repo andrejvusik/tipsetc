@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.conf import settings
 
 from .models import Post
@@ -8,26 +9,31 @@ from .models import Post
 
 # Create your views here.
 
-
-def latest_posts(request):
-    posts = Post.objects.filter(published="for_all").order_by("-updated_at")[:settings.COUNT_OF_POST_ON_PAGE]
-    title = "Latest Published Posts"
+def posts(request, param=""):
+    params = {
+        "": Post.objects.filter(published="for_all"),
+        "all_publish_posts": Post.objects.filter(published="for_all"),
+        "exception": Post.objects.filter(published="for_all"),
+    }
+    titles = {
+        "": "Latest Published Posts",
+        "all_publish_posts": "Latest Published Posts",
+        "exception": f"This page \"{param}\" does not exist. Below are latest Published Posts.",
+    }
+    if request.user.is_authenticated:
+        params["my_posts"] = Post.objects.filter(author=request.user)
+        titles["my_posts"] = "My Posts"
+    if not param in params:
+        param = "exception"
+    q_posts = params[param].order_by("-updated_at")[:settings.COUNT_OF_POST_ON_PAGE]
+    title = titles[param]
     context = {
-        "posts": posts,
+        "posts": q_posts,
         "settings": settings,
         "title": title,
     }
     return render(request, "post/posts.html", context)
 
-def my_posts(request):
-    posts = Post.objects.filter(author=request.user).order_by("-updated_at")[:settings.COUNT_OF_POST_ON_PAGE]
-    title = "My Posts"
-    context = {
-        "posts": posts,
-        "settings": settings,
-        "title": title
-    }
-    return render(request, "post/posts.html", context)
 
 def search_publish_posts(request):
     query = request.GET.get('query')
