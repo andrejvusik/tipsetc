@@ -30,3 +30,7 @@ class Post(
 
     def __str__(self):
         return self.title
+
+    def published_status(self):
+        post_publish_status = {x[0]: x[1] for x in self.PUBLISH_STATUS}
+        return post_publish_status[str(self.published)]

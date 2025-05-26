@@ -6,5 +6,6 @@ urlpatterns = [
     path("", views.posts, name="posts"),
     path("posts", views.posts, name="posts"),
     path("posts/<param>", views.posts, name="posts"),
+    # path("post/<slug>", views.post, name="post"),
     path("search_publish_posts", views.search_publish_posts, name="search_publish_posts"),
 ]

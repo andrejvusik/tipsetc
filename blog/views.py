@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.conf import settings
 
 from .models import Post
@@ -20,19 +20,34 @@ def posts(request, param=""):
         "all_publish_posts": "Latest Published Posts",
         "exception": f"This page \"{param}\" does not exist. Below are latest Published Posts.",
     }
+
     if request.user.is_authenticated:
         params["my_posts"] = Post.objects.filter(author=request.user)
         titles["my_posts"] = "My Posts"
     if not param in params:
         param = "exception"
-    q_posts = params[param].order_by("-updated_at")[:settings.COUNT_OF_POST_ON_PAGE]
+    # q_posts = params[param].order_by("-updated_at")[:settings.COUNT_OF_POST_ON_PAGE]
+    q_posts = params[param].order_by("-updated_at")
+
+    page_number = request.GET.get('page', 1)
+    paginator = Paginator(q_posts, settings.COUNT_OF_POST_ON_PAGE)
+    page_obj = paginator.get_page(page_number)
+
     title = titles[param]
     context = {
-        "posts": q_posts,
+        "posts": page_obj,
         "settings": settings,
         "title": title,
+        "param": param,
+        "has_next": page_obj.has_next(),
+        "next_page": page_obj.next_page_number() if page_obj.has_next() else None,
     }
-    return render(request, "post/posts.html", context)
+
+    # if request.headers.get("HX-Request") is True:
+    if page_number == 1:
+        return render(request, "post/posts.html", context)
+
+    return render(request, "post/blocks/posts_item.html", context)
 
 
 def search_publish_posts(request):
@@ -46,3 +61,7 @@ def search_publish_posts(request):
         "post/blocks/search_publish_posts.html",
         {"results": results, "query": query},
     )
+
+def post(request, slug):
+    result = get_object_or_404(Post, slug=slug)
+    return render(request, "post/post.html", {"post": result})
