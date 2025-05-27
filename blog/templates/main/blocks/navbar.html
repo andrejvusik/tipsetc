@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'posts' param='all_publish_posts' %}">
             {% load static %}
-            <img src="{% static 'logo/LOGO-SMALL-GRAY.png' %}" alt="Logo" width="24" height="24" class="d-inline-block align-text-top">
+            <img src="{% static 'logo/logo_small.png' %}" alt="Logo" width="24" height="24" class="d-inline-block align-text-top">
             {{ settings.APP_NAME }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -39,18 +39,20 @@
                     </form>
                     <div id="search-results"></div>
                 </li>
+                <hr>
+                <li></li>
                 <li>
-                    <button class="btn btn-sm btn-primary theme-toggle me-2" id="themeToggle">
+                    <button class="btn btn-sm btn-secondary theme-toggle me-2" id="themeToggle">
                         {% load static %}
-                        <img src="{% static 'img/toggler-theme.png' %}" alt="Theme" width="28" height="27">
+                        <img src="{% static 'img/toggler_theme.png' %}" alt="Theme" width="28" height="27">
                     </button>
 
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         {% if not user.is_authenticated %}
-                        <a class="btn btn-outline-primary" href="#">Sign Up</a>
-                        <a class="btn btn-outline-primary" href="#">Sign In</a>
+                        <a class="btn btn-outline-secondary" href="#">Sign Up</a>
+                        <a class="btn btn-outline-secondary" href="#">Sign In</a>
                         {% else %}
-                        <a class="btn btn-outline-primary" href="#">Log Out</a>
+                        <a class="btn btn-outline-secondary" href="#">Log Out</a>
                         {% endif %}
                     </div>
                 </li>

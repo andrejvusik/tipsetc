@@ -1,0 +1,22 @@
+<button
+    id="back-to-top"
+    class="btn btn-secondary position-fixed"
+    style="bottom: 40px; right: 40px; display: none; z-index: 999;"
+>
+    &uarr; Up
+</button>
+
+
+<script>
+  backToTopBtn = document.getElementById("back-to-top");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  });
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({top: 0, behavior: "smooth"})
+  })
+</script>

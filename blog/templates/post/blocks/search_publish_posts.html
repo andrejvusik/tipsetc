@@ -9,7 +9,7 @@
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <div>
             <a class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-               href="#">
+               href="{% url 'post_view' slug=post.slug %}">
                 <strong>{{ post.title }} </strong>
                 <small class="text-muted">by {{ post.author }}</small>
                 <br>
