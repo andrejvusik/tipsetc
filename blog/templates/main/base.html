@@ -6,6 +6,8 @@
     {% include 'main/blocks/css.html' %}
     {% include 'main/blocks/scripts_head.html' %}
     <title>{% block title %}{% endblock %} | {{ settings.APP_NAME }}</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}">
 
 </head>
 <body>

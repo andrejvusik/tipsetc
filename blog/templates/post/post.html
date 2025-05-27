@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+<div class="col-lg-8 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <h1 class="text-body-emphasis">{{ post.title }}</h1>
+    </header>
+    {% include 'post/blocks/post_info.html' %}
+
+    <main>
+
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <p>
+                {{ post.content }}
+            </p>
+        </div>
+        <hr class="mt-5 mb-5">
+
+    </main>
+
+</div>
+
+{% endblock %}

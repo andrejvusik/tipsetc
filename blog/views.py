@@ -36,6 +36,7 @@ def posts(request, param=""):
     title = titles[param]
     context = {
         "posts": page_obj,
+        "count_posts": q_posts.count(),
         "settings": settings,
         "title": title,
         "param": param,
@@ -62,6 +63,10 @@ def search_publish_posts(request):
         {"results": results, "query": query},
     )
 
-def post(request, slug):
+def post_view(request, slug):
     result = get_object_or_404(Post, slug=slug)
-    return render(request, "post/post.html", {"post": result})
+    context = {
+        "post": result,
+        "settings": settings,
+    }
+    return render(request, "post/post.html", context)

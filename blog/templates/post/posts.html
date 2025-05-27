@@ -6,9 +6,13 @@
 
 <div class="col-lg-8 mx-auto p-4 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-        <h1 class="text-body-emphasis">
+        {% load static %}
+        <p style="max-width: 50%; height: auto;">
+            <img src="{% static 'logo/LOGO-FULL-WHITE-THEME.png' %}" class="img-fluid" alt="Tips etc.. Logos.">
+        </p>
+        <h1 class="text-body-emphasis" style="max-width: 50%; height: auto;">
             {{ title }}
-            ({{ posts.count }})
+            ({{ count_posts }})
         </h1>
     </header>
 
