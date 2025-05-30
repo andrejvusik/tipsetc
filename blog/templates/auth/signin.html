@@ -1,0 +1,46 @@
+{% extends "main/base.html" %}
+
+{% block title %}Please Sign In{% endblock %}
+
+{% block content %}
+
+
+<div class="col-lg-5 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        {% load static %}
+        <p style="max-width:40%; height: auto;">
+            <img src="{% static 'logo/logo_max.png' %}" class="img-fluid" alt="Tips etc.. Logos.">
+        </p>
+        <h1 style="max-width: 60%; height: auto;">
+            Please Sign In
+        </h1>
+    </header>
+    <main class="form-signin w-100 m-auto">
+        <form method="POST" action="{% url 'user_signin' %}">
+
+            {% csrf_token %}
+
+            <div class="form-floating">
+                <input name="email" id="email" type="email" class="form-control" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mt-2">
+                <input name="password" id="password" type="password" class="form-control" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+
+            <button class="btn btn-secondary w-100 py-2 mt-4" type="submit">Sign In</button>
+            <p class="text-left text-body-secondary mt-3">
+                Need an account?
+                <a class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'user_signup' %}">
+                    Sign Up
+                </a>
+            </p>
+        </form>
+    </main>
+</div>
+
+
+
+{% endblock %}

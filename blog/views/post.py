@@ -1,22 +1,17 @@
-from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.conf import settings
 
-from .models import Post
+from blog.models import Post
 
 
-# Create your views here.
-
-def posts(request, param=""):
+def posts(request, param="all_publish_posts"):
     params = {
-        "": Post.objects.filter(published="for_all"),
         "all_publish_posts": Post.objects.filter(published="for_all"),
         "exception": Post.objects.filter(published="for_all"),
     }
     titles = {
-        "": "Latest Published Posts",
         "all_publish_posts": "Latest Published Posts",
         "exception": f"This page \"{param}\" does not exist. Below are latest Published Posts.",
     }
@@ -26,7 +21,6 @@ def posts(request, param=""):
         titles["my_posts"] = "My Posts"
     if not param in params:
         param = "exception"
-    # q_posts = params[param].order_by("-updated_at")[:settings.COUNT_OF_POST_ON_PAGE]
     q_posts = params[param].order_by("-updated_at")
 
     page_number = request.GET.get('page', 1)
