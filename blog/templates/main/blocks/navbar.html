@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'posts' param='all_publish_posts' %}">
             {% load static %}
-            <img src="{% static 'logo/logo_small.png' %}" alt="Logo" width="24" height="24" class="d-inline-block align-text-top">
+            <img src="{% static 'logo/logo_small.png' %}" alt="Logo" width="24" height="24"
+                 class="d-inline-block align-text-top">
             {{ settings.APP_NAME }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -12,11 +13,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'posts' param='all_publish_posts' %}">Latest posts</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'posts' param='all_publish_posts' %}">
+                        Latest posts
+                    </a>
                 </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'posts' param='my_posts' %}">My posts</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'posts' param='my_posts' %}">
+                        My posts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'post_create' %}">
+                        New post
+                    </a>
                 </li>
                 {% endif %}
             </ul>

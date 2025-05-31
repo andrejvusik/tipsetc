@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.environ["SECRET_KEY"]
 SECRET_KEY = "django-insecure-4uxeo(799#u7l1@xds=_7*9ww=l+#09)y5-%r31j-f#ibc(2r7"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -127,3 +128,8 @@ APP_AUTHOR = "Andrej Vusik"
 AUTHOR_TELEGRAM = "https://t.me/andrejvusik"
 COUNT_OF_POST_ON_PAGE = 2
 SEARCH_RESULTS_LIMIT = 5
+TOAST_SHOW_TIME = 5000
+
+# Google OAUTH
+# GOOGLE_OAUTH_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
+# GOOGLE_OAUTH_CLIENT_SECRET_KEY = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET_KEY")

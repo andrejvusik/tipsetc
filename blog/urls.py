@@ -5,8 +5,9 @@ from . import views
 urlpatterns = [
     path("", views.posts, name="posts"),
     path("posts", views.posts, name="posts"),
-    path("posts/<param>", views.posts, name="posts"),
-    path("posts/post/<slug>", views.post_view, name="post_view"),
+    path("posts/view/<param>", views.posts, name="posts"),
+    path("posts/post/view/<slug>", views.post_view, name="post_view"),
+    path("posts/post/create", views.post_create, name="post_create"),
     path("search_publish_posts", views.search_publish_posts, name="search_publish_posts"),
 
     path("auth/signin", views.user_signin, name="user_signin"),

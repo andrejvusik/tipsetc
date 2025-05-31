@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
 from django.shortcuts import get_object_or_404, render, redirect
 from django.conf import settings
 
+from blog.forms import CreateEditPostForm
 from blog.models import Post
 
 
@@ -64,3 +66,25 @@ def post_view(request, slug):
         "settings": settings,
     }
     return render(request, "post/post.html", context)
+
+@login_required
+def post_create(request):
+    if request.method == "POST":
+        form = CreateEditPostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+            context = {
+                "post": new_post,
+                "settings": settings,
+            }
+            return render(request, "post/post.html", context)
+    else:
+        form = CreateEditPostForm()
+    form = CreateEditPostForm()
+    context = {
+        "settings": settings,
+        "form": form,
+    }
+    return render(request, "post/post_create.html", context)

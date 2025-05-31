@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.conf import settings
 
+from . import posts
+
 
 def user_signin(request):
     if request.method == 'POST':

@@ -1,0 +1,71 @@
+{% extends "main/base.html" %}
+
+{% block title %}Create new post{% endblock %}
+
+{% block content %}
+
+<div class="col-lg-6 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        {% load static %}
+        <p style="max-width:30%; height: auto;">
+            <img src="{% static 'logo/logo_max.png' %}" class="img-fluid" alt="Tips etc.. Logos.">
+        </p>
+        <h1 style="max-width:70%; height: auto;">Create new post</h1>
+    </header>
+    <main class="w-100 m-auto">
+        <form method="POST" action="{% url 'post_create' %}">
+            {% csrf_token %}
+            <div class="form-floating">
+                <input
+                        type="text"
+                        class="form-control"
+                        id="id_title"
+                        name="title"
+                        placeholder="Post title"
+                        required
+                >
+                <label for="id_title">Post title:</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input
+                        type="text"
+                        class="form-control"
+                        id="id_slug"
+                        name="slug"
+                        placeholder="Post slug"
+                >
+                <label for="id_slug">Post slug:</label>
+            </div>
+            <div class="form-group mt-3">
+                <label for="id_content" class="text-body-secondary">Post content:</label>
+                <textarea
+                        class="form-control"
+                        id="id_content"
+                        name="content"
+                        rows="5"
+                        placeholder="Post content"
+                ></textarea>
+            </div>
+            <div class="form-floating mt-3">
+                <select
+                        class="form-control"
+                        id="id_published"
+                        name="published"
+                        required
+                >
+                    <option value selected>-- Please make your choice --</option>
+                    <option value="draft">Draft</option>
+                    <option value="for_subscribers">Published for subscribers</option>
+                    <option value="for_all">Published for All</option>
+                </select>
+                <label for="id_published" class="text-body-secondary">Publish status:</label>
+            </div>
+
+            <button class="btn btn-secondary w-100 py-2 mt-4" type="submit">Post</button>
+
+        </form>
+        <hr class="mt-5 mb-5">
+    </main>
+</div>
+
+{% endblock %}
