@@ -61,6 +61,8 @@ class PostAdmin(admin.ModelAdmin):
         ),
     )
 
+    prepopulated_fields = {"slug": ("title",)}
+
 
 @admin.register(models.Tag)
 class TagAdmin(admin.ModelAdmin):

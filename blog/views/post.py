@@ -1,3 +1,6 @@
+import re
+
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
@@ -6,6 +9,19 @@ from django.conf import settings
 
 from blog.forms import CreateEditPostForm
 from blog.models import Post
+
+def text_slugify(text, test_model):
+    if not text:
+        return None
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[\s+]', '-', text)
+    text = text.lower()
+    while True:
+        if test_model.objects.filter(slug=text).count() > 0:
+            text = text + "-1"
+        else:
+            break
+    return text
 
 
 def posts(request, param="all_publish_posts"):
@@ -51,7 +67,7 @@ def search_publish_posts(request):
     query = request.GET.get('query')
     results = []
     if query:
-        results = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by("-updated_at")[:settings.SEARCH_RESULTS_LIMIT]
+        results = Post.objects.filter(published="for_all").filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by("-updated_at")[:settings.SEARCH_RESULTS_LIMIT]
 
     return render(
         request,
@@ -59,32 +75,85 @@ def search_publish_posts(request):
         {"results": results, "query": query},
     )
 
-def post_view(request, slug):
-    result = get_object_or_404(Post, slug=slug)
-    context = {
-        "post": result,
-        "settings": settings,
-    }
-    return render(request, "post/post.html", context)
-
 @login_required
 def post_create(request):
     if request.method == "POST":
         form = CreateEditPostForm(request.POST)
         if form.is_valid():
-            new_post = form.save(commit=False)
-            new_post.author = request.user
+            title = form.cleaned_data["title"]
+            slug = text_slugify(title, Post)
+            content = form.cleaned_data["content"]
+            published = form.cleaned_data["published"]
+
+            new_post = Post(
+                title=title,
+                slug=slug,
+                content=content,
+                published=published,
+                author=request.user,
+            )
+
             new_post.save()
             context = {
                 "post": new_post,
                 "settings": settings,
             }
-            return render(request, "post/post.html", context)
-    else:
-        form = CreateEditPostForm()
+            messages.success(request, f'Post "{new_post.title}" saved successfully with the status: "{new_post.published_status}".')
+            return render(request, "post/post_view.html", context)
     form = CreateEditPostForm()
     context = {
         "settings": settings,
         "form": form,
+        "Post": Post,
     }
     return render(request, "post/post_create.html", context)
+
+def post_view(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if post.published == "for_all" or post.author == request.user:
+        context = {
+            "post": post,
+            "settings": settings,
+        }
+        return render(request, "post/post_view.html", context)
+    else:
+        messages.success(request, "This post is not published yet.")
+        return redirect("posts", param="all_publish_posts")
+
+@login_required
+def post_edit(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    form = CreateEditPostForm(request.POST, post)
+    if request.method == "POST":
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            slug = text_slugify(title, Post)
+            content = form.cleaned_data["content"]
+            published = form.cleaned_data["published"]
+
+            post.title = title
+            post.slug = slug
+            post.content = content
+            post.published = published
+
+            post.save()
+
+            messages.success(request, f'Post "{post.title}" successfully edit.')
+            return redirect("post_view", slug=post.slug)
+    context = {
+        "settings": settings,
+        "post": post,
+        "form": form,
+    }
+    return render(request, "post/post_edit.html", context)
+
+@login_required
+def post_delete(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if post.author == request.user:
+        post.delete()
+        messages.success(request, f'Post "{post.title}" deleted successfully.')
+        return redirect("posts", param="my_posts")
+    else:
+        messages.error(request, "No found the object to delete.")
+        return redirect("post_view", slug=slug)

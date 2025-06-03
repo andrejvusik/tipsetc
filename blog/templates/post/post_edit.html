@@ -1,6 +1,6 @@
 {% extends "main/base.html" %}
 
-{% block title %}Create new post{% endblock %}
+{% block title %}Edit post: {{ post.title }}{% endblock %}
 
 {% block content %}
 
@@ -10,10 +10,10 @@
         <p style="max-width:30%; height: auto;">
             <img src="{% static 'logo/logo_max.png' %}" class="img-fluid" alt="Tips etc.. Logos.">
         </p>
-        <h1 style="max-width:70%; height: auto;">Create new post</h1>
+        <h1 style="max-width:70%; height: auto;">Edit post: {{ post.title }}</h1>
     </header>
     <main class="w-100 m-auto">
-        <form method="POST" action="{% url 'post_create' %}"  class="was-validated">
+        <form method="POST" action="{% url 'post_edit' slug=post.slug %}" class="was-validated">
             {% csrf_token %}
             <div class="form-floating">
                 <input
@@ -22,9 +22,11 @@
                         id="id_title"
                         name="title"
                         placeholder="Post title"
+                        value="{{ post.title }}"
                         required
                 >
                 <label for="id_title">Post title:</label>
+
             </div>
             <div class="form-group mt-3">
                 <label for="id_content" class="text-body-secondary">Post content:</label>
@@ -34,24 +36,29 @@
                         name="content"
                         rows="5"
                         placeholder="Post content"
-                ></textarea>
+                >{{ post.content }}</textarea>
             </div>
             <div class="form-floating mt-3">
                 <select
                         class="form-control is-invalid"
                         id="id_published"
                         name="published"
+                        aria-selected="{{ post.published }}"
                         required
                 >
                     <option value selected>-- Please make your choice --</option>
-                    {% for i in Post.PUBLISH_STATUS %}
+                    {% for i in post.PUBLISH_STATUS %}
+                    {% if post.published == i.0 %}
+                    <option selected value="{{ i.0 }}">{{ i.1 }}</option>
+                    {% else %}
                     <option value="{{ i.0 }}">{{ i.1 }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="id_published" class="text-body-secondary">Publish status:</label>
             </div>
 
-            <button class="btn btn-outline-success w-100 py-2 mt-4" type="submit">Post</button>
+            <button class="btn btn-outline-success w-100 py-2 mt-4" type="submit">Save changes</button>
 
         </form>
         <hr class="mt-5 mb-5">

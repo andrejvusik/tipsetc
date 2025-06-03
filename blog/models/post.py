@@ -15,9 +15,9 @@ class Post(
         ("for_all", "Published for All"),
     ]
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(null=True, blank=True)
+    title = models.CharField(max_length=255, db_index=True)
+    slug = models.SlugField(max_length=255, db_index=True, unique=True, allow_unicode=True, null=True, blank=True)
+    content = models.TextField(db_index=True, null=True, blank=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, related_name="posts"
     )
@@ -31,6 +31,7 @@ class Post(
     def __str__(self):
         return self.title
 
+    @property
     def published_status(self):
         post_publish_status = {x[0]: x[1] for x in self.PUBLISH_STATUS}
         return post_publish_status[str(self.published)]

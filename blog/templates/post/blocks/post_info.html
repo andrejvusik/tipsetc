@@ -1,7 +1,24 @@
 <p>
     {{ post.updated_at }} by
-    <a class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">{{ post.author }}</a>
+    <a class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+       href="#">{{ post.author }}</a>
     {% if user.is_authenticated and post.author == user %}
-    | Status: {{ post.published_status }}
+    <br>
+    Status: {{ post.published_status }} <a
+        class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+        href="#">(change)</a>
+    | <a
+        class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+        href="{% url 'post_edit' slug=post.slug %}">Edit post</a>
+    |
+    <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#modal_post_delete_request_{{ post.id }}"
+    >
+        Delete post
+    </a>
     {% endif %}
 </p>
+{% include 'post/blocks/modal_post_delete_request.html' %}
