@@ -1,0 +1,50 @@
+<div
+        class="modal fade"
+        id="modal_post_change_status_{{ post.id }}"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="modal_post_change_status_{{ post.id }}"
+        aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_post_change_status_{{ post.id }}_label">Change post status</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <p>
+                    Select status for post "{{ post.title }}"
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    {% for i in post.PUBLISH_STATUS %}
+                    {% if post.published == i.0 %}
+                    <a
+                        class="btn btn-secondary"
+                        aria-current="page"
+                        href="{% url 'post_status_change' slug=post.slug param=i.0 %}"
+                    >
+                        {{ i.1 }}
+                    </a>
+                    {% else %}
+                    <a
+                        class="btn btn-outline-secondary"
+                        aria-current="page"
+                        href="{% url 'post_status_change' slug=post.slug param=i.0 %}"
+                    >
+                        {{ i.1 }}
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

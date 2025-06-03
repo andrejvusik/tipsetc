@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'posts' param='my_posts' %}">
+            My posts
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        {% if param == 'my_posts' %}
+                        <a class="btn btn-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_posts' %}">
+                            All posts
+                        </a>
+                        {% else %}
+                        <a class="btn btn-outline-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_posts' %}">
+                            All posts
+                        </a>
+                        {% endif %}
+                        {% if param == 'my_drafts' %}
+                        <a class="btn btn-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_drafts' %}">
+                            Drafts
+                        </a>
+                        {% else %}
+                        <a class="btn btn-outline-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_drafts' %}">
+                            Drafts
+                        </a>
+                        {% endif %}
+                        {% if param == 'my_posts_for_all' %}
+                        <a class="btn btn-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_posts_for_all' %}">
+                            For all
+                        </a>
+                        {% else %}
+                        <a class="btn btn-outline-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_posts_for_all' %}">
+                            For all
+                        </a>
+                        {% endif %}
+                        {% if param == 'my_posts_for_subscribers' %}
+                        <a class="btn btn-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_posts_for_subscribers' %}">
+                            For subscribers
+                        </a>
+                        {% else %}
+                        <a class="btn btn-outline-secondary" aria-current="page"
+                           href="{% url 'posts' param='my_posts_for_subscribers' %}">
+                            For subscribers
+                        </a>
+                        {% endif %}
+                    </div>
+                </li>
+
+
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <a class="btn btn-outline-secondary" aria-current="page" href="{% url 'post_create' %}">
+                            <b>&#43;</b> New post
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>

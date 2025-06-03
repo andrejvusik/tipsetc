@@ -1,4 +1,5 @@
 import re
+from http.client import HTTPResponse
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -36,7 +37,13 @@ def posts(request, param="all_publish_posts"):
 
     if request.user.is_authenticated:
         params["my_posts"] = Post.objects.filter(author=request.user)
+        params["my_drafts"] = Post.objects.filter(author=request.user).filter(published="draft")
+        params["my_posts_for_all"] = Post.objects.filter(author=request.user).filter(published="for_all")
+        params["my_posts_for_subscribers"] = Post.objects.filter(author=request.user).filter(published="for_subscribers")
         titles["my_posts"] = "My Posts"
+        titles["my_drafts"] = "My drafts"
+        titles["my_posts_for_all"] = "My posts published for all"
+        titles["my_posts_for_subscribers"] = "My posts published for subscribers"
     if not param in params:
         param = "exception"
     q_posts = params[param].order_by("-updated_at")
@@ -157,3 +164,15 @@ def post_delete(request, slug):
     else:
         messages.error(request, "No found the object to delete.")
         return redirect("post_view", slug=slug)
+
+@login_required
+def post_status_change(request, slug, param):
+    post = get_object_or_404(Post, slug=slug)
+    if post.author == request.user:
+        post.published = param
+        post.save()
+        messages.success(request, f'The status of the post "{ post.title }" has been successfully changed on "{ post.published_status }".')
+        return redirect("post_view", slug=post.slug)
+    else:
+        messages.error(request, "No found the object to change.")
+        return redirect("post_view", slug=post.slug)

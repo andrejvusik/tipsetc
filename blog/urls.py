@@ -11,6 +11,7 @@ urlpatterns = [
     path("posts/post/view/<slug>", views.post_view, name="post_view"),
     path("posts/post/edit/<slug>", views.post_edit, name="post_edit"),
     path("posts/post/delete/<slug>", views.post_delete, name="post_delete"),
+    path("posts/post/status/change/<slug>/<param>", views.post_status_change, name="post_status_change"),
 
     path("search_publish_posts", views.search_publish_posts, name="search_publish_posts"),
 
