@@ -1,0 +1,27 @@
+<div class="small text-muted">
+    {% if request.user.is_authenticated %}
+        <form
+            hx-post="{% url 'toggle_like' obj='comment' object_id=comment.id %}"
+            hx-target="#like-comment-btn-{{ comment.id }}"
+            swap="outerHTML"
+        >
+            {% csrf_token %}
+            <button
+                class="btn m-0 p-0 b-0"
+                id="like-comment-btn-{{ comment.id }}"
+                type="submit"
+            >
+                <span class="small text-muted">
+                    {% load likes_filters %}
+                    {% if not comment|comment_is_liked_by:request.user %}
+                        🖤
+                    {% else %}
+                        ❤
+                    {% endif %}
+                {{ comment.likes_count }}</span>
+            </button>
+        </form>
+    {% else %}
+        <span class="small text-muted">🖤 {{ comment.likes_count }}</span>
+    {% endif %}
+</div>

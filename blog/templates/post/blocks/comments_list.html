@@ -1,0 +1,5 @@
+{% for comment in comments %}
+{% include 'post/blocks/comments_item.html' %}
+{% empty %}
+    <p class="text-muted">No comments yet.</p>
+{% endfor %}

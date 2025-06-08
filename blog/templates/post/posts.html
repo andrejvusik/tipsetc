@@ -6,6 +6,12 @@
 
 <div class="col-lg-8 mx-auto p-4 py-md-5">
 
+    {% if request.user.is_authenticated %}
+    {% if param == 'my_posts' or param == 'my_drafts' or param == 'my_posts_for_all' or param == 'my_posts_for_subscribers' %}
+    {% include "post/blocks/posts_tabs.html"%}
+    {% endif %}
+    {% endif %}
+
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
         {% load static %}
         <p style="max-width:50%; height: auto;">

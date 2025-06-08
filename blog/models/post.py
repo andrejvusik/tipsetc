@@ -35,3 +35,10 @@ class Post(
     def published_status(self):
         post_publish_status = {x[0]: x[1] for x in self.PUBLISH_STATUS}
         return post_publish_status[str(self.published)]
+
+    @property
+    def likes_count(self) -> int:
+        return self.likes.count()
+
+    def is_liked_by(self, user: User) -> bool:
+        return self.likes.filter(user=user).exists()

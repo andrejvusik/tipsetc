@@ -1,0 +1,69 @@
+<div class="mb-2 p-2 border rounded bg-body-secondary text-body">
+    <div class="small text-muted">
+        From
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="#"
+        >{{ comment.user.username }} </a>
+        ({{ comment.user.email }}) at {{ comment.created_at }}
+
+        {% if request.user.is_authenticated and request.user == comment.user %}
+
+        <a
+            class="small link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'post_delete_comment' comment.id %}"
+        >
+            Delete comment
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    {% if comment.content|wordcount > 50 %}
+        <div id="comment-snippet-{{ comment.id }}">
+            <p>
+                {{ comment.content|truncatewords:50 }}
+            </p>
+            <a
+                class="small link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                onclick="toggleCommentContent('{{ comment.id }}'); return false;"
+                style="cursor: pointer;"
+            >
+                Show more
+            </a>
+        </div>
+        <div id="comment-full-{{ comment.id }}" class="d-none">
+            <p>
+                {{ comment.content }}
+            </p>
+            <a
+                class="small link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                onclick="toggleCommentContent('{{ comment.id }}'); return false;"
+                style="cursor: pointer;"
+
+            >
+                Show less
+            </a>
+        </div>
+    {% else %}
+        <p>
+            {{ comment.content }}
+        </p>
+    {% endif %}
+    {% include "post/blocks/comment_like_button.html" %}
+
+</div>
+
+
+<script>
+    function toggleCommentContent(id) {
+        const commentSnippet = document.getElementById(`comment-snippet-${id}`);
+        const commentFull = document.getElementById(`comment-full-${id}`);
+        if (commentSnippet && commentFull) {
+            commentSnippet.classList.toggle("d-none");
+            commentFull.classList.toggle("d-none");
+        }
+    }
+</script>
+

@@ -1,5 +1,4 @@
 import re
-from http.client import HTTPResponse
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required

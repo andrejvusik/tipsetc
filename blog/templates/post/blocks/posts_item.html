@@ -8,9 +8,11 @@
         </a>
     </h3>
     {% include "post/blocks/post_info.html" %}
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
+    <div class="d-flex flex-wrap justify-content-between">
         <p>
             {{ post.content|truncatewords:40 }}
+
+            {% include "post/blocks/post_like_button.html" %}
         </p>
         <hr>
         <p>

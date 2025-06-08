@@ -12,11 +12,6 @@
 </head>
 <body>
 {% include 'main/blocks/navbar.html' %}
-{% if request.user.is_authenticated %}
-{% if param == 'my_posts' or param == 'my_drafts' or param == 'my_posts_for_all' or param == 'my_posts_for_subscribers' %}
-{% include "post/blocks/posts_tabs.html"%}
-{% endif %}
-{% endif %}
 
 {% block content %}{% endblock %}
 

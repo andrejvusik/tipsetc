@@ -16,12 +16,59 @@
 
     <main>
 
-        <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <div class="d-flex flex-wrap justify-content-between">
             <p>
                 {{ post.content }}
             </p>
         </div>
+
+        {% include "post/blocks/post_like_button.html" %}
+
         <hr class="mt-5 mb-5">
+        <div id="comments-block" class="mt-4">
+            <h3>Comments</h3>
+            <br>
+            {% if request.user.is_authenticated %}
+                <form
+                    id="form-comment"
+                    hx-post="{% url 'post_add_comment' slug=post.slug %}"
+                    hx-target="#comments-list"
+                    swap="outerHTML"
+                    class="mb-3"
+                >
+                    {% csrf_token %}
+                    <textarea
+                        name="content"
+                        rows="3"
+                        class="form-control"
+                        placeholder="Write a comment..."
+                    ></textarea>
+                    <button
+                        class="btn btn-outline-secondary mt-2"
+                        type="submit"
+                    >
+                        Add Comment
+                    </button>
+                </form>
+            {% else %}
+                <p>
+                    <a
+                        class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                        href="{% url 'user_signin' %}"
+                    >
+                        Sign in
+                    </a> or <a
+                        class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                        href="{% url 'user_signup' %}"
+                    >
+                        Sign up
+                    </a> to comment.
+                </p>
+            {% endif %}
+            <div id="comments-list">
+                {% include "post/blocks/comments_list.html" with comments=post.comments.all  %}
+            </div>
+        </div>
 
     </main>
 
