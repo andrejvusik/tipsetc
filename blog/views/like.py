@@ -20,15 +20,10 @@ def toggle_like(request, obj, object_id: int):
 
     if not created:
         like.delete()
-        liked = False
-    else:
-        liked = True
 
     context = {
         "comment": object_like,
         "post": object_like,
-        "user": request.user,
-        "liked": liked,
     }
 
     return render(request, f'post/blocks/{obj}_like_button.html', context)

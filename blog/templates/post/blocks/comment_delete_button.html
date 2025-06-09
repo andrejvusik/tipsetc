@@ -1,0 +1,20 @@
+{% if request.user.is_authenticated and request.user == comment.user %}
+    <div class="small text-muted">
+
+        <form
+            hx-post="{% url 'post_delete_comment' comment_id=comment.id %}"
+            hx-target="#comments-list"
+            swap="outerHTML"
+        >
+            {% csrf_token %}
+                <button
+                    class="btn text-muted"
+                    type="submit"
+                >
+                    <span class="small text-muted">&#10005 Delete comment</span>
+                </button>
+        </form>
+
+    </div>
+
+{% endif %}

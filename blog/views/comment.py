@@ -1,5 +1,3 @@
-from contextlib import redirect_stderr
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -29,15 +27,21 @@ def post_add_comment(request, slug: str):
     return render(request, "post/blocks/comments_list.html", context)
 
 @login_required
-def post_delete_comment(request, id: int):
-    comment = get_object_or_404(Comment, id=id)
+def post_delete_comment(request, comment_id: int):
+    if request.method != "POST":
+        return HttpResponseBadRequest()
+
+    comment = get_object_or_404(Comment, id=comment_id)
     post = get_object_or_404(Post, id=comment.post.id)
     user = request.user
     if comment.user == user:
         comment.delete()
-        messages.success(request, f'{comment.user} your comment to  the post "{comment.post}" deleted successfully.')
 
-        return redirect("post_view", slug=post.slug)
+        context = {
+            "comments": post.comments.all(),
+        }
+
+        return render (request, "post/blocks/comments_list.html", context)
 
     else:
         return HttpResponseBadRequest()

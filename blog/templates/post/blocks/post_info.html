@@ -13,9 +13,13 @@
     >
         (change)
     </a>
-    | <a
+    |
+    <a
         class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-        href="{% url 'post_edit' slug=post.slug %}">Edit post</a>
+        href="{% url 'post_edit' slug=post.slug %}"
+    >
+        ✏ Edit post
+    </a>
     |
     <a
         class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
@@ -23,7 +27,7 @@
         data-bs-toggle="modal"
         data-bs-target="#modal_post_delete_request_{{ post.id }}"
     >
-        Delete post
+        🗑 Delete post
     </a>
     {% endif %}
     <br>

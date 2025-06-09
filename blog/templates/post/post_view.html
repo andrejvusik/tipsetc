@@ -38,12 +38,14 @@
                 >
                     {% csrf_token %}
                     <textarea
+                        id="form-comment-textarea"
                         name="content"
                         rows="3"
                         class="form-control"
                         placeholder="Write a comment..."
                     ></textarea>
                     <button
+                        id="form-comment-submit"
                         class="btn btn-outline-secondary mt-2"
                         type="submit"
                     >
@@ -73,5 +75,16 @@
     </main>
 
 </div>
+
+<script>
+    const formComment = document.getElementById("form-comment")
+    const formCommentBtn = document.getElementById("form-comment-submit")
+
+    formCommentBtn.addEventListener("click", () => {
+        setTimeout(function () {
+            formComment.reset()
+        }, 200)
+    });
+</script>
 
 {% endblock %}
