@@ -1,0 +1,47 @@
+<div id="user_profile_names">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {% if user_profile.user.first_name %}
+                        {{ user_profile.user.first_name }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user_profile.user.last_name %}
+                        {{ user_profile.user.last_name }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ user_profile.user.username }}</td>
+            <tr>
+        </tbody>
+    </table>
+    <div class="d-grid gap-4 d-md-flex justify-content-md-end">
+        {% if user_profile.user == request.user %}
+
+            <div class="d-grid gap-4 d-md-flex justify-content-md-end">
+                <a
+                    class="btn btn-sm btn-outline-secondary"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal_user_names_update"
+                >
+                    Edit
+                </a>
+            </div>
+            {% include 'user/blocks/modal_user_names_update.html' %}
+
+        {% endif %}
+    </div>
+</div>

@@ -1,10 +1,10 @@
 import re
 
+from django import shortcuts
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
-from django.shortcuts import get_object_or_404, render, redirect
 from django.conf import settings
 
 from blog.forms import CreateEditPostForm
@@ -64,9 +64,9 @@ def posts(request, param="all_publish_posts"):
 
     # if request.headers.get("HX-Request") is True:
     if page_number == 1:
-        return render(request, "post/posts.html", context)
+        return shortcuts.render(request, "post/posts.html", context)
 
-    return render(request, "post/blocks/posts_item.html", context)
+    return shortcuts.render(request, "post/blocks/posts_item.html", context)
 
 
 def search_publish_posts(request):
@@ -75,7 +75,7 @@ def search_publish_posts(request):
     if query:
         results = Post.objects.filter(published="for_all").filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by("-updated_at")[:settings.SEARCH_RESULTS_LIMIT]
 
-    return render(
+    return shortcuts.render(
         request,
         "post/blocks/search_publish_posts.html",
         {"results": results, "query": query},
@@ -105,30 +105,30 @@ def post_create(request):
                 "settings": settings,
             }
             messages.success(request, f'Post "{new_post.title}" saved successfully with the status: "{new_post.published_status}".')
-            return render(request, "post/post_view.html", context)
+            return shortcuts.render(request, "post/post_view.html", context)
     form = CreateEditPostForm()
     context = {
         "settings": settings,
         "form": form,
         "Post": Post,
     }
-    return render(request, "post/post_create.html", context)
+    return shortcuts.render(request, "post/post_create.html", context)
 
 def post_view(request, slug):
-    post = get_object_or_404(Post, slug=slug)
+    post = shortcuts.get_object_or_404(Post, slug=slug)
     if post.published == "for_all" or post.author == request.user:
         context = {
             "post": post,
             "settings": settings,
         }
-        return render(request, "post/post_view.html", context)
+        return shortcuts.render(request, "post/post_view.html", context)
     else:
         messages.success(request, "This post is not published yet.")
-        return redirect("posts", param="all_publish_posts")
+        return shortcuts.redirect("posts", param="all_publish_posts")
 
 @login_required
 def post_edit(request, slug):
-    post = get_object_or_404(Post, slug=slug)
+    post = shortcuts.get_object_or_404(Post, slug=slug)
     form = CreateEditPostForm(request.POST, post)
     if request.method == "POST":
         if form.is_valid():
@@ -145,33 +145,33 @@ def post_edit(request, slug):
             post.save()
 
             messages.success(request, f'Post "{post.title}" successfully edit.')
-            return redirect("post_view", slug=post.slug)
+            return shortcuts.redirect("post_view", slug=post.slug)
     context = {
         "settings": settings,
         "post": post,
         "form": form,
     }
-    return render(request, "post/post_edit.html", context)
+    return shortcuts.render(request, "post/post_edit.html", context)
 
 @login_required
 def post_delete(request, slug):
-    post = get_object_or_404(Post, slug=slug)
+    post = shortcuts.get_object_or_404(Post, slug=slug)
     if post.author == request.user:
         post.delete()
         messages.success(request, f'Post "{post.title}" deleted successfully.')
-        return redirect("posts", param="my_posts")
+        return shortcuts.redirect("posts", param="my_posts")
     else:
         messages.error(request, "No found the object to delete.")
-        return redirect("post_view", slug=slug)
+        return shortcuts.redirect("post_view", slug=slug)
 
 @login_required
 def post_status_change(request, slug, param):
-    post = get_object_or_404(Post, slug=slug)
+    post = shortcuts.get_object_or_404(Post, slug=slug)
     if post.author == request.user:
         post.published = param
         post.save()
         messages.success(request, f'The status of the post "{ post.title }" has been successfully changed on "{ post.published_status }".')
-        return redirect("post_view", slug=post.slug)
+        return shortcuts.redirect("post_view", slug=post.slug)
     else:
         messages.error(request, "No found the object to change.")
-        return redirect("post_view", slug=post.slug)
+        return shortcuts.redirect("post_view", slug=post.slug)

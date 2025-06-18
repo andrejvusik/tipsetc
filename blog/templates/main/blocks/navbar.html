@@ -55,13 +55,26 @@
                     </button>
 
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        {% if not user.is_authenticated %}
+
+                        {% if user.is_authenticated %}
+                        <a
+                            class="btn btn-outline-secondary"
+                            href="{% url 'user_profile' user_id=request.user.id %}"
+                        >
+                            {% if request.user.first_name %}
+                                {{ request.user.first_name }}
+                            {% else %}
+                                {{ request.user.username }}
+                            {% endif %}
+                             (profile)
+                        </a>
+                        <a class="btn btn-outline-secondary" href="{% url 'user_logout' %}">Log Out</a>
+                        {% else %}
+
                         <a class="btn btn-outline-secondary" href="{% url 'user_signup' %}">Sign Up</a>
                         <a class="btn btn-outline-secondary" href="{% url 'user_signin' %}">Sign In</a>
-                        {% else %}
-                        <a class="btn btn-outline-secondary" href="#">{{ request.user.username }} (profile)</a>
-                        <a class="btn btn-outline-secondary" href="{% url 'user_logout' %}">Log Out</a>
                         {% endif %}
+
                     </div>
                 </li>
             </ul>

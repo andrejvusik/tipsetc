@@ -23,4 +23,9 @@ urlpatterns = [
     path("accounts/login/", views.user_signin, name="user_signin"),
     path("auth/signup", views.user_signup, name="user_signup"),
     path("auth/logout", views.user_logout, name="user_logout"),
+
+    path("user/profile/<int:user_id>", views.user_profile, name="user_profile"),
+    path("user/bio/update", views.user_bio_update, name="user_bio_update"),
+    path("user/email/update", views.user_email_update, name="user_email_update"),
+    path("user/names/update", views.user_names_update, name="user_names_update"),
 ]

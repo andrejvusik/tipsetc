@@ -1,0 +1,36 @@
+<div id="user_profile_bio">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">About me:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {% if user_profile.bio %}
+                        {{ user_profile.bio }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            <tr>
+        </tbody>
+    </table>
+
+    {% if user_profile.user == request.user %}
+        <div class="d-grid gap-4 d-md-flex justify-content-md-end">
+            <a
+                class="btn btn-sm btn-outline-secondary"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#modal_user_bio_update"
+            >
+                Edit
+            </a>
+        </div>
+    {% include 'user/blocks/modal_user_bio_update.html' %}
+
+    {% endif %}
+
+</div>

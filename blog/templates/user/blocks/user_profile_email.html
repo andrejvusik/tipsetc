@@ -1,0 +1,31 @@
+<div id="user_profile_email">
+    {% if user_profile.user == request.user %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ user_profile.user.email }}
+                    </td>
+                <tr>
+            </tbody>
+        </table>
+
+        <div class="d-grid gap-4 d-md-flex justify-content-md-end">
+            <a
+                class="btn btn-sm btn-outline-secondary"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#modal_user_email_update"
+            >
+                Edit
+            </a>
+        </div>
+        {% include 'user/blocks/modal_user_email_update.html' %}
+
+    {% endif %}
+</div>

@@ -1,8 +1,6 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
 from django.http.response import HttpResponseBadRequest
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render
 
 from blog.models import Comment, Post
 
@@ -41,7 +39,7 @@ def post_delete_comment(request, comment_id: int):
             "comments": post.comments.all(),
         }
 
-        return render (request, "post/blocks/comments_list.html", context)
+        return render(request, "post/blocks/comments_list.html", context)
 
     else:
         return HttpResponseBadRequest()
