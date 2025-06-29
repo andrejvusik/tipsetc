@@ -19,6 +19,17 @@ class UserEmailForm(forms.Form):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
+class UserPasswordForm(forms.Form):
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password1', 'new_password2']
+        widgets = {
+            'old_password': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'new_password1': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'new_password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+
+        }
+
 class UserBioForm(forms.ModelForm):
     class Meta:
         model = UserProfile

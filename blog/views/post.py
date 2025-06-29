@@ -2,6 +2,7 @@ import re
 
 from django import shortcuts
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
@@ -9,6 +10,9 @@ from django.conf import settings
 
 from blog.forms import CreateEditPostForm
 from blog.models import Post
+
+
+User = get_user_model()
 
 def text_slugify(text, test_model):
     if not text:
@@ -29,10 +33,13 @@ def posts(request, param="all_publish_posts"):
         "all_publish_posts": Post.objects.filter(published="for_all"),
         "exception": Post.objects.filter(published="for_all"),
     }
-    titles = {
+    titles: dict[str, str] = {
         "all_publish_posts": "Latest Published Posts",
         "exception": f"This page \"{param}\" does not exist. Below are latest Published Posts.",
     }
+    if User.objects.filter(username=param).exists():
+        params[f"{param}"] = Post.objects.filter(author=User.objects.get(username=param)).filter(published="for_all")
+        titles[f"{param}"] = f"Posts by {param}"
 
     if request.user.is_authenticated:
         params["my_posts"] = Post.objects.filter(author=request.user)

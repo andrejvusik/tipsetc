@@ -68,14 +68,12 @@
 
         </div>
 
-<!--        -->
-<!--        -->
-<!--        <div>-->
-<!--            <h3>Posts:</h3>-->
-<!--            {% for post in user_profile.user.posts.all %}-->
-<!--                <p>{{ post }}</p>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
+        {% if user_profile.user == request.user %}
+            {% include 'user/blocks/user_profile_my_posts.html' %}
+        {% else %}
+            {% include 'user/blocks/user_profile_user_posts.html' %}
+        {% endif %}
+
 <!--        <div>-->
 <!--            <h3>Comments:</h3>-->
 <!--            {% for comment in user_profile.user.comments.all %}-->

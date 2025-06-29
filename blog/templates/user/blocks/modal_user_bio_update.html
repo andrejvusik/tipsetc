@@ -32,7 +32,7 @@
                         name="bio"
                         rows="5"
                         placeholder="User bio"
-                    >{{ user_profile.bio }}</textarea>
+                    >{% if user_profile.bio %}{{ user_profile.bio }}{% endif %}</textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

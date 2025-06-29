@@ -1,0 +1,4 @@
+.venv/
+.envrc
+Dockerfile
+#db.sqlite3

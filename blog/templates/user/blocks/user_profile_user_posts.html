@@ -1,0 +1,33 @@
+{% if user_posts_for_all %}
+<div>
+    <h3 class="mb-4">
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'posts' param=user_profile.user.username %}"
+        >
+            {{ user_profile.user.username }}'s posts (published for all):
+
+        </a>
+
+    </h3>
+    {% for post in user_posts_for_all %}
+        <p>
+            <a
+                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                href="{% url 'post_view' slug=post.slug %}"
+            >
+                {{ post.title }}
+            </a>
+        </p>
+    {% endfor %}
+</div>
+{% else %}
+<div>
+    <h3 class="mb-4">
+        {{ user_profile.user.username }}'s posts:
+    </h3>
+    <p class="text-muted">
+        The user has no published posts.
+    </p>
+</div>
+{% endif %}

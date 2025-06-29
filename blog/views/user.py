@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 from django import shortcuts
 from django.shortcuts import get_object_or_404
 
-from blog.forms import UserBioForm, UserEmailForm, UserNamesForm
+from blog.forms import UserBioForm, UserEmailForm, UserNamesForm, UserPasswordForm
 from blog.models import UserProfile
 
 User = get_user_model()
@@ -19,6 +19,10 @@ def user_profile(request, user_id):
         context = {
             "settings": settings,
             'user_profile': UserProfile.objects.get(user=user),
+            'user_posts': user.posts.all(),
+            'user_posts_for_all': user.posts.filter(published="for_all"),
+            'user_posts_for_subscribers': user.posts.filter(published="for_subscribers"),
+            'user_posts_draft': user.posts.filter(published="draft"),
         }
         return shortcuts.render(request, 'user/user_profile.html', context)
 
@@ -130,3 +134,31 @@ def user_names_update(request):
             "form": form,
         }
         return shortcuts.render(request, 'user/blocks/user_profile_names.html', context)
+
+def user_password_update(request):
+    if not User.objects.filter(id=request.user.id).exists():
+        messages.error(request, 'User not found. Please try again.')
+        return shortcuts.redirect('posts')
+    else:
+        user = User.objects.get(id=request.user.id)
+        form = UserPasswordForm(request.POST or None, User)
+        if request.method == 'POST':
+            if form.is_valid():
+                old_password = request.POST.get('old_password')
+                new_password1 = request.POST.get('new_password1')
+                new_password2 = request.POST.get('new_password2')
+                usr = authenticate(request, username=user.username, password=old_password)
+                if not usr:
+                    messages.error(request, 'Your old password was entered incorrectly. Please try again.')
+                    return shortcuts.redirect('user_profile', user_id=user.id)
+                elif new_password1 != new_password2:
+                    messages.error(request, 'Your new passwords do not match.')
+                    return shortcuts.redirect('user_profile', user_id = user.id)
+                else:
+                    user.set_password(new_password1)
+                    user.save()
+                    login(request, user)
+                    messages.success(request, 'Your password was successfully updated.')
+                    return shortcuts.redirect('user_profile', user_id = user.id)
+        return None
+

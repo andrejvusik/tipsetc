@@ -1,0 +1,71 @@
+{% if user_posts %}
+<div>
+    <h3 class="mb-4">
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'posts' param='my_posts_for_all' %}"
+        >
+            My posts ({{ user_posts.count }})
+        </a>
+        {% if user_posts_for_all %}
+            <a
+                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                href="{% url 'posts' param='my_posts_for_all' %}"
+            >
+                | published for all ({{ user_posts_for_all.count }})
+
+            </a>
+        {% endif %}
+        {% if user_posts_for_subscribers %}
+            <a
+                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                href="{% url 'posts' param='my_posts_for_all' %}"
+            >
+                | published for subscribers ({{ user_posts_for_subscribers.count }})
+
+            </a>
+        {% endif %}
+        {% if user_posts_draft %}
+            <a
+                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                href="{% url 'posts' param='my_drafts' %}"
+            >
+                | my drafts ({{ user_posts_draft.count }})
+
+            </a>
+        {% endif %}
+        :
+    </h3>
+    {% for post in user_posts %}
+        <p>
+            Status:
+            <span class="text-muted sm">
+                {{ post.published_status }}
+            </span>
+             |  
+            <a
+                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                href="{% url 'post_view' slug=post.slug %}"
+            >
+                {{ post.title }}
+            </a>
+            <br>
+            <a
+                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                href="{% url 'post_edit' slug=post.slug %}"
+            >
+                ✏ Edit post
+            </a>
+        </p>
+    {% endfor %}
+</div>
+{% else %}
+<div>
+    <h3 class="mb-4">
+        My posts:
+    </h3>
+    <p class="text-muted">
+        You has no published posts.
+    </p>
+</div>
+{% endif %}

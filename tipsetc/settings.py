@@ -9,7 +9,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+
 import os
+import dj_database_url
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,16 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ["SECRET_KEY"]
-SECRET_KEY = "django-insecure-4uxeo(799#u7l1@xds=_7*9ww=l+#09)y5-%r31j-f#ibc(2r7"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
+# SECRET_KEY = "django-insecure-4uxeo(799#u7l1@xds=_7*9ww=l+#09)y5-%r31j-f#ibc(2r7"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
+# DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.ngrok-free.app'
+    "https://*.ngrok-free.app"
 ]
 
 
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "blog.apps.BlogConfig",
+    "django.contrib.postgres",
 ]
 
 MIDDLEWARE = [
@@ -79,11 +84,26 @@ WSGI_APPLICATION = "tipsetc.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "db.sqlite3",
+#     }
+# }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "tipsetc",
+#         "USER": "tipsetcuser",
+#         "PASSWORD": "password",
+#         "HOST": "db",
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation
