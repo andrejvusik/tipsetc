@@ -1,7 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from . import mixins
+
+User = get_user_model()
 
 
 class UserProfile(mixins.CreatedAtMixin, mixins.UpdatedAtMixin, models.Model):

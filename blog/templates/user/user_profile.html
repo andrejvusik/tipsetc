@@ -32,28 +32,37 @@
 <!--                    <button class="btn btn-sm btn-outline-secondary" type="button">Delete avatar</button>-->
 <!--                </div>-->
 <!--                {% endif %}-->
-<!--                <table class="table table-sm table-borderless mt-2">-->
-<!--                    <thead>-->
-<!--                        <tr>-->
-<!--                            <th scope="col">0</th>-->
-<!--                            <th scope="col">0</th>-->
-<!--                        </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--                        <tr>-->
-<!--                            <td>Subscribed</td>-->
-<!--                            <td>Subscribers</td>-->
-<!--                        <tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--                {% if user_profile.user != request.user %}-->
-<!--                <div class="d-grid mx-auto gap-2">-->
-<!--                    <button class="btn btn-sm btn-outline-secondary" type="button">Subscribe</button>-->
-<!--                    <button class="btn btn-sm btn-outline-secondary" type="button">Unsubscribe</button>-->
-<!--                </div>-->
-<!--                {% endif %}-->
-<!--                -->
-<!--                -->
+                <table class="table table-sm table-borderless mt-2">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{ user_profile.subscribers.count }}</th>
+                            <th scope="col">{{ user_profile.subscriptions.count }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Subscribers</td>
+                            <td>Subscribed</td>
+                        <tr>
+                    </tbody>
+                </table>
+                {% if user_profile.user != request.user %}
+                <div class="d-grid mx-auto gap-2">
+                    <a
+                        class="btn btn-sm btn-outline-secondary"
+                        type="button"
+                        href="{% url 'user_sub_unsub_scribe' user_id=user_profile.user.id %}"
+                    >
+                        {% if not is_subscribed %}
+                            Subscribe
+                        {% else %}
+                            Unsubscribe
+                        {% endif %}
+                    </a>
+                </div>
+                {% endif %}
+
+
 
             </div>
             <div style="width: 65%; height: auto;">
@@ -68,11 +77,13 @@
 
         </div>
 
-        {% if user_profile.user == request.user %}
-            {% include 'user/blocks/user_profile_my_posts.html' %}
-        {% else %}
-            {% include 'user/blocks/user_profile_user_posts.html' %}
-        {% endif %}
+        <div class="mt-4">
+            {% if user_profile.user == request.user %}
+                {% include 'user/blocks/user_profile_my_posts.html' %}
+            {% else %}
+                {% include 'user/blocks/user_profile_user_posts.html' %}
+            {% endif %}
+        </div>
 
 <!--        <div>-->
 <!--            <h3>Comments:</h3>-->

@@ -29,4 +29,5 @@ urlpatterns = [
     path("user/email/update", views.user_email_update, name="user_email_update"),
     path("user/names/update", views.user_names_update, name="user_names_update"),
     path("user/password/update", views.user_password_update, name="user_password_update"),
+    path("user/sub_unsub_scribe/<int:user_id>", views.user_sub_unsub_scribe, name="user_sub_unsub_scribe"),
 ]

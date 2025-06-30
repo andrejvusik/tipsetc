@@ -5,7 +5,7 @@ from django import shortcuts
 from django.shortcuts import get_object_or_404
 
 from blog.forms import UserBioForm, UserEmailForm, UserNamesForm, UserPasswordForm
-from blog.models import UserProfile
+from blog.models import UserProfile, Subscription
 
 User = get_user_model()
 
@@ -16,6 +16,7 @@ def user_profile(request, user_id):
         return shortcuts.redirect('posts')
     else:
         user = User.objects.get(id=user_id)
+        is_subscribed = Subscription.objects.filter(subscriber=request.user.profile, subscribed_to=user.profile).exists()
         context = {
             "settings": settings,
             'user_profile': UserProfile.objects.get(user=user),
@@ -23,6 +24,7 @@ def user_profile(request, user_id):
             'user_posts_for_all': user.posts.filter(published="for_all"),
             'user_posts_for_subscribers': user.posts.filter(published="for_subscribers"),
             'user_posts_draft': user.posts.filter(published="draft"),
+            'is_subscribed': is_subscribed,
         }
         return shortcuts.render(request, 'user/user_profile.html', context)
 
@@ -162,3 +164,15 @@ def user_password_update(request):
                     return shortcuts.redirect('user_profile', user_id = user.id)
         return None
 
+def user_sub_unsub_scribe(request, user_id):
+    if not User.objects.filter(id=user_id).exists():
+        messages.error(request, 'User not found. Please try again.')
+        return shortcuts.redirect('posts')
+    else:
+        subscribed_to = UserProfile.objects.get(user=User.objects.get(id=user_id))
+
+        if Subscription.objects.filter(subscriber=request.user.profile, subscribed_to=subscribed_to).exists():
+            Subscription.objects.filter(subscriber=request.user.profile, subscribed_to=subscribed_to).delete()
+        else:
+            Subscription.objects.create(subscriber=request.user.profile, subscribed_to=subscribed_to)
+    return shortcuts.redirect('user_profile', user_id = user_id)
