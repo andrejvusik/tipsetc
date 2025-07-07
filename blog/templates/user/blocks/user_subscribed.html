@@ -1,0 +1,25 @@
+{% if subscribed.count > 0 %}
+<div id="subscribed">
+    <h3 class="mb-3">
+        {% if not user_profile.user.first_name and not user_profile.user.last_name %}
+            {{ user_profile.user.username }}'s subscribed ({{ subscribed.count }}):
+        {% else %}
+            {{ user_profile.user.first_name }} {{ user_profile.user.last_name }} ({{ user_profile.user.username }}) subscribed ({{ subscribed.count }}):
+        {% endif %}
+    </h3>
+    <p>
+    {% for subscriber in subscribed %}
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'user_profile' user_id=subscriber.subscribed_to.user.id %}"
+        >
+            {% if not subscriber.subscribed_to.user.first_name and not subscriber.subscribed_to.user.last_name %}
+                {{ subscriber.subscribed_to.user.username }}
+            {% else %}
+                {{ subscriber.subscribed_to.user.first_name }} {{ subscriber.subscribed_to.user.last_name }} ({{ subscriber.subscribed_to.user.username }})
+            {% endif %}
+        </a>,
+    {% endfor %}
+    </p>
+</div>
+{% endif %}

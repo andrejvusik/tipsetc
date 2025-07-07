@@ -1,0 +1,5 @@
+{% if post.rating %}
+    Rating: <span>{{ post.rating|floatformat:1 }}</span>
+{% else %}
+    Post has not been rated yet.
+{% endif %}

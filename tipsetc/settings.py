@@ -150,6 +150,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 APP_NAME = "Tips etc..."
 APP_AUTHOR = "Andrej Vusik"
 AUTHOR_TELEGRAM = "https://t.me/andrejvusik"
-COUNT_OF_POST_ON_PAGE = 2
+COUNT_OF_POST_ON_PAGE = 3
 SEARCH_RESULTS_LIMIT = 5
 TOAST_SHOW_TIME = 5000

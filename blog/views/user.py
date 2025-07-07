@@ -16,7 +16,12 @@ def user_profile(request, user_id):
         return shortcuts.redirect('posts')
     else:
         user = User.objects.get(id=user_id)
-        is_subscribed = Subscription.objects.filter(subscriber=request.user.profile, subscribed_to=user.profile).exists()
+        if request.user.is_authenticated:
+            is_subscribed = Subscription.objects.filter(subscriber=request.user.profile, subscribed_to=user.profile).exists()
+        else:
+            is_subscribed = False
+        subscribers = Subscription.objects.filter(subscribed_to=user.profile).all()
+        subscribed = Subscription.objects.filter(subscriber=user.profile).all()
         context = {
             "settings": settings,
             'user_profile': UserProfile.objects.get(user=user),
@@ -25,6 +30,8 @@ def user_profile(request, user_id):
             'user_posts_for_subscribers': user.posts.filter(published="for_subscribers"),
             'user_posts_draft': user.posts.filter(published="draft"),
             'is_subscribed': is_subscribed,
+            "subscribers": subscribers,
+            "subscribed": subscribed,
         }
         return shortcuts.render(request, 'user/user_profile.html', context)
 

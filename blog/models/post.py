@@ -1,7 +1,9 @@
 from django.db import models
 
 from . import mixins
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Post(
@@ -42,3 +44,7 @@ class Post(
 
     def is_liked_by(self, user: User) -> bool:
         return self.likes.filter(user=user).exists()
+
+    @property
+    def rating(self) -> float | None:
+        return self.users_rating.filter(rating__isnull=False).aggregate(avg=models.Avg("rating"))["avg"] or None

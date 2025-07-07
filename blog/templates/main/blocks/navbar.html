@@ -18,6 +18,13 @@
                     </a>
                 </li>
                 {% if request.user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'posts' param='subscriptions' %}">
+                        My subscriptions
+                    </a>
+                </li>
+
                 {% if param != 'my_posts' and param != 'my_drafts' and param != 'my_posts_for_all' and param != 'my_posts_for_subscribers' %}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'posts' param='my_posts' %}">
@@ -25,6 +32,7 @@
                     </a>
                 </li>
                 {% endif %}
+
                 {% endif %}
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">

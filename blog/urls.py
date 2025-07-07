@@ -17,6 +17,8 @@ urlpatterns = [
 
     path("like/<obj>/<int:object_id>", views.toggle_like, name="toggle_like"),
 
+    path("rate/post/<int:post_id>", views.rate_post, name="rate_post"),
+
     path("search_publish_posts", views.search_publish_posts, name="search_publish_posts"),
 
     path("auth/signin", views.user_signin, name="user_signin"),

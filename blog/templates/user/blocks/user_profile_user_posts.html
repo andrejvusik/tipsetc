@@ -1,25 +1,47 @@
 {% if user_posts_for_all %}
 <div>
-    <h3 class="mb-4">
+    <h3 class="mb-3">
         <a
             class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
             href="{% url 'posts' param=user_profile.user.username %}"
         >
-            {{ user_profile.user.username }}'s posts (published for all):
+
+            {% if not user_profile.user.first_name and not user_profile.user.last_name %}
+                {{ user_profile.user.username }}'s posts (published for all):
+            {% else %}
+                {{ user_profile.user.first_name }} {{ user_profile.user.last_name }} ({{ user_profile.user.username }}) posts (published for all):
+            {% endif %}
 
         </a>
 
     </h3>
-    {% for post in user_posts_for_all %}
+    {% for post in user_posts_for_all|slice:":5" %}
         <p>
             <a
                 class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                 href="{% url 'post_view' slug=post.slug %}"
             >
-                {{ post.title }}
+                <strong>{{ post.title }} </strong>
+                <small class="text-muted">by
+                    {% if not post.author.first_name and not post.author.last_name %}
+                        {{ post.author.username }}
+                    {% else %}
+                        {{ post.author.first_name }} {{ post.author.last_name }} ({{ post.author.username }})
+                    {% endif %}
+                </small>
+                <br>
+                <small class="text-muted">Updated: {{ post.updated_at|date:"F j, Y" }}</small>
             </a>
         </p>
     {% endfor %}
+    <h6 class="mb-4">
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'posts' param=user_profile.user.username %}"
+        >
+            ... show all posts (published for all) ({{ user_posts_for_all.count }}) ->
+        </a>
+    </h6>
 </div>
 {% else %}
 <div>

@@ -12,7 +12,7 @@
         </p>
         <h1 style="max-width:70%; height: auto;">{{ post.title }}</h1>
     </header>
-    {% include 'post/blocks/post_info.html' %}
+    {% include 'post/blocks/post_info_view.html' %}
 
     <main>
 
@@ -22,7 +22,13 @@
             </p>
         </div>
 
-        {% include "post/blocks/post_like_button.html" %}
+        <div class="d-flex justify-content-between">
+            {% include "post/blocks/post_like_button.html" %}
+            {% include "post/blocks/post_rate.html" %}
+        </div>
+
+
+
 
         <hr class="mt-5 mb-5">
         <div id="comments-block" class="mt-4">

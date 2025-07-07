@@ -52,7 +52,7 @@ def user_signup(request):
                 if user is not None:
                     login(request, user)
                     messages.success(request, f'Dear "{user.username}", you have successfully registered.')
-                    return shortcuts.redirect("posts")
+                    return shortcuts.redirect("user_profile", user_id=request.user.id)
                 else:
                     return shortcuts.redirect("user_signin")
             else:

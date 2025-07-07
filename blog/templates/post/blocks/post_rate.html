@@ -1,0 +1,38 @@
+{% if request.user.is_authenticated %}
+<div id="rating-container">
+    <form
+        hx-post="{% url 'rate_post' post.id %}"
+        hx-target="#rating-container"
+        hx-swap="outerHTML"
+        class="d-flex align-items-center gap-2"
+    >
+        {% csrf_token %}
+
+        <div class="star-rating d-flex align-items-center gap-1">
+
+            {% for i in "12345" %}
+                <button
+                    type="submit"
+                    name="rate"
+                    value="{{ i }}"
+                    class="btn btn-lg p-0 border-0 bg-transparent"
+                    aria-label="Star {{ i }}"
+                >
+                    {% if users_rating and users_rating >= forloop.counter %}
+                        <span class="text-warning text-lg">★</span>
+                    {% else %}
+                        <span class="text-secondary">★</span>
+                    {% endif %}
+                </button>
+            {% endfor %}
+            {% if post.rating %}
+                <span class="align-items-center gap-1">{{ post.rating|floatformat:1 }}</span>
+            {% else %}
+                <span class="align-items-center gap-1 text-muted">No rating yet.</span>
+            {% endif %}
+
+        </div>
+    </form>
+</div>
+
+{% endif %}

@@ -9,7 +9,7 @@ from django.db.models.query_utils import Q
 from django.conf import settings
 
 from blog.forms import CreateEditPostForm
-from blog.models import Post
+from blog.models import Post, PostRating, Subscription, UserProfile
 
 
 User = get_user_model()
@@ -42,14 +42,18 @@ def posts(request, param="all_publish_posts"):
         titles[f"{param}"] = f"Posts by {param}"
 
     if request.user.is_authenticated:
+        subscriptions = Subscription.objects.filter(subscriber=request.user.profile)
+        subscribed_to = [i.subscribed_to.user.username for i in subscriptions]
         params["my_posts"] = Post.objects.filter(author=request.user)
         params["my_drafts"] = Post.objects.filter(author=request.user).filter(published="draft")
         params["my_posts_for_all"] = Post.objects.filter(author=request.user).filter(published="for_all")
         params["my_posts_for_subscribers"] = Post.objects.filter(author=request.user).filter(published="for_subscribers")
+        params["subscriptions"] = Post.objects.filter(author__username__in=subscribed_to).filter(published="for_subscribers")
         titles["my_posts"] = "My Posts"
         titles["my_drafts"] = "My drafts"
         titles["my_posts_for_all"] = "My posts published for all"
         titles["my_posts_for_subscribers"] = "My posts published for subscribers"
+        titles["subscriptions"] = "My subscriptions"
     if not param in params:
         param = "exception"
     q_posts = params[param].order_by("-updated_at")
@@ -123,11 +127,18 @@ def post_create(request):
 
 def post_view(request, slug):
     post = shortcuts.get_object_or_404(Post, slug=slug)
+    context = {
+        "post": post,
+        "settings": settings,
+    }
+    if PostRating.objects.filter(post=post, user=request.user).exists():
+        post_rating = PostRating.objects.get(post=post, user=request.user)
+        context["users_rating"] = post_rating.rating
+    subscribed_to = UserProfile.objects.get(user=User.objects.get(id=post.author.id))
+
     if post.published == "for_all" or post.author == request.user:
-        context = {
-            "post": post,
-            "settings": settings,
-        }
+        return shortcuts.render(request, "post/post_view.html", context)
+    elif post.published == "for_subscribers" and Subscription.objects.filter(subscriber=request.user.profile, subscribed_to=subscribed_to).exists():
         return shortcuts.render(request, "post/post_view.html", context)
     else:
         messages.success(request, "This post is not published yet.")

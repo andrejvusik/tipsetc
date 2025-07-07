@@ -1,6 +1,6 @@
 {% if user_posts %}
 <div>
-    <h3 class="mb-4">
+    <h3 class="mb-3">
         <a
             class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
             href="{% url 'posts' param='my_posts_for_all' %}"
@@ -12,7 +12,7 @@
                 class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                 href="{% url 'posts' param='my_posts_for_all' %}"
             >
-                | published for all ({{ user_posts_for_all.count }})
+                | for all ({{ user_posts_for_all.count }})
 
             </a>
         {% endif %}
@@ -21,7 +21,7 @@
                 class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                 href="{% url 'posts' param='my_posts_for_all' %}"
             >
-                | published for subscribers ({{ user_posts_for_subscribers.count }})
+                | for subscribers ({{ user_posts_for_subscribers.count }})
 
             </a>
         {% endif %}
@@ -34,30 +34,45 @@
 
             </a>
         {% endif %}
-        :
     </h3>
-    {% for post in user_posts %}
+    {% for post in user_posts|slice:":5" %}
         <p>
-            Status:
-            <span class="text-muted sm">
-                {{ post.published_status }}
-            </span>
-             |  
             <a
                 class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                 href="{% url 'post_view' slug=post.slug %}"
             >
-                {{ post.title }}
-            </a>
+                <strong>{{ post.title }} </strong>
+                <small class="text-muted">by
+                    {% if not post.author.first_name and not post.author.last_name %}
+                        {{ post.author.username }}
+                    {% else %}
+                        {{ post.author.first_name }} {{ post.author.last_name }} ({{ post.author.username }})
+                    {% endif %}
+                </small>
+                <br>
+                <small class="text-muted">Updated: {{ post.updated_at|date:"F j, Y" }}</small>            </a>
             <br>
-            <a
-                class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                href="{% url 'post_edit' slug=post.slug %}"
-            >
-                ✏ Edit post
-            </a>
+            <small class="text-muted">
+                <a
+                    class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    href="{% url 'post_edit' slug=post.slug %}"
+                >
+                    ✏ Edit post
+                </a>
+                 | Status:<span class="text-muted sm">{{ post.published_status }}</span>
+            </small>
         </p>
     {% endfor %}
+
+    <h6 class="mb-4">
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'posts' param='my_posts_for_all' %}"
+        >
+            ... show all my posts ({{ user_posts.count }}) ->
+        </a>
+    </h6>
+
 </div>
 {% else %}
 <div>
@@ -65,7 +80,13 @@
         My posts:
     </h3>
     <p class="text-muted">
-        You has no published posts.
+        You have no posts.
+        <a
+            class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'post_create' %}"
+        >
+            Create a new post.
+        </a>
     </p>
 </div>
 {% endif %}

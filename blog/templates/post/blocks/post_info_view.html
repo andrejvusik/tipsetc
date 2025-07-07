@@ -7,7 +7,7 @@
         {% if not post.author.first_name and not post.author.last_name %}
             {{ post.author.username }}
         {% else %}
-            {{ post.author.first_name }} {{ post.author.last_name }} ({{ post.author.username }})
+            {{ post.author.first_name }} {{ post.author.last_name }}
         {% endif %}
     </a>
     {% if user.is_authenticated and post.author == user %}
@@ -40,13 +40,11 @@
     {% endif %}
     <br>
     <a
-        href="{% url 'post_view' slug=post.slug %}#comments-list"
+        href="#comments-list"
         class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
     >
             Comments ({{ post.comments.count }})
     </a>
-     |
-    {% include "post/blocks/post_rating.html" %}
 </p>
 {% include 'post/blocks/modal_post_delete_request.html' %}
 {% include 'post/blocks/modal_post_change_status.html' %}
