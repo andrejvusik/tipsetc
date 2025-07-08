@@ -26,7 +26,8 @@
                 </button>
             {% endfor %}
             {% if post.rating %}
-                <span class="align-items-center gap-1">{{ post.rating|floatformat:1 }}</span>
+                <span class="align-items-center gap-1">{{ post.ratings|floatformat:1 }}</span>
+                <small class="text-muted">({{ post.ratings_count }} ratings)</small>
             {% else %}
                 <span class="align-items-center gap-1 text-muted">No rating yet.</span>
             {% endif %}

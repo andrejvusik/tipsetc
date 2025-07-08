@@ -1,5 +1,6 @@
 {% if post.rating %}
-    Rating: <span>{{ post.rating|floatformat:1 }}</span>
+    Rating: <span>{{ post.ratings|floatformat:1 }}</span>
+    <small class="text-muted">({{ post.ratings_count }} ratings)</small>
 {% else %}
     Post has not been rated yet.
 {% endif %}

@@ -130,10 +130,12 @@ def post_view(request, slug):
     context = {
         "post": post,
         "settings": settings,
+        "users_rating": 0,
     }
-    if PostRating.objects.filter(post=post, user=request.user).exists():
-        post_rating = PostRating.objects.get(post=post, user=request.user)
-        context["users_rating"] = post_rating.rating
+    if request.user.is_authenticated:
+        if PostRating.objects.filter(post=post, user=request.user).exists():
+            post_rating = PostRating.objects.get(post=post, user=request.user)
+            context["users_rating"] = post_rating.rating
     subscribed_to = UserProfile.objects.get(user=User.objects.get(id=post.author.id))
 
     if post.published == "for_all" or post.author == request.user:

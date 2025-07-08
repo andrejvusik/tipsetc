@@ -27,6 +27,9 @@ class Post(
 
     tags = models.ManyToManyField("Tag", related_name="posts", blank=True)
 
+    rating = models.PositiveIntegerField(null=False, default=0)
+    ratings_count = models.PositiveIntegerField(null=False, default=0)
+
     class Meta:
         db_table = "posts"
 
@@ -46,5 +49,10 @@ class Post(
         return self.likes.filter(user=user).exists()
 
     @property
-    def rating(self) -> float | None:
-        return self.users_rating.filter(rating__isnull=False).aggregate(avg=models.Avg("rating"))["avg"] or None
+    def ratings(self) -> float | None:
+        if self.ratings_count == 0:
+            ratings = None
+            return ratings
+        else:
+            ratings = self.rating / self.ratings_count
+            return ratings
