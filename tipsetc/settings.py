@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog.apps.BlogConfig",
     "django.contrib.postgres",
+
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

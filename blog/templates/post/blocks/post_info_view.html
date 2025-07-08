@@ -7,7 +7,7 @@
         {% if not post.author.first_name and not post.author.last_name %}
             {{ post.author.username }}
         {% else %}
-            {{ post.author.first_name }} {{ post.author.last_name }}
+            {{ post.author.first_name }} {{ post.author.last_name }} ({{ post.author.username }})
         {% endif %}
     </a>
     {% if user.is_authenticated and post.author == user %}

@@ -12,6 +12,7 @@ click-plugins==1.1.1.2
 click-repl==0.3.0
 dj-database-url==3.0.0
 Django==5.2.1
+djangorestframework==3.16.0
 flower==2.0.1
 httplib2==0.22.0
 humanize==4.12.3
