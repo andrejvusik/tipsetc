@@ -19,6 +19,7 @@ urlpatterns = [
 
     path("rate/post/<int:post_id>", views.rate_post, name="rate_post"),
 
+    path("search_in_my_posts", views.search_in_my_posts, name="search_in_my_posts"),
     path("search_publish_posts", views.search_publish_posts, name="search_publish_posts"),
 
     path("auth/signin", views.user_signin, name="user_signin"),

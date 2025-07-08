@@ -64,9 +64,32 @@
 
         </div>
 
-        <a class="btn btn-outline-secondary" aria-current="page" href="{% url 'post_create' %}">
-            <b>&#43;</b> New post
-        </a>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+                <form class="d-flex position-relative ms-auto" role="search">
+                    <input
+                            type="search"
+                            name="query"
+                            id="search_publish_posts"
+                            class="form-control me-2"
+                            placeholder="Search in my posts..."
+                            aria-label="Search"
+                            hx-get="{% url 'search_in_my_posts' %}"
+                            hx-trigger="input changed delay:200ms, keyup[key=='Enter'], load"
+                            hx-target="#search-my-posts-results"
+                            hx-indicator=".htmx-indicator"
+                            autocomplete="off"
+                    />
+                </form>
+                <div id="search-my-posts-results"></div>
+            </li>
+
+            <li class="nav-item">
+                <a class="btn btn-outline-secondary" aria-current="page" href="{% url 'post_create' %}">
+                    <b>&#43;</b> New post
+                </a>
+            </li>
+        </ul>
 
     </div>
 </nav>

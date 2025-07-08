@@ -1,5 +1,3 @@
-from django.http.response import HttpResponseBadRequest
-
 from blog.models import Post, PostRating
 
 from django import shortcuts
@@ -16,11 +14,6 @@ def rate_post(request, post_id):
     else:
         post_rating = PostRating.objects.filter(post=post, user=request.user).first()
         users_rating = old_rating = post_rating.rating
-
-
-    # post_rating, created = PostRating.objects.get_or_create(user=request.user, post=post)
-    # if post_rating is None:
-    #     return HttpResponseBadRequest(f"You have not rated post: \"{post.title}\".")
 
     if request.method == "POST":
         rating = int(request.POST.get("rate"))

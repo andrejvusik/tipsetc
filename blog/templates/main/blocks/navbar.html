@@ -25,13 +25,11 @@
                     </a>
                 </li>
 
-                {% if param != 'my_posts' and param != 'my_drafts' and param != 'my_posts_for_all' and param != 'my_posts_for_subscribers' %}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'posts' param='my_posts' %}">
                         My posts
                     </a>
                 </li>
-                {% endif %}
 
                 {% endif %}
             </ul>

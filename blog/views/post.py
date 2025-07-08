@@ -92,6 +92,18 @@ def search_publish_posts(request):
         {"results": results, "query": query},
     )
 
+def search_in_my_posts(request):
+    query = request.GET.get('query')
+    results = []
+    if query:
+        results = Post.objects.filter(author=request.user).filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by("-updated_at")[:settings.SEARCH_RESULTS_LIMIT]
+
+    return shortcuts.render(
+        request,
+        "post/blocks/search_publish_posts.html",
+        {"results": results, "query": query},
+    )
+
 @login_required
 def post_create(request):
     if request.method == "POST":
